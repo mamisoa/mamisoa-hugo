@@ -1,0 +1,19 @@
+# theme.toml for Mamisoa's theme
+
+name = "Mamisoa Hugo"
+license = "CC BY 3.0"
+licenselink = "https://creativecommons.org/licenses/by/3.0/"
+description = "Mamisoa's theme"
+homepage = "https://ophtalmo.brussels"
+tags = ['google-analytics', 'fast', 'modern', 'minimal', 'minimalistic', 'light', 'multilingual', "bootstrap", "company", "responsive"]
+features = ["blog", "company", "responsive", "seo-friendly"]
+min_version = "0.64.0"
+
+[author]
+  name = "Mamisoa"
+  homepage = "https://mamisoa.be/"
+
+[original]
+  name = "Mamisoa"
+  homepage = "https://ophtalmo.brussels"
+  repo = "https://github.com/mamisoa/mamisoa-hugo.git"
