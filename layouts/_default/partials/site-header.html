@@ -1,0 +1,61 @@
+<header class="site-header">
+    <!-- top nav bar
+    * ? use for template
+    * ? use for partial
+    -->
+    <nav class="navbar navbar-dark navbar-expand-lg sticky-top text-uppercase">
+        <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
+            <img {{ site.Params.logo | absURL }}" alt="{{ site.Title }}" width="{{site.Params.logo_width}}" class="img-fluid"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler8" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler8">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                {{ range site.Menus.main }}
+                {{ if .HasChildren }}
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" id=" {{ .Name}}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="{{ .Name }}Id">
+                            {{ range .Children }}
+                            <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.HasMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>
+                            {{ end }}
+                        </div>
+                    </li>
+              {{ else }}
+                <li class="nav-item {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+                    <a href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.HasMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>
+                </li>
+              {{ end }}
+              {{ end }}
+            </ul>
+        </div>
+    </nav> <!-- end top nav bar -->
+    <!-- overlay div opacity filter
+        * position absolute top left w100% h100% of header z-index 0
+        * set opacity and color in class
+    -->
+    <div class="overlay"></div>
+    <!-- video background
+        * position absolute z-index 1
+    -->
+    <video playsinline="playsinline" autoplay loop muted>
+        {{ if .Site.Params.bgVideo }}
+        <source src="{{ relURL ($.Site.Params.bgVideo) }}.mp4" type="video/mp4" poster="{{ relURL ($.Site.Params.bgVideo) }}.png">
+        {{ end }}
+    </video>
+    <!-- container title over video
+        * position absolute z-index 2
+    -->
+    <div class="container h-100">
+        <section class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <h1 style="font-family: 'Maven Pro', sans-serif;" class="display-4">{{ .Site.Title }}</h1>
+                <blockquote class="blockquote">
+                    <p class="display-4 font-italic mb-0" style="font-family: 'Pinyon Script', cursive;">{{ .Site.subTitle }}</p>
+                    <p class="blockquote-footer">Da Vinci</p>
+                </blockquote>
+            </div>
+        </section>
+    </div>
+</header>
