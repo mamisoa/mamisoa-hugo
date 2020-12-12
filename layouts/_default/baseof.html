@@ -22,8 +22,13 @@
       <link href="{{ relURL (printf "%s%s" "dist/" .) }}" rel="stylesheet">
     {{ end }} -->
 
-    <!-- TODO: set [params] custom_css = "static/css" -->
+    <!-- TODO: set [params] custom_css = css files in array [] -->
     {{ range .Site.Params.custom_css }} 
+      <link rel="stylesheet" href="{{ relURL (.) }}">
+    {{ end }}
+
+    <!-- TODO: set [params] css_font = css url in array [] -->
+    {{ range .Site.Params.css_font }} 
       <link rel="stylesheet" href="{{ relURL (.) }}">
     {{ end }}
 
