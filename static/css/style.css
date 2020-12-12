@@ -101,12 +101,13 @@ header .container {
     min-height: 90vh;
 }
 
-.layout-social .layout-icon {
-    font-size: 2em;
-}
-
 .site-footer {
     background-color: #828e8d;
+}
+
+
+.layout-social .layout-icon {
+    font-size: 2em;
 }
 
 .well {
