@@ -29,7 +29,7 @@
 
     <!-- TODO: set [params] css_font = css url in array [] -->
     {{ range .Site.Params.css_font }} 
-      <link rel="stylesheet" href="{{ relURL (.) }}">
+      <link rel="stylesheet" href="{{ . }}">
     {{ end }}
 
     <!-- TODO: set [params] favicon appleTouchIcon favicon32 favicon16 webmanifest -->
@@ -54,14 +54,13 @@
     {{ end }}
 	{{ block "head" . }}{{ partial "head-additions.html" . }}{{ end }}
   </head>
-  <!-- ok 12/12/20 -->
-
+  
   <!-- <body class="ma0 {{ $.Param "body_classes"  | default "avenir bg-near-white"}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}"> -->
   <body>      
     {{ block "header" . }}
         {{ partial "site-header.html" .}}
     {{ end }}
-
+    <!-- ok 12/12/20 -->
     <main class="pb7" role="main">
       {{ block "main" . }}{{ end }}
     </main>
