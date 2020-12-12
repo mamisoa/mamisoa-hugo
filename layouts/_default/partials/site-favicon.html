@@ -1,0 +1,24 @@
+{{ if .Site.Params.favicon }}
+<link rel="shortcut icon" href="{{ relURL ($.Site.Params.favicon) }}" type="image/x-icon" />
+{{ end }}
+
+{{ if .Site.Params.appleTouchIcon }}
+<link rel="apple-touch-icon" sizes="180x180" href="{{ relURL ($.Site.Params.appleTouchIcon) }}" type="image/x-icon" />
+{{ end }}
+
+{{ if .Site.Params.favicon32 }}
+<link rel="icon" type="image/png" sizes="32x32" href="{{ relURL ($.Site.Params.favicon32) }}" type="image/x-icon" />
+{{ end }}
+
+{{ if .Site.Params.favicon16 }}
+<link rel="icon" type="image/png" sizes="16x16" href="{{ relURL ($.Site.Params.favicon) }}" type="image/x-icon" />
+{{ end }}
+
+{{ if .Site.Params.webmanifest }}
+<link rel="manifest" href="{{ relURL ($.Site.Params.webmanifest) }}"/>
+{{ end }}
+
+<!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest"> -->
