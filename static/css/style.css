@@ -1,0 +1,114 @@
+/* HEX
+  $color1: #79b1b5ff;
+  $color2: #0b132bff;
+  $color3: #e8e9f3ff;
+  $color4: #4a5899ff;
+  $color5: #ffad05ff; */
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+.site-header {
+    position: relative;
+    height: 100vh;
+    min-height: 25rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+header video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+header .container {
+    position: relative;
+    z-index: 2;
+}
+
+/*
+    * ! use if video not supported
+@media (pointer: coarse) and (hover: none) {
+    header {
+        background: url('assets/images/excimer_thumb.png') black no-repeat center center scroll;
+    }
+
+    header video {
+        display: none;
+    }
+} */
+
+.home-section {
+    background-color: #79b1b5ff;
+    font-family: Maven Pro, sans-serif;
+    /* width: 100%; */
+}
+
+
+.contact {
+    /* background-color: #14a9c2; */
+    background-color: #4a5899ff;
+}
+
+.img-offer {
+    border-radius: 10px;
+}
+
+.h4-offer-green {
+    border-radius: 10px;
+    background: #79b1b5;
+    box-shadow: 20px 20px 60px #47686b,
+             -20px -20px 60px #abfaff;
+}
+
+.neo-offer-green {
+    border-radius: 20px;
+    background: #79b1b5;
+    box-shadow: 20px 20px 60px #47686b,
+             -20px -20px 60px #abfaff;
+}
+
+.neo-info {
+    border-radius: 20px;
+    background: #4a5899;
+    box-shadow: 20px 20px 60px #1e233d,
+             -20px -20px 60px #768df5;
+}
+
+.site-special {
+    min-height: 90vh;
+}
+
+.layout-social .layout-icon {
+    font-size: 2em;
+}
+
+.site-footer {
+    background-color: #828e8d;
+}
+
+.well {
+   background-color: rgba(245, 245, 245, 0.4);
+}
