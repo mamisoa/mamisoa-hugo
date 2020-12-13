@@ -7,52 +7,14 @@
         </div>
     </div>
     <div class="justify-content-around mt-4  pb-4 row text-center">
-        {{ offset := 100 }}
-        {{ range site.Params.services}}
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="{{ print offset }}">
+        {{ $offset := 100 }}
+        {{ range site.Params.services }}
+        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="{{ print $offset }}">
             <img class="d-block img-fluid img-offer layout-image mb-3 mt-2 one" src="{{ .serviceImage | relURL }}" alt="{{ .serviceImgDesc }}">
             <h4 class="h4-offer-green mb-2 mt-2  pb-2 pt-2 rounded text-white">{{ .serviceName }}</h4>
         </div>
-        {{ offset += 25}}
+        {{ $offset = (add $offset 25) }}
         {{ end }}
-    </div>
-    <div class="justify-content-around mt-4  pb-4 row text-center">
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="100">
-            <img class="d-block img-fluid img-offer layout-image mb-3 mt-2 one" src="assets/images/surgery/under_laser_960x640.jpg" alt="Laser Excimer Allegretto EX-500">
-            <h4 class="h4-offer-green mb-2 mt-2  pb-2 pt-2 rounded text-white">Laser</h4>
-        </div>
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="150">
-            <img class="d-block img-fluid img-offer layout-image mb-3 mt-2" src="assets/images/exam/iris2_960x640.jpg" alt="Laser Excimer Allegretto EX-500" style="font-size: 1rem;">
-            <h4 class="h4-offer-green mb-2 mt-2 pb-2 pt-2 text-dark">Technologie</h4>
-        </div>
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="200">
-            <img class="d-block img-fluid img-offer layout-image mb-3 mt-2 one" src="assets/images/surgery/bloc1_med_960x640.jpg" alt="Laser Excimer Allegretto EX-500">
-            <h4 class="h4-offer-green mb-2 mt-2 pb-2 pt-2 shadow text-white">Chirurgie</h4>
-        </div>
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="250">
-            <img class="d-block img-fluid img-offer layout-image mb-3 mt-2" src="assets/images/exam/iris1_960x640.jpg" alt="Laser Excimer Allegretto EX-500">
-            <h4 class="h4-offer-green mb-2 mt-2 pb-2 pt-2 text-dark">Compétences</h4>
-        </div>
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="300">
-            <img class="d-block img-fluid layout-image mb-3 mt-2" src="assets/images/exam/ortho2_960x640.jpg" alt="Laser Excimer Allegretto EX-500">
-            <h4 class="h4-offer-green mb-2 mt-2 pb-2 pt-2 shadow text-white">Orthoptie</h4>
-        </div>
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="350">
-            <img class="d-block img-fluid img-offer layout-image mb-3 mt-2" src="assets/images/diseases/keratocone/topo_keratocone_500x333.png" alt="Laser Excimer Allegretto EX-500">
-            <h4 class="h4-offer-green mb-2 mt-2 pb-2 pt-2 text-dark">Kératocône</h4>
-        </div>
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="400">
-            <img class="d-block img-fluid img-offer layout-image mb-3 mt-2" src="assets/images/diseases/glaucome/nerf_optique_exc_306_206.jpg" alt="Laser Excimer Allegretto EX-500">
-            <h4 class="h4-offer-green mb-2 mt-2 pb-2 pt-2 text-white">Glaucome</h4>
-        </div>
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="450">
-            <img class="d-block img-fluid img-offer layout-image mb-3 mt-2" src="assets/images/diseases/ded/kps_459x306.gif" alt="Laser Excimer Allegretto EX-500">
-            <h4 class="h4-offer-green mb-2 mt-2 pb-2 pt-2 text-dark">Yeux secs</h4>
-        </div>
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="500">
-            <img class="d-block img-fluid img-offer layout-image mb-3 mt-2" src="assets/images/diseases/ded/contact-lenses-hydrogel_500x333.jpg" alt="Laser Excimer Allegretto EX-500">
-            <h4 class="h4-offer-green mb-2 mt-2 pb-2 pt-2 text-white">Lentilles</h4>
-        </div>
     </div>
 </section><!-- section end of site-special highlight -->
 {{ end }}

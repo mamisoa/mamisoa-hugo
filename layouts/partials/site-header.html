@@ -5,17 +5,18 @@
     -->
     <nav class="navbar navbar-dark navbar-expand-lg sticky-top text-uppercase">
         <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
-            <img src="{{ site.Params.logo | absURL }}" alt="{{ site.Title }}" width="{{ site.Params.logo_width }}" class="img-fluid"/>
+            <img src="{{ site.Params.logo | relURL }}" alt="{{ site.Title }}" width="{{ site.Params.logo_width }}" class="img-fluid"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler8" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggler8">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                {{ $currentPage := . }}
                 {{ range site.Menus.main }}
                 {{ if .HasChildren }}
                     <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
+                    <a class="nav-link" href="#" class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
                         <div class="dropdown-menu" aria-labelledby="{{ .Name }}Id">
                             {{ range .Children }}
                             <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.HasMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>
@@ -24,7 +25,7 @@
                     </li>
               {{ else }}
                 <li class="nav-item {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
-                    <a href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.HasMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>
+                    <a class="nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.HasMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>
                 </li>
               {{ end }}
               {{ end }}
@@ -52,7 +53,7 @@
             <div class="w-100 text-white">
                 <h1 style="font-family: 'Maven Pro', sans-serif;" class="display-4">{{ .Site.Title }}</h1>
                 <blockquote class="blockquote">
-                    <p class="display-4 font-italic mb-0" style="font-family: 'Pinyon Script', cursive;">{{ .Site.subTitle }}</p>
+                    <p class="display-4 font-italic mb-0" style="font-family: 'Pinyon Script', cursive;">L'oeil est la fenêtre de l'Ame</p>
                     <p class="blockquote-footer">Da Vinci</p>
                 </blockquote>
             </div>

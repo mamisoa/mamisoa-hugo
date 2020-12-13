@@ -23,8 +23,9 @@
     {{ end }} -->
 
     <!-- TODO: set [params] custom_css = css files in array [] -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     {{ range .Site.Params.custom_css }} 
-      <link rel="stylesheet" href="{{ relURL (.) }}">
+      <link rel="stylesheet" type="text/css" href="{{ . | relURL }}">
     {{ end }}
 
     <!-- TODO: set [params] css_font = css url in array [] -->
@@ -52,7 +53,6 @@
     {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
       {{ template "_internal/google_analytics_async.html" . }}
     {{ end }}
-	{{ block "head" . }}{{ partial "head-additions.html" . }}{{ end }}
   </head>
   
   <!-- <body class="ma0 {{ $.Param "body_classes"  | default "avenir bg-near-white"}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}"> -->
@@ -60,10 +60,7 @@
     {{ block "header" . }}
         {{ partial "site-header.html" .}}
     {{ end }}
-    <!-- ok 12/12/20 -->
-    <main class="pb7" role="main">
-      {{ block "main" . }}{{ end }}
-    </main>
+    {{ block "main" . }}{{ end }}
     {{ block "contact" . }}{{ partialCached "site-contact.html" . }}{{ end }}
     {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
     {{ block "scripts" . }}{{ partialCached "site-scripts.html" . }}{{ end }}
