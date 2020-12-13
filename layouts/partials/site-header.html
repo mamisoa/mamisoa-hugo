@@ -17,15 +17,15 @@
                 {{ if .HasChildren }}
                     <li class="dropdown">
                     <a class="nav-link" href="#" class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="{{ .Name }}Id">
+                        <div class="dropdown-menu {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}" aria-labelledby="{{ .Name }}Id">
                             {{ range .Children }}
-                            <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.HasMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>
+                            <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.IsMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>
                             {{ end }}
                         </div>
                     </li>
               {{ else }}
-                <li class="nav-item {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
-                    <a class="nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.HasMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>
+                <li class="nav-item {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                    <a class="nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.IsMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>
                 </li>
               {{ end }}
               {{ end }}
@@ -55,6 +55,7 @@
                 <blockquote class="blockquote">
                     <p class="display-4 font-italic mb-0" style="font-family: 'Pinyon Script', cursive;">L'oeil est la fenêtre de l'Ame</p>
                     <p class="blockquote-footer">Da Vinci</p>
+                    <p class="blockquote-footer">{{ $currentPage }}</p>
                 </blockquote>
             </div>
         </section>
