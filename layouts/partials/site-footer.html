@@ -1,8 +1,8 @@
 <footer class="d-flex justify-content-center site-footer">
     <section class="layout-social py-5">
-        <a class="text-light px-2" href="#"><i class="layout-icon fab fa-facebook"></i></a>
-        <a class="text-light px-2" href="#"><i class="layout-icon fab fa-twitter"></i></a>
-        <a class="text-light px-2" href="#"><i class="layout-icon fab fa-linkedin"></i></a>
-        <a class="text-light px-2" href="#"><i class="layout-icon fab fa-github"></i></a>
+        {{ if $.Site.Params.facebookAccountUrl }} <a class="text-light px-2" href="{{ $.Site.Params.facebookAccountUrl }}"><i class="layout-icon fab fa-facebook"></i></a>{{ end }}
+        {{ if $.Site.Params.twitterAccountUrl }}<a class="text-light px-2" href="{{ $.Site.Params.twitterAccountUrl }}"><i class="layout-icon fab fa-twitter"></i></a>{{ end }}
+        {{ if $.Site.Params.linkedinAccountUrl }}<a class="text-light px-2" href="{{ $.Site.Params.linkedinAccountUrl }}"><i class="layout-icon fab fa-linkedin"></i></a>{{ end }}
+        {{ if $.Site.Params.githubAccountUrl }}<a class="text-light px-2" href="{{ $.Site.Params.githubAccountUrl }}"><i class="layout-icon fab fa-github"></i></a>{{ end }}
     </section> <!-- section end of social -->
 </footer>
