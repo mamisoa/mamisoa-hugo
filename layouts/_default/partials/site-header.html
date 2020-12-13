@@ -5,7 +5,7 @@
     -->
     <nav class="navbar navbar-dark navbar-expand-lg sticky-top text-uppercase">
         <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
-            <img {{ site.Params.logo | absURL }}" alt="{{ site.Title }}" width="{{site.Params.logo_width}}" class="img-fluid"/>
+            <img src="{{ site.Params.logo | absURL }}" alt="{{ site.Title }}" width="{{ site.Params.logo_width }}" class="img-fluid"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler8" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
                 {{ range site.Menus.main }}
                 {{ if .HasChildren }}
                     <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" id=" {{ .Name}}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
+                    <a href="#" class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
                         <div class="dropdown-menu" aria-labelledby="{{ .Name }}Id">
                             {{ range .Children }}
                             <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if $currentPage.HasMenuCurrent "main" . }}<span class="sr-only">(current)</span>{{ end }}</a>

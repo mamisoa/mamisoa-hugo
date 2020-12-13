@@ -64,6 +64,7 @@
     <main class="pb7" role="main">
       {{ block "main" . }}{{ end }}
     </main>
+    {{ block "contact" . }}{{ partialCached "site-contact.html" . }}{{ end }}
     {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
     {{ block "scripts" . }}{{ partialCached "site-scripts.html" . }}{{ end }}
   </body>
