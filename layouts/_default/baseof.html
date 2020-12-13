@@ -57,11 +57,11 @@
   
   <!-- <body class="ma0 {{ $.Param "body_classes"  | default "avenir bg-near-white"}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}"> -->
   <body>
-    {{ if .IsHome }}
+    <!-- {{ if .IsHome }}
     <p>Current page is HOME</p>
     {{ else }}
     <p>Current page is NOT home</p>
-    {{ end }}
+    {{ end }} -->
     {{ block "header" . }}
         {{ if .IsHome }}
           {{ partialCached "site-header.html" .}}

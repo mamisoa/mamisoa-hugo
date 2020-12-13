@@ -1,68 +1,62 @@
-<!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode | default "en" }}">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
-    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
-    {{ hugo.Generator }}
-    {{/* NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command */}}
-    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-    {{ else }}
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    {{ end }}
+{{ define "main" }}
 
-    <!-- missing <meta name="author" content=""> -->
+{{ $section := .Site.GetPage "section" .Section }}
+<div class="container-fluid postContainer text-white">
+    <div class="row justify-content-center">
+        <div class="col-sm-7 postHeader">
+            <aside class="tracked">
+                {{/*
+                CurrentSection allows us to use the section title instead of inferring from the folder.
+                https://gohugo.io/variables/page/#section-variables-and-methods
+                */}}
+              {{with .CurrentSection.Title }}{{. | upper }}{{end}}
+            </aside>
+            {{ partial "social-share.html" . }}
+            <h1 class="">
+              {{- .Title -}}
+            </h1>
+            {{ with .Params.author }}
+            <p class="tracked">
+                By <strong>
+                {{ if reflect.IsSlice . }}
+                    {{ delimit . ", " | markdownify }}
+                {{else}}
+                    {{ . | markdownify }}
+                {{ end }}
+                </strong>
+            </p>
+            {{ end }}
+            {{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
+            <time class="tracked" {{ printf `datetime="%s"` (.Date.Format "2006-01-02T15:04:05Z07:00") | safeHTMLAttr }}>
+            {{- .Date.Format "January 2, 2006" -}}
+            </time>
 
-    <!-- {{ $stylesheet := .Site.Data.webpack_assets.app }}
-    {{ with $stylesheet.css }}
-      <link href="{{ relURL (printf "%s%s" "dist/" .) }}" rel="stylesheet">
-    {{ end }} -->
+            {{/*
+                Show "reading time" and "word count" but only if one of the following are true:
+                1) A global config `params` value is set `show_reading_time = true`
+                2) A section front matter value is set `show_reading_time = true`
+                3) A page front matter value is set `show_reading_time = true`
+            */}}
+            {{ if (or (eq (.Param "show_reading_time") true) (eq $section.Params.show_reading_time true) )}}
+            <span class="f6 mv4 dib tracked"> - {{ .ReadingTime}} minutes read</span>
+            <span class="f6 mv4 dib tracked"> - {{ .WordCount}} words</span>
+            {{ end }}
+        </div> <!-- end div col -->
+    </div> <!-- end row -->
+    <div class="row justify-content-center">
+        <div class="col-sm-7 postContent">
+            {{- .Content -}}
+            {{- partial "tags.html" . -}}
+            <div class="comments">
+                {{ if .Site.DisqusShortname }}
+                    {{ template "_internal/disqus.html" . }}
+                {{ end }}
+                {{ if .Site.Params.commentoEnable }}
+                    {{- partial "commento.html" . -}}
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- TODO: set [params] custom_css = css files in array [] -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    {{ range .Site.Params.custom_css }} 
-      <link rel="stylesheet" type="text/css" href="{{ . | relURL }}">
-    {{ end }}
-
-    <!-- TODO: set [params] css_font = css url in array [] -->
-    {{ range .Site.Params.css_font }} 
-      <link rel="stylesheet" href="{{ . }}">
-    {{ end }}
-
-    <!-- TODO: set [params] favicon appleTouchIcon favicon32 favicon16 webmanifest -->
-    {{ block "favicon" . }}
-      {{ partialCached "site-favicon.html" . }}
-    {{ end }}
-
-    {{ if .OutputFormats.Get "RSS" }}
-    {{ with .OutputFormats.Get "RSS" }}
-      <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
-      <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
-      {{ end }}
-    {{ end }}
-    
-    {{/* NOTE: These Hugo Internal Templates can be found starting at https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates */}}
-    {{- template "_internal/opengraph.html" . -}}
-    {{- template "_internal/schema.html" . -}}
-    {{- template "_internal/twitter_cards.html" . -}}
-
-    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
-      {{ template "_internal/google_analytics_async.html" . }}
-    {{ end }}
-  </head>
-  
-  <!-- <body class="ma0 {{ $.Param "body_classes"  | default "avenir bg-near-white"}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}"> -->
-  <body>      
-    {{ block "header" . }}
-        {{ partial "site-nav.html" .}}
-    {{ end }}
-    {{ block "main" . }}{{ end }}
-    {{ block "contact" . }}{{ partialCached "site-contact.html" . }}{{ end }}
-    {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
-    {{ block "scripts" . }}{{ partialCached "site-scripts.html" . }}{{ end }}
-  </body>
-</html>
+{{ end }}

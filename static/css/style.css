@@ -11,7 +11,7 @@
 
 .site-nav {
     position: relative;
-    min-height: 25rem;
+    min-height: 75px;
     width: 100%;
 }
 
@@ -119,4 +119,10 @@ header .container {
 
 .well {
    background-color: rgba(245, 245, 245, 0.4);
+}
+
+.postContainer {
+    padding-top: 25px;
+    background-color: #79b1b5ff;
+    width: 100%;
 }
