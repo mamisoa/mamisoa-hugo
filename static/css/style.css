@@ -9,6 +9,13 @@
     scroll-behavior: smooth;
   }
 
+.site-nav {
+    position: relative;
+    min-height: 25rem;
+    width: 100%;
+}
+
+
 .site-header {
     position: relative;
     height: 100vh;
