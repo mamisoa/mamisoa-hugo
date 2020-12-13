@@ -41,22 +41,24 @@
             <span class="f6 mv4 dib tracked"> - {{ .ReadingTime}} minutes read</span>
             <span class="f6 mv4 dib tracked"> - {{ .WordCount}} words</span>
             {{ end }}
+            <div class="postContent mt-3">
+                {{- .Content -}}
+            </div>
         </div> <!-- end div col -->
     </div> <!-- end row -->
-    <div class="row justify-content-center">
-        <div class="col-sm-7 postContent">
-            {{- .Content -}}
+    <div class="row justify-content-center pb-3">
+        <div class="col-sm-3 postTags">
             {{- partial "tags.html" . -}}
-            <div class="comments">
+        </div>
+        <div class="col-sm-4 postComments">
                 {{ if .Site.DisqusShortname }}
                     {{ template "_internal/disqus.html" . }}
                 {{ end }}
                 {{ if .Site.Params.commentoEnable }}
                     {{- partial "commento.html" . -}}
                 {{ end }}
-            </div>
         </div>
-    </div>
-</div>
+    </div> <!-- end row -->
+</div> <!-- end container -->
 
 {{ end }}
