@@ -70,8 +70,26 @@
         {{ end }}
     {{ end }}
     {{ block "main" . }}{{ end }}
-    {{ block "contact" . }}{{ partialCached "site-contact.html" . }}{{ end }}
-    {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
+    {{ block "contact" . }}
+      {{ if .IsHome }}
+        {{ .Scratch.Set "contactClass" "contact-home" }}
+        {{ .Scratch.Set "neoClass" "neo-info-home" }}
+        {{ partial "site-contact.html" . }}
+      {{ else }}
+        {{ .Scratch.Set "neoClass" "neo-info" }}
+        {{ .Scratch.Set "contactClass" "contact" }}
+        {{ partial "site-contact.html" . }}
+      {{ end }}
+    {{ end }}
+    {{ block "footer" . }}
+      {{ if .IsHome }}
+        {{ .Scratch.Set "footerClass" "site-footer-home" }}
+        {{ partialCached "site-footer.html" . }}
+      {{ else }}
+        {{ .Scratch.Set "footerClass" "site-footer" }}
+        {{ partial "site-footer.html" . }}
+      {{ end }}
+    {{ end }}
     {{ block "scripts" . }}{{ partialCached "site-scripts.html" . }}{{ end }}
   </body>
 </html>

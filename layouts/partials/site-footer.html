@@ -1,4 +1,4 @@
-<footer class="d-flex justify-content-center site-footer">
+<footer class="d-flex justify-content-center {{ .Scratch.Get "footerClass" }}">
     <section class="layout-social py-2">
         {{ if $.Site.Params.facebookAccountUrl }} <a class="text-light px-2" href="{{ $.Site.Params.facebookAccountUrl }}"><i class="layout-icon fab fa-facebook"></i></a>{{ end }}
         {{ if $.Site.Params.twitterAccountUrl }}<a class="text-light px-2" href="{{ $.Site.Params.twitterAccountUrl }}"><i class="layout-icon fab fa-twitter"></i></a>{{ end }}
