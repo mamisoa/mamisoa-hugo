@@ -64,8 +64,10 @@
     {{ end }} -->
     {{ block "header" . }}
         {{ if .IsHome }}
-          {{ partialCached "site-header.html" .}}
+          {{ .Scratch.Set "navClass" "navbar-fixed-top" }}
+          {{ partial "site-header.html" .}}
         {{ else }}
+          {{ .Scratch.Set "navClass" "navbar-fixed-top-post" }}
           {{ partialCached "site-nav.html" .}}
         {{ end }}
     {{ end }}

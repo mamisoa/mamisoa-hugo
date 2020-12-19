@@ -14,13 +14,26 @@ https://material.io/design/color/the-color-system.html#tools-for-picking-colors
     scroll-behavior: smooth;
   }
 
-.site-nav {
-    position: relative;
+.site-nav-header {
     min-height: 75px;
     width: 100%;
-    background-color: #42A5F5;
+}
+.site-nav {
+    /* position: relative; */
+    background-color:#1976D2;
 }
 
+.navbar-fixed-top.scrolled {
+    background-color: black !important;
+    opacity: 0.8;
+    transition: background-color 2000ms linear;
+}
+
+.navbar-fixed-top-post.scrolled {
+    background-color: #1565C0;
+    /* opacity: 0.8; */
+    transition: background-color 2000ms linear;
+}
 
 .site-header {
     position: relative;
@@ -87,7 +100,6 @@ header .container {
 }
 
 .contact {
-    /* background-color: #14a9c2; */
     background-color:#1565C0;
 }
 
@@ -125,7 +137,7 @@ header .container {
 }
 
 .site-footer {
-    background-color: #1E88E5;
+    background-color: #0D47A1;
 }
 
 .site-footer-home {
@@ -139,7 +151,7 @@ header .container {
 
 .postContainer {
     padding-top: 50px;
-    background-color:#2962FF;
+    background-color:#1E88E5;
     min-height: 90vh;
     width: 100%;
     fill: currentColor;

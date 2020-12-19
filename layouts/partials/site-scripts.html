@@ -14,5 +14,13 @@
 
 <script type="text/javascript">
     AOS.init();
+    $(function () {
+        $(document).scroll(function () {
+            var $nav = $(".navbar-fixed-top");
+            var $navPost = $(".navbar-fixed-top-post");
+            $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+            $navPost.toggleClass('scrolled', $(this).scrollTop() > $navPost.height());
+        });
+    });
 </script>
 <!-- end JS script -->
