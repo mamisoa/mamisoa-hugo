@@ -10,28 +10,33 @@ https://material.io/design/color/the-color-system.html#tools-for-picking-colors
   Teal 50#E0F2F1
   */
 
-  html {
+html {
     scroll-behavior: smooth;
-  }
+}
 
+/* For site-nav.html in single.html */
 .site-nav-header {
     min-height: 75px;
     width: 100%;
 }
-.site-nav {
-    /* position: relative; */
-    background-color:#1976D2;
-}
 
-.navbar-fixed-top.scrolled {
-    background-color: black !important;
-    opacity: 0.8;
-    transition: background-color 2000ms linear;
+.site-nav {
+    background-color:#1976D2;
 }
 
 .navbar-fixed-top-post.scrolled {
     background-color: #1565C0;
     /* opacity: 0.8; */
+    transition: background-color 2000ms linear;
+}
+
+/* ******************* */
+
+
+/* For nav bar from homepage */
+.navbar-fixed-top.scrolled {
+    background-color: #004D40 !important;
+    /* opacity: 0.9; */
     transition: background-color 2000ms linear;
 }
 
@@ -86,11 +91,15 @@ header .container {
     }
 } */
 
+/* ************************* */
+
+
+
 .site-special {
     background-color: #26A69A;
     font-family: Maven Pro, sans-serif;
     /* width: 100%; */
-    min-height: 90vh;
+    min-height: 80vh;
 }
 
 
@@ -152,7 +161,7 @@ header .container {
 .postContainer {
     padding-top: 50px;
     background-color:#1E88E5;
-    min-height: 90vh;
+    min-height: 75vh;
     width: 100%;
     fill: currentColor;
 }
@@ -161,6 +170,11 @@ header .container {
     color: white;
 }
 
+.svg-section-home {
+    background-color: #26A69A;
+}
+
 .svg-section {
     fill:#1565C0;
+    background-color: #1E88E5;
 }
