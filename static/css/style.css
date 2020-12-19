@@ -36,7 +36,7 @@ html {
 /* For nav bar from homepage */
 .navbar-fixed-top.scrolled {
     background-color: #004D40 !important;
-    /* opacity: 0.9; */
+    opacity: 0.9;
     transition: background-color 2000ms linear;
 }
 
@@ -168,6 +168,12 @@ header .container {
 
 .postContainer svg {
     color: white;
+}
+
+.postContainer img {
+    background-color: white;
+    width: 75px;
+    height: 75px;
 }
 
 .svg-section-home {

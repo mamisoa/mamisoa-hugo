@@ -12,11 +12,12 @@
               {{with .CurrentSection.Title }}{{. | upper }}{{end}}
             </aside>
             {{ partial "social-share.html" . }}
-            <h1 class="">
+            <h1 class="pt-1 pb-1">
               {{- .Title -}}
             </h1>
             {{ with .Params.author }}
             <p class="tracked">
+                <img src="{{ $.Params.author_pic | relURL }}" class="mr-2 img-fluid rounded-circle" alt="Picture of the author {{ $.Params.author }}" />
                 By <strong>
                 {{ if reflect.IsSlice . }}
                     {{ delimit . ", " | markdownify }}
@@ -24,6 +25,7 @@
                     {{ . | markdownify }}
                 {{ end }}
                 </strong>
+                
             </p>
             {{ end }}
             {{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
