@@ -14,6 +14,16 @@
 
 <script type="text/javascript">
     AOS.init();
+    Modernizr.on('webp', function(result) {
+            var root = document.documentElement;
+            if (result) {
+                // supported
+                root.classList.add('webp');
+            } else {
+                // not-supported
+                root.classList.add('no-webp');
+            }
+    });
     $(function () {
         $(document).scroll(function () {
             var $nav = $(".navbar-fixed-top");

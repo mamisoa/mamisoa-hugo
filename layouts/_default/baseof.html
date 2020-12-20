@@ -92,6 +92,6 @@
         {{ partial "site-footer.html" . }}
       {{ end }}
     {{ end }}
-    {{ block "scripts" . }}{{ partialCached "site-scripts.html" . }}{{ end }}
+    {{ block "scripts" . }}{{ partial "site-scripts.html" . }}{{ end }}
   </body>
 </html>

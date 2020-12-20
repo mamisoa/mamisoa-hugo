@@ -34,7 +34,11 @@
     </nav> <!-- end top nav bar -->
     <div class="container-fluid featured-image" >
         <div class="row">
+            <picture class="img-fluid w-100">
+                <source srcset="{{ $.Params.featured_image | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="Featured image webp of {{ $.Params.title }}" />
+                <source srcset="{{ $.Params.featured_image | relURL }}" alt="Featured original image of {{ $.Params.title }}" />
                 <img src="{{ $.Params.featured_image | relURL }}" class="img-fluid w-100" alt="Featured image of {{ $.Params.title }}" />
+            </picture>
         </div>
     </div>
 </header>
