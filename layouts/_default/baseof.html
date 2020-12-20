@@ -68,7 +68,7 @@
           {{ partial "site-header.html" .}}
         {{ else }}
           {{ .Scratch.Set "navClass" "navbar-fixed-top-post" }}
-          {{ partialCached "site-nav.html" .}}
+          {{ partial "site-nav.html" .}}
         {{ end }}
     {{ end }}
     {{ block "main" . }}{{ end }}

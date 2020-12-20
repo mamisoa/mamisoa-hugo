@@ -32,4 +32,9 @@
             </ul>
         </div>
     </nav> <!-- end top nav bar -->
+    <div class="container-fluid featured-image" >
+        <div class="row">
+                <img src="{{ $.Params.featured_image | relURL }}" class="img-fluid w-100" alt="Featured image of {{ $.Params.title }}" />
+        </div>
+    </div>
 </header>
