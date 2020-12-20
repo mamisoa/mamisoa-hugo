@@ -18,10 +18,12 @@ html {
 .site-nav-header {
     /* position: relative; */
     /* height: 30vh; */
-    min-height: 260px;
+    /* min-height: 260px; */
     width: 100%;
     overflow: visible ;
-    background-color: #1E88E5;
+    /* background-color: #1E88E5; */
+    /* background-color: transparent; */
+
 }
 
 
@@ -29,7 +31,7 @@ header .featured-image {
     background-color: #1E88E5;
     margin-top: 75px;
     z-index: -10;
-    opacity: 0.65;
+    opacity: 0.85;
 }
 
 
