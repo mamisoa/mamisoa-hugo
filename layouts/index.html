@@ -22,7 +22,7 @@
         <path d="M0 0 L50 90 L100 0 V100 H0" fill="#4DB6AC" />
     </svg>
 </div>
-<section class="container-fluid site-highlights py-3" style="font-family: 'Maven Pro', sans-serif;">
+<section class="container-fluid site-highlights py-5" style="font-family: 'Maven Pro', sans-serif;">
     <div class="justify-content-center row" data-aos="fade-up">
         <div class="col-md-12 text-center text-light">
             <h1 style>Des installations à la pointe</h1>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="row justify-content-center" data-aos="fade-up">
-        <div class="col-md-8">
+        <div class="col-md-8 col-xl-6">
             <div id="highlightsCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     {{ range first 1 site.Params.highlightsCarousel }}
@@ -64,7 +64,7 @@
                                 <img src="{{ .highlightImg | relURL }}" alt="{{ .highlightDesc }}" class="d-block w-100">
                             </picture>
                             <div class="carousel-caption d-none d-md-block text-light">
-                                <h5>{{ .highlightName }}</h5>
+                                <h5 style="opacity: 1;">{{ .highlightName }}</h5>
                                 <p>{{ .highlightDesc }}</p>
                             </div>
                         </div>
