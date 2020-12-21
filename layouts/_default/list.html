@@ -1,0 +1,15 @@
+{{ define "main" }}
+<article class="container-fluid postContainer text-light">
+    <div class="row">
+        <div class="col-md-4">
+            {{- .Content -}}
+        </div>
+    </div>
+    {{- template "_internal/pagination.html" . -}}
+    {{ range .Paginator.Pages }}
+    <div class="row">
+        {{- partial "summary.html" . -}}
+    </div>
+    {{ end }}
+</article>
+{{ end }}
