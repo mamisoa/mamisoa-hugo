@@ -196,8 +196,12 @@ header .featured-image {
     height: 75px;
 }
 
-.svg-section-home {
-    background-color: #26A69A;
+.svg-section-home-1 {
+    background-color:#26A69A;
+}
+
+.svg-section-home-2 {
+    background-color:#4DB6AC;
 }
 
 .svg-section {
@@ -207,4 +211,11 @@ header .featured-image {
 /* ******************************** */
 
 .site-highlights {
+    background-color:#4DB6AC;
+    min-height: 40vh;
+}
+
+#highlightsCarousel .carousel-caption {
+    background-color:grey;
+    opacity: 0.7;
 }
