@@ -55,6 +55,7 @@ header .container {
     z-index: 2;
 }
 
+
 /*
     /* * ! use if video not supported */
 /* @media (pointer: coarse) and (hover: none) { */
@@ -127,6 +128,7 @@ header .featured-image {
     box-shadow:  14px 14px 28px #1e8178, 
              -14px -14px 28px #2ecbbc;
 }
+
 
 /* **************** */
 
@@ -215,7 +217,19 @@ header .featured-image {
     min-height: 40vh;
 }
 
+#highlightsCarousel {
+    /* border-radius: 20px; */
+    background: #4DB6AC;
+    box-shadow:  20px 20px 60px #3b8a83, 
+             -20px -20px 60px #5fe2d5;
+}
+
+
 #highlightsCarousel .carousel-caption {
-    background-color: darkgray;
-    opacity: 0.8;
+    background-color: #00796B;
+    /* opacity: 0.7; */
+    font-size: 0.9em;
+    position: relative;
+    left: 0;
+    top: 0;
 }
