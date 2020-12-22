@@ -1,15 +1,18 @@
 {{ define "main" }}
-<article class="container-fluid postContainer text-light">
+<section class="container-fluid postContainer text-light">
     <div class="row">
         <div class="col-md-4">
             {{- .Content -}}
         </div>
     </div>
     {{- template "_internal/pagination.html" . -}}
-    {{ range .Paginator.Pages }}
-    <div class="row">
-        {{- partial "summary.html" . -}}
+    <div class="accordion" id="accordionSection">
+        {{ $itemNum := 1 }}
+        {{ range .Paginator.Pages }}
+            {{ .Scratch.Set "itemAccordion" $itemNum }}
+            {{- partial "summary.html" . -}}
+            {{ $itemNum = (add $itemNum 1) }}
+        {{ end }}
     </div>
-    {{ end }}
-</article>
+</section>
 {{ end }}
