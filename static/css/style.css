@@ -181,11 +181,12 @@ header .featured-image {
 /* css single.html */
 
 .postContainer {
+    font-family: 'Maven Pro', sans-serif;
     padding-top: 30px;
     background-color:#1E88E5;
-    min-height: 75vh;
+    /* min-height: 75vh; */
     width: 100%;
-    fill: currentColor;
+    fill: currentColor; /* for svg */
 }
 
 .postContainer svg {
@@ -197,6 +198,38 @@ header .featured-image {
     width: 75px;
     height: 75px;
 }
+
+.listContainer {
+    font-family: 'Maven Pro', sans-serif;
+    padding-top: 30px;
+    background-color:#1E88E5;
+    /* min-height: 75vh; */
+    width: 100%;
+}
+
+
+.listContainer .card {
+    background-color:#1E88E5;
+}
+
+.listContainer .card-header {
+    background-color: #1565C0;
+    color: white;
+}
+
+
+.listContainer .card-body {
+    border-radius: 10px;
+    background-color: #1E88E5;
+    color: white;
+}
+
+
+.listContainer .card-body .btn {
+    background-color: #1565C0;
+    color: white;
+}
+
 
 .svg-section-home-1 {
     background-color:#26A69A;
@@ -210,6 +243,11 @@ header .featured-image {
     fill:#1565C0;
     background-color: #1E88E5;
 }
+
+.svg-section-list {
+    background-color:#1E88E5;
+}
+
 /* ******************************** */
 
 .site-highlights {

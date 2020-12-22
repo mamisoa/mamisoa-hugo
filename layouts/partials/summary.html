@@ -1,17 +1,13 @@
   <!-- <h3>{{ humanize .Section }}</h3> -->
-  <div class="card text-dark">
-    <div class="card-header" id="heading{{ .Scratch.Get "itemAccordion"}}">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ .Scratch.Get "itemAccordion"}}" aria-expanded="true" aria-controls="collapseOne">
+  <div class="card">
+    <div class="card-header" data-toggle="collapse" data-target="#collapse{{ .Scratch.Get "itemAccordion"}}" id="heading{{ .Scratch.Get "itemAccordion"}}">
+      <h5 class="mb-2">
           {{ .Title }}
-        </button>
-      </h2>
-    </div>
-
+      </h5>
     <div id="collapse{{ .Scratch.Get "itemAccordion"}}" class="collapse" aria-labelledby="heading{{ .Scratch.Get "itemAccordion"}}" data-parent="#accordionSection">
       <div class="card-body">
         <p>{{ markdownify .Summary  }}</p>
-        <a href="{{ .Permalink }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Read more...</a>
+        <a href="{{ .Permalink }}" class="btn btn-sm active" role="button" aria-pressed="true">Read more...</a>
       </div>
     </div>
   </div>
