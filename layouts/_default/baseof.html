@@ -94,6 +94,29 @@
       {{ end }}
     {{ end }}
     {{ if .IsHome }}
+      {{ if $.Site.Params.specialMsgModal }}
+        <div class="modal" tabindex="-1" role="dialog" id="infoModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">{{ markdownify .Site.Params.specialMsgTitle }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>{{ markdownify $.Site.Params.specialMsgContent }}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Rdv en ligne</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    {{ end }}
+    {{ if .IsHome }}
     <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
     <script>
     window.cookieconsent.initialise({

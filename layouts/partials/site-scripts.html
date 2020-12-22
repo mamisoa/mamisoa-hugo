@@ -33,6 +33,8 @@
             $navPost.toggleClass('scrolled', $(this).scrollTop() > $navPost.height());
         });
     });
-
+    $(window).on('load',function(){
+        $('#infoModal').modal('show');
+    });
 </script>
 <!-- end JS script -->
