@@ -44,6 +44,7 @@
         {{ if .Site.Params.bgVideo }}
         <source src="{{ relURL ($.Site.Params.bgVideo) }}.webm" type="video/webm" poster="{{ relURL ($.Site.Params.bgVideo) }}.png">
         <source src="{{ relURL ($.Site.Params.bgVideo) }}.mp4" type="video/mp4" poster="{{ relURL ($.Site.Params.bgVideo) }}.png">
+        <img src="{{ relURL ($.Site.Params.bgVideo) }}.png" title="Your browser does not support video">
         {{ end }}
     </video>
     <!-- container title over video
