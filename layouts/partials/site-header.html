@@ -42,9 +42,12 @@
     -->
     <video playsinline="playsinline" autoplay loop muted>
         {{ if .Site.Params.bgVideo }}
-        <source src="{{ relURL ($.Site.Params.bgVideo) }}.webm" type="video/webm" poster="{{ relURL ($.Site.Params.bgVideo) }}.png">
-        <source src="{{ relURL ($.Site.Params.bgVideo) }}.mp4" type="video/mp4" poster="{{ relURL ($.Site.Params.bgVideo) }}.png">
-        <img src="{{ relURL ($.Site.Params.bgVideo) }}.png" title="Your browser does not support video">
+        <source src="{{ relURL ($.Site.Params.bgVideo) }}.webm" type="video/webm" poster="{{ relURL ($.Site.Params.bgVideo) }}.jpg">
+        <source src="{{ relURL ($.Site.Params.bgVideo) }}.mp4" type="video/mp4" poster="{{ relURL ($.Site.Params.bgVideo) }}.jpg">
+        <picture>
+            <source srcset="{{ relURL ($.Site.Params.bgVideo) }}.webp" type="image/webp" alt="Your browser does not support video">
+            <img src="{{ relURL ($.Site.Params.bgVideo) }}.jpg" title="Your browser does not support video">    
+        </picture>
         {{ end }}
     </video>
     <!-- container title over video
