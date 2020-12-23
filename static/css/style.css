@@ -73,14 +73,7 @@ header .container {
 /* For site-nav.html in single.html */
 
 .site-nav-header {
-    /* position: relative; */
-    /* height: 30vh; */
-    /* min-height: 260px; */
     width: 100%;
-    overflow: visible ;
-    /* background-color: #1E88E5; */
-    /* background-color: transparent; */
-
 }
 
 header .featured-image {
