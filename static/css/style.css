@@ -55,18 +55,16 @@ header .container {
     z-index: 2;
 }
 
+/* if video not supported */
+@media (pointer: coarse) and (hover: none) {
+    header {
+        background: url('assets/images/excimer_thumb.png') black no-repeat center center scroll;
+    }
 
-/*
-    /* * ! use if video not supported */
-/* @media (pointer: coarse) and (hover: none) { */
-    /* header { */
-        /* background: url('videos/excimer_720.png') black no-repeat center center scroll; */
-    /* } */
+    header video {
+        display: none;
+    }
 
-    /* header video { */
-        /* display: none; */
-    /* } */
-/* } */
 
 
 /* ************************* */

@@ -42,6 +42,7 @@
     -->
     <video playsinline="playsinline" autoplay loop muted>
         {{ if .Site.Params.bgVideo }}
+        <source src="{{ relURL ($.Site.Params.bgVideo) }}.webm" type="video/webm" poster="{{ relURL ($.Site.Params.bgVideo) }}.png">
         <source src="{{ relURL ($.Site.Params.bgVideo) }}.mp4" type="video/mp4" poster="{{ relURL ($.Site.Params.bgVideo) }}.png">
         {{ end }}
     </video>
