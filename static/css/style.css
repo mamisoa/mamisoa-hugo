@@ -177,6 +177,11 @@ header .featured-image {
     width: 75px;
     height: 75px;
 }
+ 
+.postBody a {
+    color: white;
+    /* background: grey; */
+}
 
 .listContainer {
     font-family: 'Maven Pro', sans-serif;

@@ -1,8 +1,10 @@
-<div class="">
-  Tags:
+<div class="tags d-flex flex-row">
+  <div>Tags:</div>
   {{ range .Params.tags }}
-     <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="mr-2 ml-2 badge badge-pill badge-light">
-       {{- . -}}
-     </a>
+  <div>
+    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="mr-2 ml-2 badge badge-pill badge-light">
+      {{- . -}}
+    </a>
+  </div>
   {{ end }}
 </div>
