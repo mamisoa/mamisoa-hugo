@@ -73,13 +73,13 @@ header .no-featured-image {
     /* background-color: #1E88E5; */
     background-color: red;
     margin-top: 82px;
-    min-height: 10vh;
+    min-height: 200px;
+    height: 200px;
 }
 
 header .no-image-text {
     background-color: blue;
     color: white;
-    min-height: 8vh;
     display: flex;
     justify-content: center;
     align-items: center;
