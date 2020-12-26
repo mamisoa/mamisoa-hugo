@@ -69,6 +69,23 @@ header .featured-image {
     opacity: 0.85;
 }
 
+header .no-featured-image {
+    /* background-color: #1E88E5; */
+    background-color: red;
+    margin-top: 82px;
+    min-height: 10vh;
+}
+
+header .no-image-text {
+    background-color: blue;
+    color: white;
+    min-height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .site-nav {
     background-color:#1976D2;
 }
@@ -163,7 +180,7 @@ header .featured-image {
     font-family: 'Maven Pro', sans-serif;
     padding-top: 30px;
     background-color:#1E88E5;
-    /* min-height: 75vh; */
+    /* min-height: 50vh; */
     width: 100%;
     fill: currentColor; /* for svg */
 }
@@ -187,7 +204,7 @@ header .featured-image {
     font-family: 'Maven Pro', sans-serif;
     padding-top: 30px;
     background-color:#1E88E5;
-    /* min-height: 75vh; */
+    min-height: 50vh;
     width: 100%;
 }
 
@@ -214,6 +231,17 @@ header .featured-image {
     color: white;
 }
 
+.listContainer .card-header i {
+    transition: transform 1s;
+    margin-top: -2px;
+}
+
+.listContainer .card-header:hover i {
+    margin-top: -2px;
+    transition: 1s;
+    transform-origin: center center;
+    transform: rotate(-90deg);
+}
 
 .svg-section-home-1 {
     background-color:#26A69A;

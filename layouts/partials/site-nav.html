@@ -32,6 +32,7 @@
             </ul>
         </div>
     </nav> <!-- end top nav bar -->
+    {{ if $.Params.featured_image }}
     <div class="container-fluid featured-image" >
         <div class="row">
             <picture class="img-fluid w-100">
@@ -41,4 +42,13 @@
             </picture>
         </div>
     </div>
+    {{ else }}
+    <div class="container-fluid no-featured-image">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5 col-sm-10 no-image-text">
+                NO FEATURED Image!
+            </div>
+        </div>
+    </div>
+    {{ end }}
 </header>
