@@ -70,15 +70,28 @@ header .featured-image {
 }
 
 header .no-featured-image {
-    /* background-color: #1E88E5; */
-    background-color: red;
+    font-family: 'Maven Pro', sans-serif;
+    background-color: #1565C0;
     margin-top: 82px;
     min-height: 200px;
     height: 200px;
 }
 
+header .no-featured-image h1::before {
+    content: '';
+    display: block;
+    border-bottom: 5px solid white;
+}
+
+header .no-featured-image h1::after {
+    content: '';
+    display: block;
+    border-bottom: 5px solid white;
+    margin-top: 5px;
+}
+
 header .no-image-text {
-    background-color: blue;
+    background-color: #1565C0;
     color: white;
     display: flex;
     justify-content: center;
@@ -95,6 +108,34 @@ header .no-image-text {
     /* opacity: 0.8; */
     transition: background-color 2000ms linear;
 }
+
+.word-rotate {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 10em;
+    height: 1em;
+    position: relative;
+    display: inline-block;
+  }
+
+.word-rotate li {
+    font-weight: bold;
+    font-size: 1.2em;
+    white-space: nowrap;
+    height: 1.2em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all 0.5s;
+}
+
+@media (max-width: 768px) {  
+    .site-nav-header .word-rotate {
+        display: none;
+    }
+}
+
 
 /* ******************* */
 
@@ -197,7 +238,6 @@ header .no-image-text {
  
 .postBody a {
     color: white;
-    /* background: grey; */
 }
 
 .listContainer {

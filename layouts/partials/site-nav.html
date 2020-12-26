@@ -45,8 +45,19 @@
     {{ else }}
     <div class="container-fluid no-featured-image">
         <div class="row d-flex justify-content-center h-100">
-            <div class="col-md-8 col-lg-5 col-sm-10 no-image-text">
-                NO FEATURED Image!
+            <div class="col-md-12 col-lg-8 col-sm-12 no-image-text">
+                <div class="text-center">
+                    <h1>
+                        {{- .Title -}}
+                    </h1>
+                </div>
+                <div class="pl-4">
+                    <ul class="word-rotate">
+                        {{ range .Params.Tags }}
+                        <li>{{- . -}}</li>
+                        {{ end }}
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
