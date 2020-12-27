@@ -328,6 +328,11 @@ header .no-image-text {
     background-color:#1E88E5;
 }
 
+.c404 {
+    min-height: 50vh;
+    background-color:#1E88E5;
+}
+
 /* ******************************** */
 
 .site-highlights {
