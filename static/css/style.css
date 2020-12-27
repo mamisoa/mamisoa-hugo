@@ -105,7 +105,6 @@ header .no-image-text {
 
 .navbar-fixed-top-post.scrolled {
     background-color: #1565C0;
-    /* opacity: 0.8; */
     transition: background-color 2000ms linear;
 }
 

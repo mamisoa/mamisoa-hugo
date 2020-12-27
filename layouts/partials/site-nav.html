@@ -48,7 +48,7 @@
             <div class="col-md-12 col-lg-8 col-sm-12 no-image-text">
                 <div class="text-center">
                     <h1>
-                        {{- .Title -}}
+                        {{ if in $.RelPermalink "tags" }}Tag: {{ end}} {{- .Title -}}
                     </h1>
                 </div>
                 <div class="pl-4">
