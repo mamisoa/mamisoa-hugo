@@ -19,33 +19,32 @@
   width: 1em;
 }
 .flag-icon-ad {
-  background-image: url(/static/svg/flags/4x3/ad.svg);
+  background-image: url(/svg/flags/4x3/ad.svg);
 }
 .flag-icon-ad.flag-icon-squared {
-  background-image: url(/static/svg/flags/1x1/ad.svg);
+  background-image: url(/svg/flags/1x1/ad.svg);
 }
 
-
 .flag-icon-fr {
-  background-image: url(/static/svg/flags/4x3/fr.svg);
+  background-image: url(/svg/flags/4x3/fr.svg);
 }
 
 .flag-icon-fr.flag-icon-squared {
-  background-image: url(/static/svg/flags/1x1/fr.svg);
+  background-image: url(/svg/flags/1x1/fr.svg);
 }
 
 .flag-icon-nl {
-  background-image: url(/static/svg/flags/4x3/nl.svg);
+  background-image: url(/svg/flags/4x3/nl.svg);
 }
 .flag-icon-nl.flag-icon-squared {
-  background-image: url(/static/svg/flags/1x1/nl.svg);
+  background-image: url(/svg/flags/1x1/nl.svg);
 }
 
-.flag-icon-gb-eng {
-  background-image: url(/static/svg/flags/4x3/gb-eng.svg);
+.flag-icon-gb {
+  background-image: url(/svg/flags/4x3/gb.svg);
 }
-.flag-icon-gb-eng.flag-icon-squared {
-  background-image: url(/static/svg/flags/1x1/gb-eng.svg);
+.flag-icon-gb.flag-icon-squared {
+  background-image: url(/svg/flags/1x1/gb.svg);
 }
 
 
