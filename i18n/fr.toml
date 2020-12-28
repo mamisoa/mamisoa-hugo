@@ -54,3 +54,13 @@ other = "Adaptation des lentilles spéciales"
 other = "Traitement de l'oeil sec"
 [Traitement_de_l_oeil_secDesc]
 other = "Plateforme diagnostic Lacrydiag et thérapeutique IPL / LLLT"
+[Contactez-nous]
+other = "Contactez-nous"
+[parTelephone]
+other = "Par téléphone"
+[parEmail]
+other = "Par email"
+[secretariatOuvert]
+other = "Le secrétariat téléphonique est disponible de 9:00 à 17:30."
+[yAller]
+other = "Se rendre au Centre Médical"

@@ -54,3 +54,13 @@ other = "Special contact lenses adaptation"
 other = "Dry eyes consultation"
 [Traitement_de_l_oeil_secDesc]
 other = "Diagnostic and therapeutic platforms Lacrydiag / IPL / LLLT"
+[Contactez-nous]
+other = "Contact us"
+[parTelephone]
+other = "By phone"
+[parEmail]
+other = "Email"
+[secretariatOuvert]
+other = "You can reach us from 9am to 5:30pm."
+[yAller]
+other = "Go to the medical center"
