@@ -40,11 +40,11 @@
   background-image: url(/svg/flags/1x1/nl.svg);
 }
 
-.flag-icon-gb {
-  background-image: url(/svg/flags/4x3/gb.svg);
+.flag-icon-en {
+  background-image: url(/svg/flags/4x3/en.svg);
 }
-.flag-icon-gb.flag-icon-squared {
-  background-image: url(/svg/flags/1x1/gb.svg);
+.flag-icon-en.flag-icon-squared {
+  background-image: url(/svg/flags/1x1/en.svg);
 }
 
 
