@@ -1,2 +1,56 @@
 [subTitle]
 other = "The Eye is the window's Soul"
+[titleService]
+other = "A medical Eye care center"
+[subTitleService]
+other = "Your vision without compromise"
+[Laser]
+other = "Laser"
+[Technologie]
+other = "Technology"
+[Chirurgie]
+other = "Surgery"
+["Compétences"]
+other = "Experience"
+[Orthoptie]
+other = "Orthoptics"
+[Glaucome]
+other = "Glaucoma"
+["Kératocône"]
+other = "Keratoconus"
+[Yeux_secs]
+other = "Dry eyes"
+[carouselTitle]
+other = "State-of-the-art facilities"
+[carouselSubTitle]
+other = "Surgery, general and specialised consultations"
+[chirRefImg]
+other = "Refractive surgery"
+[chirRefDesc]
+other = "Eye laser surgery LASIK or te-PRK"
+["Chirurgie_de_cataracte"]
+other = "Cataract surgery"
+["Chirurgie_de_cataracteDesc"]
+other = "Operating theater for cataract surgery"
+[OrthoptieDesc]
+other = "Orthoptic exam for children"
+[Adultes]
+other = "Adults"
+[AdultesDesc]
+other = "Eye medical consultation for adults"
+[Enfants]
+other="Children"
+[EnfantsDesc]
+other = "Eye medical consultation for children from 3.5yo"
+[Examen_de_la_vision]
+other= "Vision test"
+[Examen_de_la_visionDesc]
+other = "Refractive exam for glasses and contact lenses adaptation"
+[Contactologie]
+other="Contacts"
+[ContactologieDesc]
+other = "Special contact lenses adaptation"
+[Traitement_de_l_oeil_sec]
+other = "Dry eyes consultation"
+[Traitement_de_l_oeil_secDesc]
+other = "Diagnostic and therapeutic platforms Lacrydiag / IPL / LLLT"

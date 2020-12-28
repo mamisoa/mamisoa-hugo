@@ -1,2 +1,56 @@
 [subTitle]
 other = "Het oog is het venster van de ziel"
+[titleService]
+other = "Een centrum gespecialiseerd in oogheelkunde"
+[subTitleService]
+other = "Uw visie zonder compromissen"
+[Laser]
+other = "Laser"
+[Technologie]
+other = "Technologie"
+[Chirurgie]
+other = "Chirurgie"
+["Compétences"]
+other = "Vaardigheden"
+[Orthoptie]
+other = "Orthoptiek"
+[Glaucome]
+other = "Glaucoom"
+["Kératocône"]
+other = "Keratoconus"
+["Yeux_secs"]
+other = "Droge ogen"
+[carouselTitle]
+other = "State-of-the-art faciliteiten"
+[carouselSubTitle]
+other = "Chirurgie, algemene en gespecialiseerde consulten"
+[chirRefImg]
+other = "Refractive surgery"
+[chirRefDesc]
+other = "Eye laser surgery LASIK or te-PRK"
+["Chirurgie_de_cataracte"]
+other = "Cataract operatie"
+["Chirurgie_de_cataracteDesc"]
+other = "Operatiekamer voor cataract operatie"
+[OrthoptieDesc]
+other = "Orthoptisch onderzoek van het kind"
+[Adultes]
+other = "Volwassenen"
+[AdultesDesc]
+other = "Oogonderzoek voor volwassenen"
+[Enfants]
+other="Kinderen"
+[EnfantsDesc]
+other = "Oogheelkundig onderzoek voor kinderen vanaf 3,5 jaar"
+[Examen_de_la_vision]
+other= "Oogexamen"
+[Examen_de_la_visionDesc]
+other = "Refractief onderzoek voor het aanpassen van een bril en lenzen"
+[Contactologie]
+other="Contactlenzen"
+[ContactologieDesc]
+other = "Aanpassing van speciale lenzen"
+[Traitement_de_l_oeil_sec]
+other = "Behandeling van droge ogen"
+[Traitement_de_l_oeil_secDesc]
+other = "Diagnostisch en therapeutisch platform Lacrydiag / IPL / LLLT"

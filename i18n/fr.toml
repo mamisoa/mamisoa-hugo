@@ -1,2 +1,56 @@
 [subTitle]
 other = "L'oeil est la fenêtre de l'Ame"
+[titleService]
+other = "Un centre spécialisé en ophtalmologie"
+[subTitleService]
+other = "Votre vision sans compromis"
+[Laser]
+other = "Laser"
+[Technologie]
+other = "Technologie"
+[Chirurgie]
+other = "Chirurgie"
+["Compétences"]
+other = "Compétences"
+[Orthoptie]
+other = "Orthoptie"
+[Glaucome]
+other = "Glaucome"
+["Kératocône"]
+other = "Kératocône"
+["Yeux_secs"]
+other = "Yeux secs"
+[carouselTitle]
+other = "Des installations modernes"
+[carouselSubTitle]
+other = "Chirurgie, consultations générales et spécialisées"
+[chirRefImg]
+other = "Chirurgie réfractive"
+[chirRefDesc]
+other = "Chirurgie des yeux au laser par LASIK ou te PRK"
+["Chirurgie_de_cataracte"]
+other = "Chirurgie de cataracte"
+["Chirurgie_de_cataracteDesc"]
+other = "Salle d'opération pour la chirurgie de cataracte"
+[OrthoptieDesc]
+other = "Examen orthoptique de l'enfant"
+[Adultes]
+other = "Adultes"
+[AdultesDesc]
+other = "Examen ophtalmologique pour adultes"
+[Enfants]
+other="Enfants"
+[EnfantsDesc]
+other = "Examen ophtalmologique pour enfants à partir de 3.5 ans"
+[Examen_de_la_vision]
+other= "Examen de la vision"
+[Examen_de_la_visionDesc]
+other = "Examen réfractif pour l'adaptation des lunettes et lentilles"
+[Contactologie]
+other="Contactologie"
+[ContactologieDesc]
+other = "Adaptation des lentilles spéciales"
+[Traitement_de_l_oeil_sec]
+other = "Traitement de l'oeil sec"
+[Traitement_de_l_oeil_secDesc]
+other = "Plateforme diagnostic Lacrydiag et thérapeutique IPL / LLLT"
