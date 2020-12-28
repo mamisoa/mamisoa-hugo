@@ -32,19 +32,24 @@
                 {{ end }}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{{ .URL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-{{ $.Site.Language.Lang }}"></span></a>
-                    {{ $otherLang2 := "en"}} {{ $otherLang3 := "nl"}}
-                    {{ if eq $.Site.Language.Lang "fr"}}
-                        {{ $otherLang2 = "en"}} {{ $otherLang3 = "nl"}}
+                    {{ $otherLang2 := slice }} {{ $otherLang3 := slice }}
+                    {{ if eq $.Site.Language.Lang "en"}}
+                        {{ $otherLang2 = slice "nl" "nl" }} {{ $otherLang3 = slice "" "fr" }}
                     {{ else }}
-                        {{ if eq $.Site.Language.Lang "en" }}
-                            {{ $otherLang2 = "fr"}} {{ $otherLang3 = "nl"}}
+                        {{ if eq $.Site.Language.Lang "nl" }}
+                            {{ $otherLang2 = slice "en/" "en" }} {{ $otherLang3 = slice "" "fr" }}
                         {{ else }}
-                            {{ $otherLang2 = "fr"}} {{ $otherLang3 = "en"}}
+                            {{ $otherLang2 = slice "en/" "en" }} {{ $otherLang3 = slice "nl" "nl" }}
                         {{ end }}
                     {{ end }}
                     <div class="dropdown-menu" aria-labelledby="dropdown09">
-                        <a class="dropdown-item" href="{{- strings.TrimPrefix "/" .URL | strings.TrimPrefix $.Site.Language.Lang -}}{{- $otherLang2 -}}"><span class="flag-icon flag-icon-{{- $otherLang2 -}}"> </span></a>
-                        <a class="dropdown-item" href="{{- strings.TrimPrefix "/" .URL | strings.TrimPrefix $.Site.Language.Lang -}}{{- $otherLang3 -}}"><span class="flag-icon flag-icon-{{- $otherLang3 -}}"> </span></a>
+                        {{ if (eq (index $otherLang3 0) "") }}
+                            <a class="dropdown-item" href="{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><span class="flag-icon flag-icon-{{- index $otherLang3 1 -}}"> </span></a>
+                        {{ else }}
+                            /{{- index $otherLang3 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}
+                            <a class="dropdown-item" href="/{{- index $otherLang3 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><span class="flag-icon flag-icon-{{- index $otherLang3 1 -}}"> </span></a>
+                        {{ end }}
+                        <a class="dropdown-item" href="/{{- index $otherLang2 0 -}}{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><span class="flag-icon flag-icon-{{- index $otherLang2 1 -}}"> </span></a>
                     </div>
                 </li>
             </ul>
