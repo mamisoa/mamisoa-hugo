@@ -1,14 +1,14 @@
 {{ define "main" }}
 <section class="container-fluid listContainer pb-5">
     <div class="row justify-content-center text-light">
-        <div class="col-lg-6 col-md-8 col-sm-8">
+        <div class="col-lg-6 col-md-8 col-sm-8 pb-3">
             <h3>{{- .Content -}}</h3>
         </div>
     </div>
     {{- template "_internal/pagination.html" . -}}
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-6">
-            <div class="accordion" id="accordionSection">
+            <div class="accordion neoList" id="accordionSection">
                 {{ $itemNum := 1 }}
                 {{ range .Paginator.Pages }}
                     {{ .Scratch.Set "itemAccordion" $itemNum }}

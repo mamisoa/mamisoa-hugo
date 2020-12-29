@@ -284,24 +284,37 @@ header .no-image-text {
 
 .listContainer .card {
     background-color:#1E88E5;
+    border-radius: 20px;
 }
 
 .listContainer .card-header {
-    background-color: #1565C0;
-    color: white;
-}
-
-
-.listContainer .card-body {
-    border-radius: 10px;
     background-color: #1E88E5;
     color: white;
 }
 
 
-.listContainer .card-body .btn {
-    background-color: #1565C0;
+.listContainer .card-body {
+    border-radius: 20px;
+    background: #1E88E5;
+    box-shadow:  20px 20px 60px #155e9e, 
+             -20px -20px 60px #27b2ff;
     color: white;
+}
+
+
+.listContainer .card-body .btn {
+    border-radius: 30px;
+    background: #1E88E5;
+    box-shadow:  14px 14px 28px #186bb5, 
+             -14px -14px 28px #24a5ff;
+    color: white;
+}
+
+.listContainer .card-body .btn:hover {
+    border-radius: 30px;
+    background: linear-gradient(145deg, #1b7ace, #2092f5);
+    box-shadow:  14px 14px 28px #186bb5, 
+             -14px -14px 28px #24a5ff;
 }
 
 .listContainer .card-header i {
@@ -314,6 +327,13 @@ header .no-image-text {
     transition: 1s;
     transform-origin: center center;
     transform: rotate(-90deg);
+}
+
+.listContainer .neoList {
+    border-radius: 20px;
+    background: #1E88E5;
+    box-shadow:  14px 14px 28px #186bb5, 
+                 -14px -14px 28px #24a5ff;
 }
 
 .svg-section-home-1 {
