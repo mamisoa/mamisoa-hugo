@@ -56,8 +56,7 @@
     {{ end }}
   </head>
   
-  <!-- <body class="ma0 {{ $.Param "body_classes"  | default "avenir bg-near-white"}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}"> -->
-  <body>
+  <body class="{{ $.Param "body_classes"  | default ""}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
     <!-- {{ if .IsHome }}
     <p>Current page is HOME</p>
     {{ else }}
