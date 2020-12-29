@@ -70,3 +70,5 @@ other = "Lire plus..."
 other = "La page est introuvable ou n'existe plus."
 [tag]
 other = "Mot-clé"
+[autreChose]
+other = "Peut-être cherchez-vous:"

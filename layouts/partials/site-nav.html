@@ -74,13 +74,17 @@
                         {{ if in $.RelPermalink "404"}}---404---{{ else }}{{- .Title -}}{{ end }}
                     </h1>
                 </div>
+                {{ if in $.RelPermalink "404"}}
+                {{ else }}
                 <div class="pl-4">
                     <ul class="word-rotate">
-                        {{ range .Params.Tags }}
-                        <li>{{- . -}}</li>
-                        {{ end }}
+                        
+                            {{ range .Params.Tags }}
+                            <li>{{- . -}}</li>
+                            {{ end }}
                     </ul>
                 </div>
+                {{ end }}
             </div>
         </div>
     </div>

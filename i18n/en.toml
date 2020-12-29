@@ -70,3 +70,5 @@ other = "Read more..."
 other = "This page doesn't exist or is not there anymore!"
 [tag]
 other = "Keyword"
+[autreChose]
+other = "Maybe you were looking for..."
