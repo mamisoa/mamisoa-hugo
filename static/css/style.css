@@ -75,6 +75,9 @@ header .no-featured-image {
     margin-top: 82px;
     min-height: 200px;
     height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header .no-featured-image h1::before {
@@ -91,7 +94,10 @@ header .no-featured-image h1::after {
 }
 
 header .no-image-text {
-    background-color: #1565C0;
+    border-radius: 50px;
+    background: #1565C0;
+    box-shadow:  20px 20px 60px #104d92, 
+                 -20px -20px 60px #1a7dee;
     color: white;
     display: flex;
     justify-content: center;
