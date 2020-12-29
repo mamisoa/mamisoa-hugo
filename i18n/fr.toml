@@ -72,3 +72,5 @@ other = "La page est introuvable ou n'existe plus."
 other = "Mot-clé"
 [autreChose]
 other = "Peut-être cherchez-vous:"
+[par]
+other = "par"

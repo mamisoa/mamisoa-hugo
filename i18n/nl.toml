@@ -72,3 +72,5 @@ other = "De pagina is niet gevonden of bestaat niet meer."
 other = "trefwoord"
 [autreChose]
 other = "Misschien ben je op zoek naar..."
+[par]
+other = "door"

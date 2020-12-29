@@ -72,3 +72,5 @@ other = "This page doesn't exist or is not there anymore!"
 other = "Keyword"
 [autreChose]
 other = "Maybe you were looking for..."
+[par]
+other = "by"
