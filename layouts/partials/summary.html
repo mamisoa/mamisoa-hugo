@@ -9,7 +9,7 @@
     <div id="collapse{{ .Scratch.Get "itemAccordion"}}" class="collapse pt-2" aria-labelledby="heading{{ .Scratch.Get "itemAccordion"}}" data-parent="#accordionSection">
       <div class="card-body">
         <p>{{ markdownify .Summary  }}</p>
-        <a href="{{ .Permalink }}" class="btn btn-sm active" role="button" aria-pressed="true">Read more...</a>
+        <a href="{{ .Permalink }}" class="btn btn-sm active" role="button" aria-pressed="true">{{- T "readMore" -}}</a>
       </div>
     </div>
   </div>
