@@ -279,11 +279,12 @@ header .no-image-text {
     font-size: 1.4em;
     padding-top: 1em;
     padding-left: -0.4em;
-    background: #E3F2FD;
     color: #0D47A1;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 30px;
+    background: #E3F2FD;
 }
 
 .postBody blockquote::before {
