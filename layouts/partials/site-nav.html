@@ -70,7 +70,8 @@
             <div class="col-md-12 col-lg-8 col-sm-12 no-image-text">
                 <div class="text-center">
                     <h1>
-                        {{ if in $.RelPermalink "tags" }}Tag: {{ end}} {{- .Title -}}
+                        {{ if in $.RelPermalink "tags" }}{{- T "tag" -}}: {{ end }}
+                        {{ if in $.RelPermalink "404"}}---404---{{ else }}{{- .Title -}}{{ end }}
                     </h1>
                 </div>
                 <div class="pl-4">

@@ -66,3 +66,7 @@ other = "Le secrétariat téléphonique est disponible de 9:00 à 17:30."
 other = "Se rendre au Centre Médical"
 [readMore]
 other = "Lire plus..."
+[pageIntrouvable]
+other = "La page est introuvable ou n'existe plus."
+[tag]
+other = "Mot-clé"

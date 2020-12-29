@@ -66,3 +66,7 @@ other = "Het telefonisch secretariaat is bereikbaar van 9.00 uur tot 17.30 uur."
 other = "Naar het medisch centrum gaan"
 [readMore]
 other = "Lees verder..."
+[pageIntrouvable]
+other = "De pagina is niet gevonden of bestaat niet meer."
+[tag]
+other = "trefwoord"

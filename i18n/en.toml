@@ -66,3 +66,7 @@ other = "You can reach us from 9am to 5:30pm."
 other = "Go to the medical center"
 [readMore]
 other = "Read more..."
+[pageIntrouvable]
+other = "This page doesn't exist or is not there anymore!"
+[tag]
+other = "Keyword"
