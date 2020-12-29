@@ -74,3 +74,11 @@ other = "trefwoord"
 other = "Misschien ben je op zoek naar..."
 [par]
 other = "door"
+[minute]
+other = "minute"
+[minutes]
+other = "minuten"
+[alire]
+other = "om te lezen"
+["mots"]
+other = "woorden"

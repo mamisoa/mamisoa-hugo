@@ -74,3 +74,11 @@ other = "Mot-clé"
 other = "Peut-être cherchez-vous:"
 [par]
 other = "par"
+[minute]
+other= "minute"
+[minutes]
+other= "minutes"
+[alire]
+other= "à lire"
+["mots"]
+other = "mots"

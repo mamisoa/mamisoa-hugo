@@ -74,3 +74,11 @@ other = "Keyword"
 other = "Maybe you were looking for..."
 [par]
 other = "by"
+[minute]
+other= "minute"
+[minutes]
+other= "minutes"
+[alire]
+other= "to read"
+["mots"]
+other = "words"

@@ -30,17 +30,8 @@
             {{ end }}
             {{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
             <time class="tracked" {{ printf `datetime="%s"` (.Date.Format "2006-01-02T15:04:05Z07:00") | safeHTMLAttr }}>
-            {{ if eq "fr" $.Site.Language.Lang }}
-                {{- .Date.Day }} {{ index $.Site.Data.mois (printf "%d" .Date.Month) }} {{ .Date.Year -}}
-            {{ else }}
-                {{ if eq "nl" $.Site.Language.Lang }}
-                    {{- .Date.Day }} {{ index $.Site.Data.mand (printf "%d" .Date.Month) }} {{ .Date.Year -}}
-                {{ else }}
-                    {{- .Date.Format "January 2, 2006" -}}
-                {{end }}
-            {{ end }}
+            {{ partial "international-date.html" . }}
             </time>
-
             {{/*
                 Show "reading time" and "word count" but only if one of the following are true:
                 1) A global config `params` value is set `show_reading_time = true`
@@ -48,8 +39,15 @@
                 3) A page front matter value is set `show_reading_time = true`
             */}}
             {{ if (or (eq (.Param "show_reading_time") true) (eq $section.Params.show_reading_time true) )}}
-            <span class="tracked"> - {{ .ReadingTime}} minutes read</span>
-            <span class="tracked"> - {{ .WordCount}} words</span>
+            <span class="tracked">
+                 - {{.ReadingTime }} {{ if (or (lt .ReadingTime 1) (eq .ReadingTime 1 )) }}
+                    {{ T "minute" }}
+                {{ else }}
+                    {{ T "minutes"}}
+                {{ end }}
+                 {{ T "alire"}}
+            </span>
+            <span class="tracked"> - {{ .WordCount}} {{ T "mots" -}}</span>
             {{ end }}
             <div class="postBody text-responsive mt-3">
                 {{- .Content -}}
