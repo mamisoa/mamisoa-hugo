@@ -255,7 +255,7 @@ header .no-image-text {
     font-weight: 600;
  }
 
-.postBody h2 {
+.postBody h3 {
     position: relative;
     display: flex;
     width: 100%;
@@ -264,7 +264,7 @@ header .no-image-text {
     z-index:2;
 }
 
-.postBody h2::after {
+.postBody h3::after {
     content: "";
     border-bottom: solid 2px #E3F2FD;
     width: 100%;
@@ -272,6 +272,40 @@ header .no-image-text {
     margin-top: 5px;
     z-index:-1;
 }
+
+.postBody .blockquote {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 1.4em;
+    padding-top: 1em;
+    padding-left: -0.4em;
+    background: #E3F2FD;
+    color: #0D47A1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.postBody blockquote::before {
+    color: #85754e;
+    display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 2.5em;
+    position: absolute;
+    left: -5px;
+    top: -10px;
+}
+
+.postBody blockquote::after {
+    color: #85754e;
+    content: "\201D";
+    position: absolute;
+    font-size:2.5em;
+    right:10px;
+    bottom: -35px;
+}
+
 
 .listContainer {
     font-family: 'Maven Pro', sans-serif;
