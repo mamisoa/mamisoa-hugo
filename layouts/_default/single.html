@@ -30,7 +30,15 @@
             {{ end }}
             {{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
             <time class="tracked" {{ printf `datetime="%s"` (.Date.Format "2006-01-02T15:04:05Z07:00") | safeHTMLAttr }}>
-            {{- .Date.Format "January 2, 2006" -}}
+            {{ if eq "fr" $.Site.Language.Lang }}
+                {{- .Date.Day }} {{ index $.Site.Data.mois (printf "%d" .Date.Month) }} {{ .Date.Year -}}
+            {{ else }}
+                {{ if eq "nl" $.Site.Language.Lang }}
+                    {{- .Date.Day }} {{ index $.Site.Data.mand (printf "%d" .Date.Month) }} {{ .Date.Year -}}
+                {{ else }}
+                    {{- .Date.Format "January 2, 2006" -}}
+                {{end }}
+            {{ end }}
             </time>
 
             {{/*
@@ -40,8 +48,8 @@
                 3) A page front matter value is set `show_reading_time = true`
             */}}
             {{ if (or (eq (.Param "show_reading_time") true) (eq $section.Params.show_reading_time true) )}}
-            <span class="f6 mv4 dib tracked"> - {{ .ReadingTime}} minutes read</span>
-            <span class="f6 mv4 dib tracked"> - {{ .WordCount}} words</span>
+            <span class="tracked"> - {{ .ReadingTime}} minutes read</span>
+            <span class="tracked"> - {{ .WordCount}} words</span>
             {{ end }}
             <div class="postBody text-responsive mt-3">
                 {{- .Content -}}

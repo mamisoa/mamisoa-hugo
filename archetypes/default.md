@@ -1,8 +1,8 @@
 ---
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
 date: {{ .Date }}
-author: ""
-author_pic: ""
+author: "Mamisoa Andriantafika"
+author_pic: "images/team/profil_mamisoa_150x150.jpg"
 tags: []
 featured_image: ""
 description: ""
