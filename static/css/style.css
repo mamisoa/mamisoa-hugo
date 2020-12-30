@@ -198,6 +198,20 @@ header .no-image-text {
              -14px -14px 28px #1a7bea;
 }
 
+#contact a {
+    color: #E3F2FD;
+}
+
+#contact a:hover {
+    font-weight: bold;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+#contact :link {
+    text-decoration: none;
+}
+
 /* **************** */
 
 /* footer section */

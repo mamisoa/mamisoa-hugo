@@ -82,3 +82,7 @@ other= "minutes"
 other= "to read"
 ["mots"]
 other = "words"
+["general"]
+other = "general"
+["rh"]
+other = "human ressources"
