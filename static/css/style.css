@@ -307,6 +307,12 @@ header .no-image-text {
     bottom: -35px;
 }
 
+/* set parent div to min-height: 50vh */
+.postBody .picImgResp { 
+    width: 100%;
+    height: auto;
+    border-radius: 30px;
+}
 
 .listContainer {
     font-family: 'Maven Pro', sans-serif;
