@@ -326,6 +326,7 @@ header .no-image-text {
     width: 100%;
     height: auto;
     border-radius: 30px;
+    background: #1E88E5;
 }
 
 .listContainer {
