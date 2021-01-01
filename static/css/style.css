@@ -392,6 +392,41 @@ header .no-image-text {
                  -14px -14px 28px #24a5ff;
 }
 
+.listContainer blockquote {
+    min-height: 150px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 1.4em;
+    padding-top: 1em;
+    padding-left: -0.4em;
+    color: #0D47A1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background: #E3F2FD;
+}
+
+.listContainer blockquote::before {
+    color: #85754e;
+    display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 2.5em;
+    position: absolute;
+    left: 10px;
+    top: -5px;
+}
+
+.listContainer blockquote::after {
+    color: #85754e;
+    content: "\201D";
+    position: absolute;
+    font-size:2.5em;
+    right: 30px;
+    bottom: -5px;
+}
+
 .svg-section-home-1 {
     background-color:#26A69A;
 }

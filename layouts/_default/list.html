@@ -1,8 +1,8 @@
 {{ define "main" }}
 <section class="container-fluid listContainer pb-5">
     <div class="row justify-content-center text-light">
-        <div class="col-lg-6 col-md-8 col-sm-8 pb-3">
-            <h3>{{- .Content -}}</h3>
+        <div class="col-lg-7 col-md-10 col-sm-12 text-center pb-3"> <!-- column FULL -->
+            <blockquote class="px-5">{{- .Content -}}</blockquote>
         </div>
     </div>
     {{- template "_internal/pagination.html" . -}}
