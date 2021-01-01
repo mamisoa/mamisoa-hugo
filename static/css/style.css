@@ -262,12 +262,21 @@ header .no-image-text {
 .postBody a::after {
     font-family: "Font Awesome 5 Free";
     font-size: 0.6em;
+    color: #0D47A1;
     content: "\f0c1";
     display: inline-block;
     padding-left: 3px;
+    padding-right: 3px;
     vertical-align: middle;
     font-weight: 600;
+    animation: blinker 2s linear infinite;
  }
+
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+}
 
 .postBody h3 {
     position: relative;
