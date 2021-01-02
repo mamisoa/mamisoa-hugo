@@ -78,10 +78,12 @@
                 {{ if in $.RelPermalink "404"}}
                 {{ else }}
                 <div class="py-3">
-                    <ul class="word-rotate">                    
-                            {{ range .Params.Tags }}
+                    <ul class="word-rotate">   
+                        {{ with .Params.Tags }}                 
+                            {{ range first 5 . }}
                             <li>{{- . -}}</li>
                             {{ end }}
+                        {{ end }}
                     </ul>
                 </div>
                 {{ end }}
