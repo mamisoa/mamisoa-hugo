@@ -67,7 +67,9 @@ other = "Naar het medisch centrum gaan"
 [readMore]
 other = "Lees verder..."
 [pageIntrouvable]
-other = "De pagina is niet gevonden of bestaat niet meer."
+other = "De pagina kan niet worden gevonden, is niet vertaald of bestaat niet meer."
+[helpTranslation]
+other = "U kunt ons helpen de site te vertalen door een e-mail te sturen naar personnel:"
 [tag]
 other = "trefwoord"
 [autreChose]

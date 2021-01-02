@@ -67,7 +67,9 @@ other = "Go to the medical center"
 [readMore]
 other = "Read more..."
 [pageIntrouvable]
-other = "This page doesn't exist or is not there anymore!"
+other = "This page doesn't exist, is not translated or is not there anymore!"
+[helpTranslation]
+other = "You can help us translate the site by sending an email to human ressources:"
 [tag]
 other = "Keyword"
 [autreChose]

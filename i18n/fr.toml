@@ -67,7 +67,9 @@ other = "Se rendre au Centre Médical"
 [readMore]
 other = "Lire plus..."
 [pageIntrouvable]
-other = "La page est introuvable ou n'existe plus."
+other = "La page est introuvable, n'est pas traduite ou n'existe plus."
+[helpTranslation]
+other = "Vous pouvez nous aidez dans la traduction du site en écrivant au ressources humaines:"
 [tag]
 other = "Mot-clé"
 [autreChose]
