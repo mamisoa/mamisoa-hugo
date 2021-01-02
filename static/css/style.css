@@ -259,6 +259,17 @@ header .no-image-text {
     color: white;
 }
 
+.postBody span.anchor {
+    display: block;
+    position: relative;
+    top: -85px;
+    visibility: hidden;
+}
+
+.shortcuts {
+    border:1px solid white;
+}
+
 .postBody a::after {
     font-family: "Font Awesome 5 Free";
     font-size: 0.6em;
