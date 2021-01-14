@@ -30,6 +30,7 @@
                     </li>
                 {{ end }}
                 {{ end }}
+                {{ if ne .Site.Params.mono "yes" }}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{{ .URL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-{{ $.Site.Language.Lang }}"></span></a>
                     {{ $otherLang2 := slice }} {{ $otherLang3 := slice }}
@@ -51,6 +52,7 @@
                         <a class="dropdown-item" href="/{{- index $otherLang2 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><span class="flag-icon flag-icon-{{- index $otherLang2 1 -}}"> </span></a>
                     </div>
                 </li>
+                {{ end }}
             </ul>
         </div>
     </nav> <!-- end top nav bar -->
