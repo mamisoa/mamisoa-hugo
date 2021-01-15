@@ -3,6 +3,7 @@
     * ? use for template
     * ? use for partial
     -->
+    <div class="container">
     <nav class="site-nav navbar navbar-dark navbar-expand-lg fixed-top text-uppercase {{ .Scratch.Get "navClass" }}">
         <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
             <img src="{{ site.Params.logo | relURL }}" alt="{{ site.Title }}" width="{{ site.Params.logo_width }}" class="img-fluid"/>
@@ -56,6 +57,7 @@
             </ul>
         </div>
     </nav> <!-- end top nav bar -->
+    </div>
     {{ if $.Params.featured_image }}
     <div id="invisible" class="word-rotate" style="display: none;"></div>
     <div class="container-fluid featured-image" >

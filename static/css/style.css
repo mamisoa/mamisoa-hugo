@@ -59,9 +59,10 @@ header .container {
 
 /* For site-nav.html in single.html */
 
-.site-nav-header {
+/* .site-nav-header {
     width: 100%;
-}
+    overflow: hidden;
+} */
 
 header .featured-image {
     background-color: #1E88E5;
@@ -296,7 +297,7 @@ header .no-image-text {
     width: 100%;
     align-items: center;
     background-color: #1E88E5;
-    z-index:2;
+    z-index: 0;
 }
 
 .postBody h3::after {
