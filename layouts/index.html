@@ -46,11 +46,13 @@
                 <div class="carousel-inner">
                     {{ range first 1 site.Params.highlightsCarousel }}
                         <div class="carousel-item active">
-                            <picture class="d-block w-100">
-                                <source srcset="{{ .highlightImg | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="{{ T .highlightDesc }}" />
-                                <source srcset="{{ .highlightImg | relURL }}" alt="{{ T .highlightDesc }}" />
-                                <img src="{{ .highlightImg | relURL }}" alt="{{ T .highlightDesc }}" class="d-block w-100">
-                            </picture>
+                            <a href="{{- .highlightLink }}" hreflang="{{ $.Site.Language.Lang }}" title="{{ T .highlightDesc }}">
+                                <picture class="d-block w-100">
+                                    <source srcset="{{ .highlightImg | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="{{ T .highlightDesc }}" />
+                                    <source srcset="{{ .highlightImg | relURL }}" alt="{{ T .highlightDesc }}" />
+                                    <img src="{{ .highlightImg | relURL }}" alt="{{ T .highlightDesc }}" class="d-block w-100">
+                                </picture>
+                            </a>
                             <div class="carousel-caption d-none d-md-block text-light">
                                 <h5>{{ T .highlightName }}</h5>
                                 <p>{{ T .highlightDesc }}</p>
@@ -59,11 +61,13 @@
                     {{ end }}
                     {{ range after 1 site.Params.highlightsCarousel }}
                         <div class="carousel-item">
-                            <picture class="d-block w-100">
-                                <source srcset="{{ .highlightImg | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="{{ T .highlightDesc }}" />
-                                <source srcset="{{ .highlightImg | relURL }}" alt="{{ T .highlightDesc }}" />
-                                <img src="{{ .highlightImg | relURL }}" alt="{{ T .highlightDesc }}" class="d-block w-100">
-                            </picture>
+                            <a href="{{- .highlightLink }}" hreflang="{{ $.Site.Language.Lang }}" title="{{ T .highlightDesc }}">
+                                <picture class="d-block w-100">
+                                    <source srcset="{{ .highlightImg | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="{{ T .highlightDesc }}" />
+                                    <source srcset="{{ .highlightImg | relURL }}" alt="{{ T .highlightDesc }}" />
+                                    <img src="{{ .highlightImg | relURL }}" alt="{{ T .highlightDesc }}" class="d-block w-100">
+                                </picture>
+                            </a>
                             <div class="carousel-caption d-none d-md-block text-light">
                                 <h5>{{ T .highlightName }}</h5>
                                 <p>{{ T .highlightDesc }}</p>
