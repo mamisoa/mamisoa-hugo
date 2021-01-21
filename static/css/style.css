@@ -361,17 +361,6 @@ header .no-image-text {
 
 
 .listContainer .card {
-    background-color:#1E88E5;
-    border-radius: 20px;
-}
-
-.listContainer .card-header {
-    background-color: #1E88E5;
-    color: white;
-}
-
-
-.listContainer .card-body {
     border-radius: 20px;
     background: #1E88E5;
     box-shadow:  20px 20px 60px #155e9e, 
@@ -379,8 +368,41 @@ header .no-image-text {
     color: white;
 }
 
+/* .listContainer .card-header {
+    background-color: #1E88E5;
+    color: white;
+} */
 
-.listContainer .card-body .btn {
+
+/* .listContainer .card-body {
+    border-radius: 20px;
+    background: #1E88E5;
+    box-shadow:  20px 20px 60px #155e9e, 
+             -20px -20px 60px #27b2ff;
+    color: white;
+} */
+
+.profile-card-2 .card-body{
+    position:relative;
+}
+
+.profile-card-2 .profile {
+    border-radius: 50%;
+    position: absolute;
+    top: -32px;
+    left: 20%;
+    max-width: 75px;
+    border: 3px solid rgba(255, 255, 255, 1);
+    -webkit-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%);
+  }
+
+.listContainer .card-footer {
+    background-color: #1E88E5;
+    color: white;
+}
+
+.listContainer .card-footer .btn {
     border-radius: 30px;
     background: #1E88E5;
     box-shadow:  14px 14px 28px #186bb5, 
@@ -388,7 +410,7 @@ header .no-image-text {
     color: white;
 }
 
-.listContainer .card-body .btn:hover {
+.listContainer .card-footer .btn:hover {
     border-radius: 30px;
     background: linear-gradient(145deg, #1b7ace, #2092f5);
     box-shadow:  14px 14px 28px #186bb5, 

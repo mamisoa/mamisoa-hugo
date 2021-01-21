@@ -6,20 +6,22 @@
         </div>
     </div>
     {{- template "_internal/pagination.html" . -}}
-    <div class="row row-cols-2">
-        <div class="col">
-            {{ range .Paginator.Pages }}
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+    <div class="row justify-content-center  text-light">
+        {{ range .Paginator.Pages }}
+        <div class="d-flex justify-content-center col-lg-3 col-md-6 col-sm-12 mt-5">
+            <div class="card profile-card-2" style="">
+                <img class="img-fluid card-img-top" src="{{ index .Params.images 0 }}" alt="Image cap" />
                 <div class="card-body">
-                    <img src="https://randomuser.me/api/portraits/women/81.jpg" alt="profile-image" class="profile"/>
-                    <h5 class="card-title">{{ .Title }}</h5>
-                    <p class="card-text">{{ plainify .Summary  }}</p>
+                    <img class="profile" src="{{ .Params.author_pic }}" alt="{{ .Params.author }}" class="profile"/>
+                    <h5 class="card-title mt-4">{{ .Title }}</h5>
+                    <p class="card-text mt-2">{{ plainify .Summary  -}}</p>
+                </div>
+                <div class="card-footer" style="border: none;">
                     <a href="{{ .Permalink }}" class="btn btn-primary" role="button" aria-pressed="true">{{- T "readMore" -}}</a>
                 </div>
             </div>
-            {{ end }}
         </div>
+        {{ end }}
     </div>
 </section>
 <div class="svg-section-list">
