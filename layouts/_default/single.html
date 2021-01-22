@@ -17,7 +17,7 @@
             </h1>
             {{ with .Params.author }}
             <p class="tracked">
-                <img src="{{ $.Params.author_pic | relURL }}" class="mr-2 img-fluid rounded-circle" alt="Picture of the author {{ $.Params.author }}" />
+                <img src="{{ $.Params.author_pic | relURL }}" class="author_pic mr-2 img-fluid rounded-circle" alt="Picture of the author {{ $.Params.author }}" />
                 <span class="text-capitalize">{{- T "par" -}}</span>
                 <strong>
                 {{ if reflect.IsSlice . }}
