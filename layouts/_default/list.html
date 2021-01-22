@@ -6,17 +6,22 @@
         </div>
     </div>
     {{- template "_internal/pagination.html" . -}}
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8 col-sm-6">
-            <div class="accordion neoList" id="accordionSection">
-                {{ $itemNum := 1 }}
-                {{ range .Paginator.Pages }}
-                    {{ .Scratch.Set "itemAccordion" $itemNum }}
-                    {{- partial "summary.html" . -}}
-                    {{ $itemNum = (add $itemNum 1) }}
-                {{ end }}
+    <div class="row justify-content-center  text-light">
+        {{ range .Paginator.Pages }}
+        <div class="d-flex justify-content-center col-lg-3 col-md-6 col-sm-12 mt-5">
+            <div class="card profile-card-2" style="">
+                <img class="img-fluid card-img-top" src="{{if .Params.images }} {{ index .Params.images 0 }} {{ end }}" alt="Image cap" />
+                <div class="card-body">
+                    <img class="profile" src="{{ .Params.author_pic }}" alt="{{ .Params.author }}" class="profile"/>
+                    <h4 class="card-title mt-5">{{ .Title }}</h4>
+                    <p class="card-text mt-2">{{ plainify .Summary  -}}</p>
+                </div>
+                <div class="card-footer" style="border: none;">
+                    <a href="{{ .Permalink }}" class="btn btn-primary" role="button" aria-pressed="true">{{- T "readMore" -}}</a>
+                </div>
             </div>
         </div>
+        {{ end }}
     </div>
 </section>
 <div class="svg-section-list">
@@ -24,4 +29,5 @@
         <path d="M0 0 L50 90 L100 0 V100 H0" fill="#1565C0" />
     </svg>
 </div>
+
 {{ end }}
