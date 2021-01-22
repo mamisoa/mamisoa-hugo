@@ -67,7 +67,7 @@ header .container {
 header .featured-image {
     background-color: #1E88E5;
     margin-top: 75px;
-    opacity: 0.85;
+    /* opacity: 0.85; */
 }
 
 header .no-featured-image {
