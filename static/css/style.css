@@ -366,6 +366,7 @@ header .no-image-text {
     box-shadow:  20px 20px 60px #155e9e, 
              -20px -20px 60px #27b2ff;
     color: white;
+    transition: all .1s ease-in-out;
 }
 
 /* .listContainer .card-header {
@@ -381,6 +382,11 @@ header .no-image-text {
              -20px -20px 60px #27b2ff;
     color: white;
 } */
+
+.card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
 
 .profile-card-2 .card-body{
     position:relative;
