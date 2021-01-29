@@ -15,3 +15,7 @@ AddOutputFilterByType DEFLATE image/jpeg
 AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
 ErrorDocument 404 /404.html
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^ophtalmologiste.be [NC]
+RewriteRule ^(.*)$ http://www.ophtalmologiste.be/$1 [L,R=301]
