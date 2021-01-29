@@ -15,19 +15,18 @@
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 {{ $currentPage := . }}
                 {{ range site.Menus.main }}
-                {{ $testHome := relLangURL .URL }}
                 {{ if .HasChildren }}
                     <li class="dropdown">
-                    <a class="nav-link {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }} not-active {{ end }}" href="{{ .URL | relLangURL }}  " class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
-                        <div class="dropdown-menu {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }} not-active {{ end }}" aria-labelledby="{{ .Name }}Id">
+                    <a class="nav-link {{if ne .URL "/" }}{{ if in $.RelPermalink .URL }}active{{ else }} not-active {{ end }}{{ end }}" href="{{ .URL | relLangURL }}  " class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
+                        <div class="dropdown-menu {{if ne .URL "/" }}{{ if in $.RelPermalink .URL }}active{{ else }} not-active {{ end }}{{ end }}" aria-labelledby="{{ .Name }}Id">
                             {{ range .Children }}
-                            <a class="dropdown-item {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }} not-active {{ end }}" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}<span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
+                            <a class="dropdown-item {{if ne .URL "/" }}{{ if in $.RelPermalink .URL }}active{{ else }} not-active {{ end }}{{ end }}" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if ne .URL "/" }}{{ if in $.RelPermalink .URL }}<span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
                             {{ end }}
                         </div>
                     </li>
                 {{ else }}
-                    <li class="nav-item {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }} not-active {{ end }}">
-                        <a class="nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}<span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
+                    <li class="nav-item {{if ne .URL "/" }}{{ if in $.RelPermalink .URL }}active{{ else }} not-active {{ end }}{{ end }}">
+                        <a class="nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if ne .URL "/" }}{{ if in $.RelPermalink .URL }}<span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
                     </li>
                 {{ end }}
                 {{ end }}
