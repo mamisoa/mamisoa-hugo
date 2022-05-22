@@ -14,8 +14,6 @@
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 {{ $currentPage := . }}
                 {{ $testHome :=  "/" | relLangURL  }}
-                ** {{  "/" | relLangURL  }} **
-                ** {{  .RelPermalink  }} **
                 {{ range site.Menus.main }}
                 {{ if .HasChildren }}
                     <li class="dropdown">

@@ -57,14 +57,20 @@
         </div>
     </nav> <!-- end top nav bar -->
     </div>
-    {{ if $.Params.featured_image }}
+    {{ if or ($.Params.featured_image) (in $.RelPermalink "404") }}
     <div id="invisible" class="word-rotate" style="display: none;"></div>
     <div class="container-fluid featured-image" >
         <div class="row">
             <picture class="img-fluid w-100">
+                {{ if in $.RelPermalink "404"}}
+                <source srcset="{{ "/images/cover/404_cover_1500x509.jpg" | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="Featured image webp of {{ $.Params.title }}" />
+                <source srcset="{{ "/images/cover/404_cover_1500x509.jpg" | relURL }}" alt="Featured original image of {{ $.Params.title }}" />
+                <img src="{{ "/images/cover/404_cover_1500x509.jpg" | relURL }}" class="img-fluid w-100" alt="Featured image of {{ $.Params.title }}" />
+                {{ else }}
                 <source srcset="{{ $.Params.featured_image | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="Featured image webp of {{ $.Params.title }}" />
                 <source srcset="{{ $.Params.featured_image | relURL }}" alt="Featured original image of {{ $.Params.title }}" />
                 <img src="{{ $.Params.featured_image | relURL }}" class="img-fluid w-100" alt="Featured image of {{ $.Params.title }}" />
+                {{ end }}
             </picture>
         </div>
     </div>
@@ -75,11 +81,9 @@
                 <div class="text-center pl-4 pr-4 py-1">
                     <h1>
                         {{ if in $.RelPermalink "tags" }}{{- T "tag" -}}: {{ end }}
-                        {{ if in $.RelPermalink "404"}}---404---{{ else }}{{- .Title -}}{{ end }}
+                        {{- .Title -}}
                     </h1>
                 </div>
-                {{ if in $.RelPermalink "404"}}
-                {{ else }}
                 <div class="py-3">
                     <ul class="word-rotate">   
                         {{ with .Params.Tags }}                 
@@ -89,7 +93,6 @@
                         {{ end }}
                     </ul>
                 </div>
-                {{ end }}
             </div>
         </div>
     </div>
