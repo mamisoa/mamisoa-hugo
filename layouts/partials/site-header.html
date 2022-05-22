@@ -13,11 +13,13 @@
         <div class="collapse navbar-collapse" id="navbarToggler8">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 {{ $currentPage := . }}
-                {{ $testHome := relLangURL .URL }}
+                {{ $testHome :=  "/" | relLangURL  }}
+                ** {{  "/" | relLangURL  }} **
+                ** {{  .RelPermalink  }} **
                 {{ range site.Menus.main }}
                 {{ if .HasChildren }}
                     <li class="dropdown">
-                    <a class="nav-link {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }}active{{ end }}" href="{{ .Name | relLangURL }}  " class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
+                    <a class="nav-link {{ if ne .RelPermalink $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }}active{{ end }}" href="{{ .Name | relLangURL }}  " class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
                         <div class="dropdown-menu {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }} not-active {{ end }}" aria-labelledby="{{ .Name }}Id">
                             {{ range .Children }}
                             <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}<span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
