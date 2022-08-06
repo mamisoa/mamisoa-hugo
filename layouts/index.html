@@ -11,7 +11,7 @@
         {{ $offset := 100 }}
         {{ range site.Params.services }}
         <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="{{ print $offset }}">
-            <img class="d-block img-fluid img-offer layout-image mb-3 mt-2 one" src="{{ .serviceImg | relURL }}" alt="{{ .serviceImgDesc }}">
+            <img class="d-block img-fluid img-offer layout-image mx-auto one" src="{{ .serviceImg | relURL }}" alt="{{ .serviceImgDesc }}">
             <h4 class="h4-offer-green mb-2 mt-2  pb-2 pt-2 rounded text-white">{{ T .serviceName }}</h4>
         </div>
         {{ $offset = (add $offset 25) }}
