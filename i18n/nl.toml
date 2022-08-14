@@ -20,9 +20,9 @@ other = "Glaucoom"
 other = "Keratoconus"
 ["Yeux_secs"]
 other = "Droge ogen"
-[carouselTitle]
+[podiatryCarouselTitle]
 other = "State-of-the-art faciliteiten"
-[carouselSubTitle]
+[podiatryCarouselSubTitle]
 other = "Chirurgie, algemene en gespecialiseerde consulten"
 [chirRefImg]
 other = "Refractive surgery"

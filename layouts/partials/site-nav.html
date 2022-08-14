@@ -12,7 +12,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggler8">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                 {{ $currentPage := . }}
                 {{ range site.Menus.main }}
                 {{ if .HasChildren }}
@@ -78,7 +78,7 @@
     <div class="container-fluid no-featured-image">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12 col-lg-12 col-sm-11 no-image-text py-3">
-                <div class="text-center pl-4 pr-4 py-1">
+                <div class="text-center ps-4 pe-4 py-1">
                     <h1>
                         {{ if in $.RelPermalink "tags" }}{{- T "tag" -}}: {{ end }}
                         {{- .Title -}}

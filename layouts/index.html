@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div id="invisible" class="word-rotate" style="display: none;"></div>
 <section class="container-fluid site-special pt-3" style="font-family: 'Maven Pro', sans-serif;">
-    <div class="justify-content-center ml-4 mr-4 row" >
+    <div class="justify-content-center ms-4 me-4 row" >
         <div class="col-md-12 text-center text-light">
             <h1 style>{{ T "titleService"}}</h1>
             <p>{{ T "subTitleService" }}</p>
@@ -10,7 +10,7 @@
     <div class="justify-content-around mt-4  pb-4 row text-center">
         {{ $offset := 100 }}
         {{ range site.Params.services }}
-        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ml-4 mr-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="{{ print $offset }}">
+        <div class="col-7 col-lg-3 col-md-3 col-sm-7 col-xl-2 mb-5 ms-4 me-4 mt-4 neo-offer-green pb-2 pt-2" data-aos="fade-up" data-aos-offset="{{ print $offset }}">
             <a href="{{- .serviceImgLink }}" hreflang="{{ $.Site.Language.Lang }}" title="{{ T .serviceImgDesc }}">
                 <img class="d-block img-fluid img-offer layout-image mx-auto one" src="{{ .serviceImg | relURL }}" alt="{{ .serviceImgDesc }}">
             </a>
@@ -28,8 +28,8 @@
 <section class="container-fluid site-highlights py-5" style="font-family: 'Maven Pro', sans-serif;">
     <div class="justify-content-center row" data-aos="fade-up">
         <div class="col-md-12 text-center text-light">
-            <h1 style>{{ T "carouselTitle" }}</h1>
-            <p>{{ T "carouselSubTitle" }}</p>
+            <h1 style>{{ T "podiatryCarouselTitle" }}</h1>
+            <p>{{ T "podiatryCarouselSubTitle" }}</p>
         </div>
     </div>
     <div class="row justify-content-center mt-3" data-aos="fade-up">

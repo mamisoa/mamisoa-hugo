@@ -502,6 +502,10 @@ header .no-image-text {
     background-color:#4DB6AC;
 }
 
+.svg-section-home-3 {
+    background-color:#4db6ac;
+}
+
 .svg-section {
     fill:#1565C0;
     background-color: #1E88E5;
@@ -528,7 +532,7 @@ header .no-image-text {
     min-height: 40vh;
 }
 
-#highlightsCarousel {
+#podiatryCarousel {
     /* border-radius: 20px; */
     background: #4DB6AC;
     box-shadow:  20px 20px 60px #3b8a83, 
@@ -536,7 +540,7 @@ header .no-image-text {
 }
 
 
-#highlightsCarousel .carousel-caption {
+#podiatryCarousel .carousel-caption {
     background-color: #00796B;
     /* opacity: 0.7; */
     font-size: 0.9em;
@@ -561,3 +565,13 @@ header .no-image-text {
   .cookie-box-hide {
     display: none;
   }
+
+  /* for stacked icons */
+  .icon-background {
+    color: #f3faf3;
+}
+
+.text-in-white {
+    color: white;
+    font-size: x-large;
+}

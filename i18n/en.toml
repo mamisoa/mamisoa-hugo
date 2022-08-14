@@ -20,10 +20,10 @@ other = "Glaucoma"
 other = "Keratoconus"
 [Yeux_secs]
 other = "Dry eyes"
-[carouselTitle]
-other = "State-of-the-art facilities"
-[carouselSubTitle]
-other = "Surgery, general and specialised consultations"
+[podiatryCarouselTitle]
+other = "Podiatry services"
+[podiatryCarouselSubTitle]
+other = "We offer general and specialized services"
 [chirRefImg]
 other = "Refractive surgery"
 [chirRefDesc]

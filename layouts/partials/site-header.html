@@ -11,7 +11,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggler8">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                 {{ $currentPage := . }}
                 {{ $testHome :=  "/" | relLangURL  }}
                 {{ range site.Menus.main }}
@@ -78,7 +78,7 @@
             <div class="w-100 text-white">
                 <h1 style="font-family: 'Maven Pro', sans-serif;" class="display-4">{{ .Site.Title }}</h1>
                 <blockquote class="blockquote">
-                    <p class="display-4 font-italic mb-0" style="font-family: 'Pinyon Script', cursive;">{{ T "subTitle" }}</p>
+                    <p class="display-4 font-italic mb-3" style="font-family: 'Pinyon Script', cursive;">{{ T "subTitle" }}</p>
                     <p class="blockquote-footer">{{ .Scratch.Get "subAuthor"}}</p>
                     <!-- <p class="blockquote-footer">{{ $currentPage }}</p> -->
                 </blockquote>

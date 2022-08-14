@@ -22,14 +22,24 @@ other = "Glaucome"
 other = "Kératocône"
 ["Yeux_secs"]
 other = "Yeux secs"
-[carouselTitle]
-other = "Des installations modernes"
-[carouselSubTitle]
-other = "Chirurgie, consultations générales et spécialisées"
-[chirRefImg]
-other = "Chirurgie réfractive"
-[chirRefDesc]
-other = "Chirurgie des yeux au laser par LASIK ou te PRK"
+[podiatryCarouselTitle]
+other = "Podologie"
+[podiatryCarouselSubTitle]
+other = "Nos podologues offrent des prestations générales et spécialisées"
+["Pédicure"]
+other = "Pédicure"
+["Soins généraux de pédicure"]
+other = "Soins généraux de pédicure"
+["Soins spécifiques de pédicure"]
+other = "Soins spécifiques de pédicure"
+["Analyse des paramètres de la marche"]
+other = "Analyse des paramètres de la marche"
+[Marche]
+other = "Marche"
+[Semelles]
+other = "Semelles"
+["Réalisations de semelles sur mesure"]
+other = "Réalisations de semelles sur mesure"
 ["Chirurgie_de_cataracte"]
 other = "Chirurgie de cataracte"
 ["Chirurgie_de_cataracteDesc"]
