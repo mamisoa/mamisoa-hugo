@@ -40,6 +40,51 @@ other = "Marche"
 other = "Semelles"
 ["Réalisations de semelles sur mesure"]
 other = "Réalisations de semelles sur mesure"
+[labCarouselTitle]
+other = "Prélèvements"
+[labCarouselSubTitle]
+other = "Notre équipe infirmière est à votre disposition"
+["Prises de sang"]
+other = "Prises de sang"
+["Prélèvements sanguins"]
+other = "Prélèvements sanguins"
+["PCR adultes"]
+other = "PCR adultes"
+["Prélèvements PCR enfants"]
+other = "Prélèvements PCR enfants"
+["PCR Adultes"]
+other = "PCR Adultes"
+["Prélèvements PCR adultes"]
+other = "Prélèvements PCR adultes"
+["Les laboratoires LBS"]
+other = "Les laboratoires LBS"
+["LBS: notre laboratoire de confiance"]
+other = "LBS: notre laboratoire de confiance"
+
+[wellCarouselTitle]
+other = "Votre bien-être"
+[wellCarouselSubTitle]
+other = "Notre équipe au service de votre bien-être"
+
+["Acupuncture"]
+other = "Acupuncture"
+["acupuncture_generale"]
+other = "Acupuncture générale"
+["acupuncture_esthetique"]
+other = "Acupuncture esthétique"
+["Coaching de vie"]
+other = "Coaching de vie"
+["Un accompagnement de votre développement personnel"]
+other = "Un accompagnement de votre développement personnel"
+["Luminothérapie"]
+other = "Luminothérapie"
+["Découvrez les bienfaits de la luminothérapie"]
+other = "Découvrez les bienfaits de la luminothérapie"
+["Linequartz"]
+other = "Linequartz"
+["Découvrez les bienfaits du Linequartz"]
+other = "Découvrez les bienfaits du Linequartz"
+
 ["Chirurgie_de_cataracte"]
 other = "Chirurgie de cataracte"
 ["Chirurgie_de_cataracteDesc"]

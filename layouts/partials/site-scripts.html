@@ -4,12 +4,116 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <!-- end Bootstrap CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js" integrity="sha512-yAr4fN9WZH6hESbOwoFZGtSgOP+LSZbs/JeoDr02pOX4yUFfI++qC9YwIQXIGffhnzliykJtdWTV/v3PxSz8aw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 {{ range .Site.Params.local_js }} 
     <script src="{{ relURL (.) }}"></script>
 {{ end }}
 {{ range .Site.Params.ext_js }} 
     <script src="{{ . }}"></script>
+{{ end }}
+
+{{ if .IsHome }}
+<script>
+// row 1
+    var animation = bodymovin.loadAnimation({
+       // animationData: { /* ... */ },
+       container: document.getElementById('icon-doctor'), // required
+       path: '/svg/lottie/doctor_lottie.json', // required
+       renderer: 'svg', // required
+       loop: true, // optional
+       autoplay: true, // optional
+       name: "Doctor icon", // optional
+    });
+
+    var animation = bodymovin.loadAnimation({
+       // animationData: { /* ... */ },
+       container: document.getElementById('icon-lab'), // required
+       path: '/svg/lottie/lab_lottie.json', // required
+       renderer: 'svg', // required
+       loop: true, // optional
+       autoplay: true, // optional
+       name: "Lab icon", // optional
+    });
+
+    var animation = bodymovin.loadAnimation({
+       // animationData: { /* ... */ },
+       container: document.getElementById('icon-pcr'), // required
+       path: '/svg/lottie/pcr_lottie.json', // required
+       renderer: 'svg', // required
+       loop: true, // optional
+       autoplay: true, // optional
+       name: "PCR icon", // optional
+    });
+
+// row 2
+    var animation = bodymovin.loadAnimation({
+       // animationData: { /* ... */ },
+       container: document.getElementById('icon-kine'), // required
+       path: '/svg/lottie/kine_lottie.json', // required
+       renderer: 'svg', // required
+       loop: true, // optional
+       autoplay: true, // optional
+       name: "Kine icon", // optional
+    });
+
+    var animation = bodymovin.loadAnimation({
+       // animationData: { /* ... */ },
+       container: document.getElementById('icon-chiro'), // required
+       path: '/svg/lottie/chiro_lottie.json', // required
+       renderer: 'svg', // required
+       loop: true, // optional
+       autoplay: true, // optional
+       name: "Chiropraxy icon", // optional
+    });
+
+    var animation = bodymovin.loadAnimation({
+       // animationData: { /* ... */ },
+       container: document.getElementById('icon-podo'), // required
+       path: '/svg/lottie/podiatry_lottie.json', // required
+       renderer: 'svg', // required
+       loop: true, // optional
+       autoplay: true, // optional
+       name: "Podiatry icon", // optional
+    });
+
+// row 3
+    var animation = bodymovin.loadAnimation({
+       // animationData: { /* ... */ },
+       container: document.getElementById('icon-psy'), // required
+       path: '/svg/lottie/psy_lottie.json', // required
+       renderer: 'svg', // required
+       loop: true, // optional
+       autoplay: true, // optional
+       name: "Mental health icon", // optional
+    });
+
+    var animation = bodymovin.loadAnimation({
+       // animationData: { /* ... */ },
+       container: document.getElementById('icon-acu'), // required
+       path: '/svg/lottie/acupuncture_lottie.json', // required
+       renderer: 'svg', // required
+       loop: true, // optional
+       autoplay: true, // optional
+       name: "Acupuncture icon", // optional
+    });
+
+    var animation = bodymovin.loadAnimation({
+       // animationData: { /* ... */ },
+       container: document.getElementById('icon-well'), // required
+       path: '/svg/lottie/well_lottie.json', // required
+       renderer: 'svg', // required
+       loop: true, // optional
+       autoplay: true, // optional
+       name: "Wellbeing icon", // optional
+    });
+
+
+
+</script>
+
+
+
 {{ end }}
 
 <script type="text/javascript">

@@ -1,13 +1,14 @@
-<header class="site-header container-fluid">
+<header class="site-header container-fluid gx-0">
     <!-- top nav bar
     * ? use for template
     * ? use for partial
     -->
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top text-uppercase  {{ .Scratch.Get "navClass" }}">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top text-uppercase {{ .Scratch.Get "navClass" }}">
         <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
             <img src="{{ site.Params.logo | relURL }}" alt="{{ site.Title }}" width="{{ site.Params.logo_width }}" class="img-fluid"/>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler8" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler8" 
+                aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggler8">
@@ -17,7 +18,7 @@
                 {{ range site.Menus.main }}
                 {{ if .HasChildren }}
                     <li class="dropdown">
-                    <a class="nav-link {{ if ne .RelPermalink $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }}active{{ end }}" href="{{ .Name | relLangURL }}  " class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
+                    <a class="nav-link {{ if ne .RelPermalink $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }}active{{ end }}" href="{{ .Name | relLangURL }}  " class="dropdown-toggle" id=" {{ .Name }}Id" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
                         <div class="dropdown-menu {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }} not-active {{ end }}" aria-labelledby="{{ .Name }}Id">
                             {{ range .Children }}
                             <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}<span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
@@ -32,7 +33,7 @@
                 {{ end }}
                 {{ if ne .Site.Params.mono "yes" }}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ .URL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-{{ $.Site.Language.Lang }}"></span></a>
+                    <a class="nav-link dropdown-toggle" href="{{ .URL | relLangURL }}" id="dropdown09" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-{{ $.Site.Language.Lang }}"></span></a>
                     {{ $otherLang2 := "en"}} {{ $otherLang3 := "nl"}}
                     {{ if eq $.Site.Language.Lang "fr"}}
                         {{ $otherLang2 = "en"}} {{ $otherLang3 = "nl"}}
@@ -56,7 +57,8 @@
         * position absolute top left w100% h100% of header z-index 0
         * set opacity and color in class
     -->
-    <div class="overlay"></div>
+    <div class="overlay">
+    </div>
     <!-- video background
         * position absolute z-index 1
     -->
@@ -84,5 +86,10 @@
                 </blockquote>
             </div>
         </section>
+    </div>
+    <div class="w-100 position-absolute top-100" style="transform: translateY(-100px); z-index: 3;">
+        <svg width="100%" height="100" viewBox="0 0 100 99" preserveAspectRatio="none">
+            <path d="M0 0 L50 90 L100 0 V100 H0" fill="#4DB6AC" />
+        </svg>
     </div>
 </header>
