@@ -61,7 +61,7 @@
     <div id="invisible" class="word-rotate" style="display: none;"></div>
     <div class="container-fluid featured-image" >
         <div class="row">
-            <picture class="img-fluid w-100">
+            <picture class="img-fluid w-100 gx-0">
                 {{ if in $.RelPermalink "404"}}
                 <source srcset="{{ "/images/cover/404_cover_1500x509.jpg" | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="Featured image webp of {{ $.Params.title }}" />
                 <source srcset="{{ "/images/cover/404_cover_1500x509.jpg" | relURL }}" alt="Featured original image of {{ $.Params.title }}" />

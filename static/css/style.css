@@ -60,10 +60,10 @@ header .container {
 
 /* For site-nav.html in single.html */
 
-/* .site-nav-header {
+.site-nav-header {
     width: 100%;
     overflow: hidden;
-} */
+}
 
 header .featured-image {
     background-color: #1E88E5;
@@ -228,6 +228,7 @@ header .no-image-text {
     text-decoration: none;
 }
 
+
 /* **************** */
 
 /* footer section */
@@ -260,6 +261,15 @@ a, a:hover, a:focus, a:active {
     color: inherit;
 }
 
+.card-group a:hover {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.card-group a:link {
+    font-weight: bold;
+    text-decoration: none;
+}
 
 /* css single.html */
 
