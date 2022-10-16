@@ -32,6 +32,22 @@
             <time class="tracked" {{ printf `datetime="%s"` (.Date.Format "2006-01-02T15:04:05Z07:00") | safeHTMLAttr }}>
             {{ partial "international-date.html" . }}
             </time>
+            {{- if .Lastmod }}
+                {{- if ne .Lastmod .Date }}
+                        (Updated: 
+                        <time class="tracked" {{ printf `datetime="%s"` (.Lastmod.Format "2006-01-02T15:04:05Z07:00") | safeHTMLAttr }}>
+                            {{ if eq "fr" $.Site.Language.Lang }}
+                                {{- .Lastmod.Day }} {{ index $.Site.Data.mois (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year -}}
+                            {{ else }}
+                                {{ if eq "nl" $.Site.Language.Lang }}
+                                    {{- .Lastmod.Day }} {{ index $.Site.Data.mand (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year -}}
+                                {{ else }}
+                                    {{- .Lastmod.Format "January 2, 2006" -}}
+                                {{end }}
+                            {{ end }}
+                        </time>)
+                {{- end }}
+            {{- end }}
             {{/*
                 Show "reading time" and "word count" but only if one of the following are true:
                 1) A global config `params` value is set `show_reading_time = true`
