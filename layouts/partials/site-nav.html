@@ -32,7 +32,7 @@
                 {{ end }}
                 {{ if ne .Site.Params.mono "yes" }}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ site.BaseURL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-{{ $.Site.Language.Lang }}"></span></a>
+                    <a class="nav-link dropdown-toggle" href="{{ site.BaseURL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>{{ $.Site.Language.Lang }}</strong></a>
                     {{ $otherLang2 := slice }} {{ $otherLang3 := slice }}
                     {{ if eq $.Site.Language.Lang "en"}}
                         {{ $otherLang2 = slice "nl" "nl" }} {{ $otherLang3 = slice "" "fr" }}
@@ -45,11 +45,11 @@
                     {{ end }}
                     <div class="dropdown-menu" aria-labelledby="dropdown09">
                         {{ if (eq (index $otherLang3 0) "") }}
-                            <a class="dropdown-item" href="{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><span class="flag-icon flag-icon-{{- index $otherLang3 1 -}}"> </span></a>
+                            <a class="dropdown-item" href="{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><strong>{{- index $otherLang3 1 -}}</strong></a>
                         {{ else }}
-                            <a class="dropdown-item" href="/{{- index $otherLang3 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><span class="flag-icon flag-icon-{{- index $otherLang3 1 -}}"> </span></a>
+                            <a class="dropdown-item" href="/{{- index $otherLang3 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><strong>{{- index $otherLang3 1 -}}</strong></a>
                         {{ end }}
-                        <a class="dropdown-item" href="/{{- index $otherLang2 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><span class="flag-icon flag-icon-{{- index $otherLang2 1 -}}"> </span></a>
+                        <a class="dropdown-item" href="/{{- index $otherLang2 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><strong>{{- index $otherLang2 1 -}}</strong></a>
                     </div>
                 </li>
                 {{ end }}
