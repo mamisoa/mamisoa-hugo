@@ -31,8 +31,8 @@
                 {{ end }}
                 {{ end }}
                 {{ if ne .Site.Params.mono "yes" }}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle border rounded" href="{{ site.BaseURL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>{{ $.Site.Language.Lang }}</span></a>
+                <li class="nav-item dropdown pl-4">
+                    <a class="nav-link dropdown-toggle" href="{{ site.BaseURL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="border rounded p-2">{{ $.Site.Language.Lang }}</span></a>
                     {{ $otherLang2 := "en"}} {{ $otherLang3 := "nl"}}
                     {{ if eq $.Site.Language.Lang "fr"}}
                         {{ $otherLang2 = "en"}} {{ $otherLang3 = "nl"}}
@@ -44,8 +44,8 @@
                         {{ end }}
                     {{ end }}
                     <div class="dropdown-menu" aria-labelledby="dropdown09">
-                        <a class="dropdown-item" href="{{- strings.TrimPrefix "/" site.BaseURL | strings.TrimPrefix $.Site.Language.Lang -}}{{- $otherLang2 -}}"><strong >{{- $otherLang2 -}}</strong></a>
-                        <a class="dropdown-item" href="{{- strings.TrimPrefix "/" site.BaseURL | strings.TrimPrefix $.Site.Language.Lang -}}{{- $otherLang3 -}}"><strong >{{- $otherLang3 -}}</strong></a>
+                        <a class="dropdown-item" href="{{- strings.TrimPrefix "/" site.BaseURL | strings.TrimPrefix $.Site.Language.Lang -}}/{{- $otherLang2 -}}"><strong >{{- $otherLang2 -}}</strong></a>
+                        <a class="dropdown-item" href="{{- strings.TrimPrefix "/" site.BaseURL | strings.TrimPrefix $.Site.Language.Lang -}}/{{- $otherLang3 -}}"><strong >{{- $otherLang3 -}}</strong></a>
                     </div>
                 </li>
                 {{ end }}
