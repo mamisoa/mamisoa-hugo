@@ -32,7 +32,7 @@
                 {{ end }}
                 {{ if ne .Site.Params.mono "yes" }}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ site.BaseURL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>{{ $.Site.Language.Lang }}</strong></a>
+                    <a class="nav-link dropdown-toggle border rounded" href="{{ site.BaseURL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>{{ $.Site.Language.Lang }}</strong></a>
                     {{ $otherLang2 := slice }} {{ $otherLang3 := slice }}
                     {{ if eq $.Site.Language.Lang "en"}}
                         {{ $otherLang2 = slice "nl" "nl" }} {{ $otherLang3 = slice "" "fr" }}
