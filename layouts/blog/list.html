@@ -9,7 +9,7 @@
     <div class="row justify-content-center  text-light">
         {{ range .Paginator.Pages }}
         <div class="d-flex justify-content-center col-lg-3 col-md-6 col-sm-12 mt-5">
-            <div class="card profile-card-2" style="">
+            <div class="card profile-card-2">
                 {{if .Params.images }}<img class="img-fluid card-img-top" src=" {{ index .Params.images 0 }}" alt="Image cap" />{{ end }}
                 <div class="card-body">
                     {{if .Params.author_pic }}<img class="profile" src="{{ .Params.author_pic }}" alt="{{ .Params.author }}" class="profile"/>{{ end}}
@@ -22,6 +22,11 @@
             </div>
         </div>
         {{ end }}
+    </div>
+</section>
+<section class="container-fluid postContainer text-white pb-3">
+    <div class="col-sm-3 postTags">
+        {{- partial "tags.html" . -}}
     </div>
 </section>
 <div class="svg-section-list">
