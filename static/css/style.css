@@ -561,3 +561,23 @@ header .no-image-text {
   .cookie-box-hide {
     display: none;
   }
+
+/* References */
+.refInPost {
+    min-height: 150px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 0.7em;
+    padding: 1em;
+    color: #0D47A1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background: #E3F2FD;
+    font-size: 0.7em;
+}
+
+.refInPost a {
+    color: #0D47A1;
+}
