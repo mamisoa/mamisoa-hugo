@@ -90,3 +90,7 @@ other = "words"
 other = "general"
 ["rh"]
 other = "human ressources"
+[newPostBlog]
+other = "Latest news in Ophthalmology"
+[newPostBlogSubtitle]
+other = "LASIK, myopia, dry eyes"

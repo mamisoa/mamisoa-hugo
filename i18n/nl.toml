@@ -90,3 +90,7 @@ other = "woorden"
 other = "algemeen"
 ["rh"]
 other = "menselijke hulpbronnen"
+[newPostBlog]
+other = "Laatste nieuws in Oogheelkunde"
+[newPostBlogSubtitle]
+other = "LASIK, bijziendheid, droge ogen"

@@ -90,3 +90,7 @@ other = "mots"
 other = "général"
 ["rh"]
 other = "ressources humaines"
+[newPostBlog]
+other = "Les dernières nouvelles en Ophtalmologie"
+[newPostBlogSubtitle]
+other = "LASIK, myopie, sécheresse oculaire"
