@@ -390,6 +390,14 @@ header .no-image-text {
     object-fit: cover;
 }
 
+/* menu */
+
+.blog-menu {
+    color: #FFD700;
+}
+
+
+
 .team {
     color: black;
 }

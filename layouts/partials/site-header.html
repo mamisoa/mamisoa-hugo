@@ -26,7 +26,7 @@
                     </li>
                 {{ else }}
                     <li class="nav-item {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }}active{{ end }}">
-                        <a class="nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}<span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
+                        <a class="nav-link" href="{{ .URL | relLangURL }}"><span {{ if eq .Name "#blog" }}class="blog-menu"{{ end }}>{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}</span><span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
                     </li>
                 {{ end }}
                 {{ end }}
