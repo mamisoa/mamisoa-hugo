@@ -25,14 +25,14 @@
                         </div>
                     </li>
                 {{ else }}
-                    <li class="nav-item {{if ne .URL "/" }}{{ if in $.RelPermalink .URL }}active{{ else }} not-active {{ end }}{{ end }}">
+                    <li class="nav-item {{ if eq .Name "news" }}d-none{{ end }} {{if ne .URL "/" }}{{ if in $.RelPermalink .URL }}active{{ else }} not-active {{ end }}{{ end }}">
                         <a class="nav-link" href="{{ .URL | relLangURL }}"><span {{ if eq .Name "#blog" }}class="blog-menu"{{ end }}>{{ .Name }}{{ if ne .URL "/" }}{{ if in $.RelPermalink .URL }}</span><span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
                     </li>
                 {{ end }}
                 {{ end }}
                 {{ if ne .Site.Params.mono "yes" }}
                 <li class="nav-item dropdown pl-4">
-                    <a class="nav-link dropdown-toggle border rounded" href="{{ site.BaseURL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>{{ $.Site.Language.Lang }}</strong></a>
+                    <a class="nav-link dropdown-toggle " href="{{ site.BaseURL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="border rounded p-2">{{ $.Site.Language.Lang }}</span></a>
                     {{ $otherLang2 := slice }} {{ $otherLang3 := slice }}
                     {{ if eq $.Site.Language.Lang "en"}}
                         {{ $otherLang2 = slice "nl" "nl" }} {{ $otherLang3 = slice "" "fr" }}
