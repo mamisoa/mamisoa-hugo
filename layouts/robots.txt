@@ -5,3 +5,4 @@ User-agent: *
 {{ else }}
   Disallow: /
 {{ end }}
+Sitemap: {{ .Site.BaseURL }}/sitemap.xml
