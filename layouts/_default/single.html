@@ -59,7 +59,7 @@
             {{- partial "tags.html" . -}}
         </div>
         <div class="col-sm-4 postComments">
-                {{ if .Site.DisqusShortname }}
+                {{ if .Site.Config.Services.Disqus.Shortname }}
                     {{ template "_internal/disqus.html" . }}
                 {{ end }}
                 {{ if .Site.Params.commentoEnable }}
