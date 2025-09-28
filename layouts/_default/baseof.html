@@ -1,126 +1,132 @@
 <!DOCTYPE html>
-<html lang="{{ $.Site.Language.Lang | default "fr" }}">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
-    <title>{{ if .Params.Title }}{{ .Params.Title }} | {{ end }}{{ if not .Params.Title }}{{ T "title" }}{{ else }}{{ T "pageTitle" }}{{ end }}</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
-    {{ hugo.Generator }}
-    {{/* NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command */}}
-    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-    {{ else }}
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    {{ end }}
+<html lang="{{ $.Site.Language.Lang | default " fr" }}">
 
-    <!-- missing <meta name="author" content=""> -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
+  <title>{{ if .Params.Title }}{{ .Params.Title }} | {{ end }}{{ if not .Params.Title }}{{ T "title" }}{{ else }}{{ T
+    "pageTitle" }}{{ end }}</title>
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <meta name="description"
+    content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+  {{ hugo.Generator }}
+  {{/* NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command */}}
+  {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production") }}
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  {{ else }}
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+  {{ end }}
 
-    <!-- {{ $stylesheet := .Site.Data.webpack_assets.app }}
+  <!-- missing <meta name="author" content=""> -->
+
+  <!-- {{ $stylesheet := .Site.Data.webpack_assets.app }}
     {{ with $stylesheet.css }}
       <link href="{{ relURL (printf "%s%s" "dist/" .) }}" rel="stylesheet">
     {{ end }} -->
 
-    <link rel="preconnect" href="https://fonts.gstatic.com"> 
-    
-    <!-- TODO: set [params] custom_css = css files in array [] -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    {{ range .Site.Params.custom_css }} 
-      <link rel="stylesheet" type="text/css" href="{{ . | relURL }}">
-    {{ end }}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
 
-    <!-- TODO: set [params] css_font = css url in array [] -->
-    {{ range .Site.Params.css_font }} 
-      <link rel="stylesheet" href="{{ . }}">
-    {{ end }}
+  <!-- TODO: set [params] custom_css = css files in array [] -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  {{ range .Site.Params.custom_css }}
+  <link rel="stylesheet" type="text/css" href="{{ . | relURL }}">
+  {{ end }}
 
-    <!-- TODO: set [params] favicon appleTouchIcon favicon32 favicon16 webmanifest -->
-    {{ block "favicon" . }}
-      {{ partialCached "site-favicon.html" . }}
-    {{ end }}
+  <!-- TODO: set [params] css_font = css url in array [] -->
+  {{ range .Site.Params.css_font }}
+  <link rel="stylesheet" href="{{ . }}">
+  {{ end }}
 
-    {{ if .OutputFormats.Get "RSS" }}
-    {{ with .OutputFormats.Get "RSS" }}
-      <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
-      <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
-      {{ end }}
-    {{ end }}
-    
-    {{/* NOTE: These Hugo Internal Templates can be found starting at https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates */}}
-    {{- template "_internal/opengraph.html" . -}}
-    {{- template "_internal/schema.html" . -}}
-    {{- template "_internal/twitter_cards.html" . -}}
+  <!-- TODO: set [params] favicon appleTouchIcon favicon32 favicon16 webmanifest -->
+  {{ block "favicon" . }}
+  {{ partialCached "site-favicon.html" . }}
+  {{ end }}
 
-    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
-      {{ template "_internal/google_analytics.html" . }}
-    {{ end }}
-    {{ partial "site-schema.html" . }}
-  </head>
-  
-  <body class="{{ $.Param "body_classes"  | default ""}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
-    <!-- {{ if .IsHome }}
+  {{ if .OutputFormats.Get "RSS" }}
+  {{ with .OutputFormats.Get "RSS" }}
+  <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+  <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+  {{ end }}
+  {{ end }}
+
+  {{/* NOTE: These Hugo Internal Templates can be found starting at
+  https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates */}}
+  {{- template "_internal/opengraph.html" . -}}
+  {{- template "_internal/schema.html" . -}}
+  {{- template "_internal/twitter_cards.html" . -}}
+
+  {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production") }}
+  {{ template "_internal/google_analytics.html" . }}
+  {{ end }}
+  {{ partial "site-schema.html" . }}
+</head>
+
+<body class="{{ $.Param " body_classes" | default "" }}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
+  <!-- {{ if .IsHome }}
     <p>Current page is HOME</p>
     {{ else }}
     <p>Current page is NOT home</p>
     {{ end }} -->
-    {{ block "header" . }}
-        {{ if .IsHome }}
-          {{ .Scratch.Set "navClass" "navbar-fixed-top" }}
-          {{ partial "site-header.html" .}}
-        {{ else }}
-          {{ .Scratch.Set "navClass" "navbar-fixed-top-post" }}
-          {{ partial "site-nav.html" .}}
-        {{ end }}
-    {{ end }}
-    {{ block "main" . }}{{ end }}
-    {{ block "contact" . }}
-      {{ if .IsHome }}
-        {{ .Scratch.Set "contactClass" "contact-home" }}
-        {{ .Scratch.Set "neoClass" "neo-info-home" }}
-        {{ partial "site-contact.html" . }}
-      {{ else }}
-        {{ .Scratch.Set "neoClass" "neo-info" }}
-        {{ .Scratch.Set "contactClass" "contact" }}
-        {{ partial "site-contact.html" . }}
-      {{ end }}
-    {{ end }}
-    {{ block "footer" . }}
-      {{ if .IsHome }}
-        {{ .Scratch.Set "footerClass" "site-footer-home" }}
-        {{ partialCached "site-footer.html" . }}
-      {{ else }}
-        {{ .Scratch.Set "footerClass" "site-footer" }}
-        {{ partial "site-footer.html" . }}
-      {{ end }}
-    {{ end }}
-    {{ if .IsHome }}
-      {{ if $.Site.Params.specialMsgModal }}
-        <div class="modal" tabindex="-1" role="dialog" id="infoModal">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">{{ markdownify .Site.Params.specialMsgTitle }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>{{ markdownify $.Site.Params.specialMsgContent }}</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Rdv en ligne</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
+  {{ block "header" . }}
+  {{ if .IsHome }}
+  {{ .Scratch.Set "navClass" "navbar-fixed-top" }}
+  {{ partial "site-header.html" .}}
+  {{ else }}
+  {{ .Scratch.Set "navClass" "navbar-fixed-top-post" }}
+  {{ partial "site-nav.html" .}}
+  {{ end }}
+  {{ end }}
+  {{ block "main" . }}{{ end }}
+  {{ block "contact" . }}
+  {{ if .IsHome }}
+  {{ .Scratch.Set "contactClass" "contact-home" }}
+  {{ .Scratch.Set "neoClass" "neo-info-home" }}
+  {{ partial "site-contact.html" . }}
+  {{ else }}
+  {{ .Scratch.Set "neoClass" "neo-info" }}
+  {{ .Scratch.Set "contactClass" "contact" }}
+  {{ partial "site-contact.html" . }}
+  {{ end }}
+  {{ end }}
+  {{ block "footer" . }}
+  {{ if .IsHome }}
+  {{ .Scratch.Set "footerClass" "site-footer-home" }}
+  {{ partialCached "site-footer.html" . }}
+  {{ else }}
+  {{ .Scratch.Set "footerClass" "site-footer" }}
+  {{ partial "site-footer.html" . }}
+  {{ end }}
+  {{ end }}
+  {{ if .IsHome }}
+  {{ if $.Site.Params.specialMsgModal }}
+  <div class="modal" tabindex="-1" role="dialog" id="infoModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ markdownify .Site.Params.specialMsgTitle }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      {{ end }}
-    {{ end }}
-    {{ if .IsHome }}
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-    <script>
+        <div class="modal-body">
+          <p>{{ markdownify $.Site.Params.specialMsgContent }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Rdv en ligne</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+  {{ end }}
+  {{ if .IsHome }}
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
     window.cookieconsent.initialise({
       "palette": {
         "popup": {
@@ -132,8 +138,9 @@
       },
       "theme": "edgeless"
     });
-    </script>
-    {{ end }}
-    {{ block "scripts" . }}{{ partial "site-scripts.html" . }}{{ end }}
-  </body>
+  </script>
+  {{ end }}
+  {{ block "scripts" . }}{{ partial "site-scripts.html" . }}{{ end }}
+</body>
+
 </html>
