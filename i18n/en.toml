@@ -98,3 +98,61 @@ other = "human ressources"
 other = "Latest news in Ophthalmology"
 [newPostBlogSubtitle]
 other = "LASIK, myopia, dry eyes"
+
+# Appointments page translations
+[appointments_choose_doctor]
+other = "Choose your doctor"
+[appointments_which_doctor]
+other = "Which ophthalmologist would you like to see?"
+[appointments_coming_soon]
+other = "Coming soon"
+[appointments_back_doctor]
+other = "Back to doctor selection"
+[appointments_consultation_type]
+other = "Consultation type"
+[appointments_which_type]
+other = "What type of consultation would you like?"
+[appointments_back]
+other = "Back"
+[appointments_change_doctor]
+other = "Change doctor"
+[appointments_loading]
+other = "Loading..."
+[appointments_loading_calendar]
+other = "Loading calendar..."
+[appointments_calendar_title]
+other = "Appointment calendar"
+
+# Doctor specialties
+[doctor_specialty_ophthalmologist]
+other = "Ophthalmologist"
+
+# Doctor descriptions
+[doctor_andriantafika_description]
+other = "Dr. Andriantafika is an ophthalmologist specializing in refractive and cataract surgery. He provides general consultations as well as specialized consultations in myopia, astigmatism, hyperopia, presbyopia and cataract surgery, glaucoma management, and for children over 4 years old."
+[doctor_lienart_description]
+other = "Dr. Liénart is an ophthalmologist providing general consultations and for children over 5 years old."
+
+# Consultation types
+[consultation_routine]
+other = "Routine consultation"
+[consultation_urgent]
+other = "Urgent consultation"
+[consultation_child_4]
+other = "Child consultation (4 years+)"
+[consultation_child_5]
+other = "Child consultation (5 years+)"
+[consultation_driver]
+other = "Driver examination"
+[consultation_glaucoma]
+other = "Glaucoma consultation"
+[consultation_dry_eyes]
+other = "Dry eyes consultation (DRY EYES)"
+[consultation_surgical_opinion]
+other = "Surgical opinion (refractive surgery)"
+
+# Modal titles
+[appointments_book]
+other = "Book an appointment"
+[appointments_choose_slot]
+other = "Choose a time slot"

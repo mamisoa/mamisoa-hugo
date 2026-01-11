@@ -98,3 +98,61 @@ other = "ressources humaines"
 other = "Les dernières nouvelles en Ophtalmologie"
 [newPostBlogSubtitle]
 other = "LASIK, myopie, sécheresse oculaire"
+
+# Appointments page translations
+[appointments_choose_doctor]
+other = "Choisissez votre médecin"
+[appointments_which_doctor]
+other = "Quel ophtalmologiste souhaitez-vous consulter ?"
+[appointments_coming_soon]
+other = "Bientôt disponible"
+[appointments_back_doctor]
+other = "Retour au choix du médecin"
+[appointments_consultation_type]
+other = "Type de consultation"
+[appointments_which_type]
+other = "Quel type de consultation souhaitez-vous ?"
+[appointments_back]
+other = "Retour"
+[appointments_change_doctor]
+other = "Changer de médecin"
+[appointments_loading]
+other = "Chargement..."
+[appointments_loading_calendar]
+other = "Chargement du calendrier..."
+[appointments_calendar_title]
+other = "Calendrier de rendez-vous"
+
+# Doctor specialties
+[doctor_specialty_ophthalmologist]
+other = "Ophtalmologiste"
+
+# Doctor descriptions
+[doctor_andriantafika_description]
+other = "Le Dr Andriantafika est un ophtalmologiste spécialiste en chirurgie réfractive et de la cataracte. Il réalise des consultations générales mais également spécialisées dans la chirurgie de la myopie, astigmatisme, hypermétropie, presbytie et de la cataracte, dans la maladie du glaucome, et pour les enfants de plus de 4 ans."
+[doctor_lienart_description]
+other = "Le docteur Liénart est une ophtalmologue réalisant des consultations générales et pour les enfants de plus de 5 ans."
+
+# Consultation types
+[consultation_routine]
+other = "Consultation de routine"
+[consultation_urgent]
+other = "Consultation urgente"
+[consultation_child_4]
+other = "Consultation enfant (4 ans+)"
+[consultation_child_5]
+other = "Consultation enfant (5 ans+)"
+[consultation_driver]
+other = "Examen chauffeur"
+[consultation_glaucoma]
+other = "Consultation glaucome"
+[consultation_dry_eyes]
+other = "Consultation yeux secs (DRY EYES)"
+[consultation_surgical_opinion]
+other = "Avis opératoire (chirurgie réfractive)"
+
+# Modal titles
+[appointments_book]
+other = "Prendre un rendez-vous"
+[appointments_choose_slot]
+other = "Choisir un créneau"

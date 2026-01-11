@@ -5,7 +5,7 @@
       <div class="modal-header appointment-modal-header">
         <h5 class="modal-title" id="appointmentModalLabel">
           <i class="fas fa-calendar-check mr-2"></i>
-          <span id="modalTitleText">Prendre un rendez-vous</span>
+          <span id="modalTitleText">{{ T "appointments_choose_doctor" | default "Choisissez votre médecin" }}</span>
         </h5>
         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -20,11 +20,15 @@
               <div class="step-icon">
                 <i class="fas fa-user-md"></i>
               </div>
-              <h3 class="step-title">Choisissez votre médecin</h3>
-              <p class="step-subtitle">Quel ophtalmologiste souhaitez-vous consulter ?</p>
+              <h3 class="step-title">{{ T "appointments_choose_doctor" | default "Choisissez votre médecin" }}</h3>
+              <p class="step-subtitle">{{ T "appointments_which_doctor" | default "Quel ophtalmologiste souhaitez-vous consulter ?" }}</p>
               
               <div class="doctors-grid">
                 {{ range .Site.Params.doctors }}
+                {{/* Map doctor id to description translation key */}}
+                {{ $descKey := "" }}
+                {{ if eq .id "m.andriantafika" }}{{ $descKey = "doctor_andriantafika_description" }}{{ end }}
+                {{ if eq .id "m.lienart" }}{{ $descKey = "doctor_lienart_description" }}{{ end }}
                 <div class="doctor-card {{ if not .enabled }}doctor-disabled{{ end }}" 
                      data-doctor-id="{{ .id }}"
                      data-doctor-name="{{ .name }}"
@@ -36,10 +40,10 @@
                     </div>
                     <div class="doctor-info">
                       <h4 class="doctor-name">{{ .name }}</h4>
-                      <p class="doctor-specialty">{{ .specialty }}</p>
-                      <p class="doctor-description">{{ .description }}</p>
+                      <p class="doctor-specialty">{{ T "doctor_specialty_ophthalmologist" | default .specialty }}</p>
+                      <p class="doctor-description">{{ T $descKey | default .description }}</p>
                       {{ if not .enabled }}
-                      <span class="badge badge-secondary mt-2">Bientôt disponible</span>
+                      <span class="badge badge-secondary mt-2">{{ T "appointments_coming_soon" | default "Bientôt disponible" }}</span>
                       {{ end }}
                     </div>
                     <div class="doctor-arrow">
@@ -49,7 +53,18 @@
                   <!-- Hidden consultations data -->
                   <div class="doctor-consultations-data" style="display: none;">
                     {{ range .consultations }}
-                    <span data-id="{{ .id }}" data-name="{{ .name }}" data-callink="{{ .calLink }}"></span>
+                    {{/* Map consultation id to translation key */}}
+                    {{ $consultKey := "" }}
+                    {{ if eq .id "routine" }}{{ $consultKey = "consultation_routine" }}{{ end }}
+                    {{ if eq .id "urgente" }}{{ $consultKey = "consultation_urgent" }}{{ end }}
+                    {{ if eq .id "enfants" }}
+                      {{ if strings.Contains .name "4" }}{{ $consultKey = "consultation_child_4" }}{{ else }}{{ $consultKey = "consultation_child_5" }}{{ end }}
+                    {{ end }}
+                    {{ if eq .id "chauffeur" }}{{ $consultKey = "consultation_driver" }}{{ end }}
+                    {{ if eq .id "glaucome" }}{{ $consultKey = "consultation_glaucoma" }}{{ end }}
+                    {{ if eq .id "dry-eyes" }}{{ $consultKey = "consultation_dry_eyes" }}{{ end }}
+                    {{ if eq .id "avis-operatoire" }}{{ $consultKey = "consultation_surgical_opinion" }}{{ end }}
+                    <span data-id="{{ .id }}" data-name="{{ T $consultKey | default .name }}" data-callink="{{ .calLink }}"></span>
                     {{ end }}
                   </div>
                 </div>
@@ -62,15 +77,15 @@
           <div class="appointment-slide" id="step-consultation" data-step="2">
             <div class="slide-content">
               <button class="btn-back" id="backToDoctor">
-                <i class="fas fa-arrow-left mr-2"></i>Retour au choix du médecin
+                <i class="fas fa-arrow-left mr-2"></i>{{ T "appointments_back_doctor" | default "Retour au choix du médecin" }}
               </button>
               
               <div class="step-icon step-icon-blue">
                 <i class="fas fa-stethoscope"></i>
               </div>
-              <h3 class="step-title">Type de consultation</h3>
+              <h3 class="step-title">{{ T "appointments_consultation_type" | default "Type de consultation" }}</h3>
               <p class="step-subtitle selected-doctor-name"></p>
-              <p class="step-description">Quel type de consultation souhaitez-vous ?</p>
+              <p class="step-description">{{ T "appointments_which_type" | default "Quel type de consultation souhaitez-vous ?" }}</p>
               
               <div class="consultations-grid" id="consultationsContainer">
                 <!-- Dynamically populated -->
@@ -83,7 +98,7 @@
             <div class="slide-content slide-content-calendar">
               <div class="calendar-header">
                 <button class="btn-back" id="backToConsultation">
-                  <i class="fas fa-arrow-left mr-2"></i>Retour
+                  <i class="fas fa-arrow-left mr-2"></i>{{ T "appointments_back" | default "Retour" }}
                 </button>
                 <div class="calendar-info">
                   <div class="calendar-info-item">
@@ -97,20 +112,20 @@
                   </div>
                 </div>
                 <button class="btn-change-doctor" id="changeDoctor">
-                  Changer de médecin
+                  {{ T "appointments_change_doctor" | default "Changer de médecin" }}
                 </button>
               </div>
               
               <div class="calendar-embed-container">
                 <div class="calendar-loading" id="calendarLoading">
                   <div class="spinner-border text-primary" role="status">
-                    <span class="sr-only">Chargement...</span>
+                    <span class="sr-only">{{ T "appointments_loading" | default "Chargement..." }}</span>
                   </div>
-                  <p>Chargement du calendrier...</p>
+                  <p>{{ T "appointments_loading_calendar" | default "Chargement du calendrier..." }}</p>
                 </div>
                 <iframe id="calendarIframe" 
                         src="" 
-                        title="Calendrier de rendez-vous"
+                        title="{{ T "appointments_calendar_title" | default "Calendrier de rendez-vous" }}"
                         allow="camera; microphone; payment"
                         loading="lazy">
                 </iframe>
@@ -598,6 +613,13 @@
   
   const CALCOM_BASE_URL = '{{ .Site.Params.calcomBaseUrl | default "https://schuman.ophtalmologiste.be" }}';
   
+  // Translated modal titles
+  const MODAL_TITLES = {
+    1: '{{ T "appointments_book" | default "Prendre un rendez-vous" }}',
+    2: '{{ T "appointments_consultation_type" | default "Type de consultation" }}',
+    3: '{{ T "appointments_choose_slot" | default "Choisir un créneau" }}'
+  };
+  
   let currentStep = 1;
   let selectedDoctor = null;
   let selectedConsultation = null;
@@ -755,13 +777,8 @@
     const offset = (step - 1) * -33.333;
     slidesContainer.style.transform = `translateX(${offset}%)`;
     
-    // Update modal title
-    const titles = {
-      1: 'Prendre un rendez-vous',
-      2: 'Type de consultation',
-      3: 'Choisir un créneau'
-    };
-    modalTitleText.textContent = titles[step] || titles[1];
+    // Update modal title with translated text
+    modalTitleText.textContent = MODAL_TITLES[step] || MODAL_TITLES[1];
   }
   
   function resetModal() {
@@ -782,7 +799,7 @@
     }
     
     if (modalTitleText) {
-      modalTitleText.textContent = 'Prendre un rendez-vous';
+      modalTitleText.textContent = MODAL_TITLES[1];
     }
     
     calendarLoading.classList.remove('hidden');

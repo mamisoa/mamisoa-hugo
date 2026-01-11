@@ -98,3 +98,61 @@ other = "menselijke hulpbronnen"
 other = "Laatste nieuws in Oogheelkunde"
 [newPostBlogSubtitle]
 other = "LASIK, bijziendheid, droge ogen"
+
+# Appointments page translations
+[appointments_choose_doctor]
+other = "Kies uw arts"
+[appointments_which_doctor]
+other = "Welke oogarts wilt u raadplegen?"
+[appointments_coming_soon]
+other = "Binnenkort beschikbaar"
+[appointments_back_doctor]
+other = "Terug naar artsenkeuze"
+[appointments_consultation_type]
+other = "Type consultatie"
+[appointments_which_type]
+other = "Welk type consultatie wenst u?"
+[appointments_back]
+other = "Terug"
+[appointments_change_doctor]
+other = "Andere arts kiezen"
+[appointments_loading]
+other = "Laden..."
+[appointments_loading_calendar]
+other = "Kalender laden..."
+[appointments_calendar_title]
+other = "Afspraakkalender"
+
+# Doctor specialties
+[doctor_specialty_ophthalmologist]
+other = "Oogarts"
+
+# Doctor descriptions
+[doctor_andriantafika_description]
+other = "Dr. Andriantafika is een oogarts gespecialiseerd in refractieve en cataractchirurgie. Hij verzorgt algemene consulten maar ook gespecialiseerde consulten in myopie-, astigmatisme-, hypermetropie-, presbyopie- en cataractchirurgie, glaucoombehandeling, en voor kinderen vanaf 4 jaar."
+[doctor_lienart_description]
+other = "Dr. Liénart is een oogarts die algemene consulten verzorgt en voor kinderen vanaf 5 jaar."
+
+# Consultation types
+[consultation_routine]
+other = "Routine consultatie"
+[consultation_urgent]
+other = "Dringende consultatie"
+[consultation_child_4]
+other = "Kinderconsultatie (4 jaar+)"
+[consultation_child_5]
+other = "Kinderconsultatie (5 jaar+)"
+[consultation_driver]
+other = "Rijbewijskeuring"
+[consultation_glaucoma]
+other = "Glaucoom consultatie"
+[consultation_dry_eyes]
+other = "Droge ogen consultatie (DRY EYES)"
+[consultation_surgical_opinion]
+other = "Chirurgisch advies (refractieve chirurgie)"
+
+# Modal titles
+[appointments_book]
+other = "Maak een afspraak"
+[appointments_choose_slot]
+other = "Kies een tijdslot"

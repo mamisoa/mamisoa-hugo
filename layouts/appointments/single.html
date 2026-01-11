@@ -19,6 +19,10 @@
                 
                 <div class="doctors-grid">
                   {{ range .Site.Params.doctors }}
+                  {{/* Map doctor id to description translation key */}}
+                  {{ $descKey := "" }}
+                  {{ if eq .id "m.andriantafika" }}{{ $descKey = "doctor_andriantafika_description" }}{{ end }}
+                  {{ if eq .id "m.lienart" }}{{ $descKey = "doctor_lienart_description" }}{{ end }}
                   <div class="doctor-card {{ if not .enabled }}doctor-disabled{{ end }}" 
                        data-doctor-id="{{ .id }}"
                        data-doctor-name="{{ .name }}"
@@ -30,8 +34,8 @@
                       </div>
                       <div class="doctor-info">
                         <h4 class="doctor-name">{{ .name }}</h4>
-                        <p class="doctor-specialty">{{ .specialty }}</p>
-                        <p class="doctor-description">{{ .description }}</p>
+                        <p class="doctor-specialty">{{ T "doctor_specialty_ophthalmologist" | default .specialty }}</p>
+                        <p class="doctor-description">{{ T $descKey | default .description }}</p>
                         {{ if not .enabled }}
                         <span class="badge badge-secondary mt-2">{{ T "appointments_coming_soon" | default "Bientôt disponible" }}</span>
                         {{ end }}
@@ -43,7 +47,18 @@
                     <!-- Hidden consultations data -->
                     <div class="doctor-consultations-data" style="display: none;">
                       {{ range .consultations }}
-                      <span data-id="{{ .id }}" data-name="{{ .name }}" data-callink="{{ .calLink }}"></span>
+                      {{/* Map consultation id to translation key */}}
+                      {{ $consultKey := "" }}
+                      {{ if eq .id "routine" }}{{ $consultKey = "consultation_routine" }}{{ end }}
+                      {{ if eq .id "urgente" }}{{ $consultKey = "consultation_urgent" }}{{ end }}
+                      {{ if eq .id "enfants" }}
+                        {{ if strings.Contains .name "4" }}{{ $consultKey = "consultation_child_4" }}{{ else }}{{ $consultKey = "consultation_child_5" }}{{ end }}
+                      {{ end }}
+                      {{ if eq .id "chauffeur" }}{{ $consultKey = "consultation_driver" }}{{ end }}
+                      {{ if eq .id "glaucome" }}{{ $consultKey = "consultation_glaucoma" }}{{ end }}
+                      {{ if eq .id "dry-eyes" }}{{ $consultKey = "consultation_dry_eyes" }}{{ end }}
+                      {{ if eq .id "avis-operatoire" }}{{ $consultKey = "consultation_surgical_opinion" }}{{ end }}
+                      <span data-id="{{ .id }}" data-name="{{ T $consultKey | default .name }}" data-callink="{{ .calLink }}"></span>
                       {{ end }}
                     </div>
                   </div>
