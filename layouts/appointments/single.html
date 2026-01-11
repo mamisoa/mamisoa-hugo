@@ -30,7 +30,11 @@
                        {{ if not .enabled }}data-disabled="true"{{ end }}>
                     <div class="doctor-card-inner">
                       <div class="doctor-avatar">
+                        {{ if .photo }}
+                        <img src="{{ .photo }}" alt="{{ .name }}" class="doctor-avatar-img">
+                        {{ else }}
                         <i class="fas fa-user-md"></i>
+                        {{ end }}
                       </div>
                       <div class="doctor-info">
                         <h4 class="doctor-name">{{ .name }}</h4>
@@ -293,11 +297,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .doctor-avatar i {
   font-size: 2rem;
   color: white;
+}
+
+.doctor-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .doctor-info {
