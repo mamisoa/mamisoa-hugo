@@ -32,6 +32,7 @@
                 <div class="doctor-card {{ if not .enabled }}doctor-disabled{{ end }}" 
                      data-doctor-id="{{ .id }}"
                      data-doctor-name="{{ .name }}"
+                     data-doctor-photo="{{ .photo }}"
                      data-has-multiple="{{ if gt (len .consultations) 1 }}true{{ else }}false{{ end }}"
                      {{ if not .enabled }}data-disabled="true"{{ end }}>
                   <div class="doctor-card-inner">
@@ -84,8 +85,8 @@
                 <i class="fas fa-arrow-left mr-2"></i>{{ T "appointments_back_doctor" | default "Retour au choix du médecin" }}
               </button>
               
-              <div class="step-icon step-icon-blue">
-                <i class="fas fa-stethoscope"></i>
+              <div class="step-doctor-photo" id="stepDoctorPhoto">
+                <img src="" alt="" class="step-doctor-photo-img">
               </div>
               <h3 class="step-title">{{ T "appointments_consultation_type" | default "Type de consultation" }}</h3>
               <p class="step-subtitle selected-doctor-name"></p>
@@ -261,6 +262,22 @@
 
 .step-icon-blue {
   background: linear-gradient(145deg, #1E88E5, #1565C0);
+}
+
+.step-doctor-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 20px 20px 60px #186bb5, -20px -20px 60px #24a5ff;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.step-doctor-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .step-title {
@@ -705,6 +722,7 @@
   function handleDoctorSelect(cardElement) {
     const doctorId = cardElement.dataset.doctorId;
     const doctorName = cardElement.dataset.doctorName;
+    const doctorPhoto = cardElement.dataset.doctorPhoto;
     const hasMultiple = cardElement.dataset.hasMultiple === 'true';
     
     // Get consultations data
@@ -721,6 +739,7 @@
     selectedDoctor = {
       id: doctorId,
       name: doctorName,
+      photo: doctorPhoto,
       hasMultiple: hasMultiple,
       consultations: consultations
     };
@@ -741,6 +760,15 @@
     if (!consultationsContainer) return;
     
     selectedDoctorNameEl.textContent = selectedDoctor.name;
+    
+    // Update doctor photo in step 2
+    const stepDoctorPhoto = document.getElementById('stepDoctorPhoto');
+    if (stepDoctorPhoto && selectedDoctor.photo) {
+      const img = stepDoctorPhoto.querySelector('img');
+      img.src = selectedDoctor.photo;
+      img.alt = selectedDoctor.name;
+      stepDoctorPhoto.style.display = 'block';
+    }
     
     consultationsContainer.innerHTML = consultations.map(c => `
       <div class="consultation-card" data-id="${c.id}" data-name="${c.name}" data-callink="${c.calLink}">
