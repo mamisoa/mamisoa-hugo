@@ -1,0 +1,798 @@
+<!-- Modal de prise de rendez-vous -->
+<div class="modal fade" id="appointmentModal" tabindex="-1" role="dialog" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered appointment-modal-fullscreen" role="document">
+    <div class="modal-content appointment-modal-content">
+      <div class="modal-header appointment-modal-header">
+        <h5 class="modal-title" id="appointmentModalLabel">
+          <i class="fas fa-calendar-check mr-2"></i>
+          <span id="modalTitleText">Prendre un rendez-vous</span>
+        </h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body appointment-modal-body">
+        <!-- Slides Container -->
+        <div class="appointment-slides-container">
+          <!-- Step 1: Choix du médecin -->
+          <div class="appointment-slide" id="step-doctor" data-step="1">
+            <div class="slide-content">
+              <div class="step-icon">
+                <i class="fas fa-user-md"></i>
+              </div>
+              <h3 class="step-title">Choisissez votre médecin</h3>
+              <p class="step-subtitle">Quel ophtalmologiste souhaitez-vous consulter ?</p>
+              
+              <div class="doctors-grid">
+                {{ range .Site.Params.doctors }}
+                <div class="doctor-card {{ if not .enabled }}doctor-disabled{{ end }}" 
+                     data-doctor-id="{{ .id }}"
+                     data-doctor-name="{{ .name }}"
+                     data-has-multiple="{{ if gt (len .consultations) 1 }}true{{ else }}false{{ end }}"
+                     {{ if not .enabled }}data-disabled="true"{{ end }}>
+                  <div class="doctor-card-inner">
+                    <div class="doctor-avatar">
+                      <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="doctor-info">
+                      <h4 class="doctor-name">{{ .name }}</h4>
+                      <p class="doctor-specialty">{{ .specialty }}</p>
+                      <p class="doctor-description">{{ .description }}</p>
+                      {{ if not .enabled }}
+                      <span class="badge badge-secondary mt-2">Bientôt disponible</span>
+                      {{ end }}
+                    </div>
+                    <div class="doctor-arrow">
+                      <i class="fas fa-chevron-right"></i>
+                    </div>
+                  </div>
+                  <!-- Hidden consultations data -->
+                  <div class="doctor-consultations-data" style="display: none;">
+                    {{ range .consultations }}
+                    <span data-id="{{ .id }}" data-name="{{ .name }}" data-callink="{{ .calLink }}"></span>
+                    {{ end }}
+                  </div>
+                </div>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Type de consultation -->
+          <div class="appointment-slide" id="step-consultation" data-step="2">
+            <div class="slide-content">
+              <button class="btn-back" id="backToDoctor">
+                <i class="fas fa-arrow-left mr-2"></i>Retour au choix du médecin
+              </button>
+              
+              <div class="step-icon step-icon-blue">
+                <i class="fas fa-stethoscope"></i>
+              </div>
+              <h3 class="step-title">Type de consultation</h3>
+              <p class="step-subtitle selected-doctor-name"></p>
+              <p class="step-description">Quel type de consultation souhaitez-vous ?</p>
+              
+              <div class="consultations-grid" id="consultationsContainer">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Calendrier Cal.com -->
+          <div class="appointment-slide" id="step-calendar" data-step="3">
+            <div class="slide-content slide-content-calendar">
+              <div class="calendar-header">
+                <button class="btn-back" id="backToConsultation">
+                  <i class="fas fa-arrow-left mr-2"></i>Retour
+                </button>
+                <div class="calendar-info">
+                  <div class="calendar-info-item">
+                    <i class="fas fa-user-md"></i>
+                    <span id="calendarDoctorName"></span>
+                  </div>
+                  <div class="calendar-info-divider"></div>
+                  <div class="calendar-info-item">
+                    <i class="fas fa-stethoscope"></i>
+                    <span id="calendarConsultationType"></span>
+                  </div>
+                </div>
+                <button class="btn-change-doctor" id="changeDoctor">
+                  Changer de médecin
+                </button>
+              </div>
+              
+              <div class="calendar-embed-container">
+                <div class="calendar-loading" id="calendarLoading">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Chargement...</span>
+                  </div>
+                  <p>Chargement du calendrier...</p>
+                </div>
+                <iframe id="calendarIframe" 
+                        src="" 
+                        title="Calendrier de rendez-vous"
+                        allow="camera; microphone; payment"
+                        loading="lazy">
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Appointment Modal Inline Styles -->
+<style>
+/* Modal Fullscreen Size */
+.appointment-modal-fullscreen {
+  width: 95vw;
+  max-width: 1400px;
+  margin: 1.5rem auto;
+}
+
+@media (min-width: 1200px) {
+  .appointment-modal-fullscreen {
+    max-width: 1400px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .appointment-modal-fullscreen {
+    max-width: 1600px;
+  }
+}
+
+/* Modal Base */
+.appointment-modal-content {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #1565C0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  height: 90vh;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment-modal-header {
+  background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+  border-bottom: none;
+  padding: 1.5rem 2rem;
+}
+
+.appointment-modal-header .modal-title {
+  color: white;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.appointment-modal-header .close {
+  color: white;
+  opacity: 0.8;
+  font-size: 2rem;
+  text-shadow: none;
+}
+
+.appointment-modal-header .close:hover {
+  opacity: 1;
+}
+
+.appointment-modal-body {
+  padding: 0;
+  background: #1E88E5;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Slides Container */
+.appointment-slides-container {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.appointment-slide {
+  width: 33.333%;
+  height: 100%;
+  overflow-y: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide-content-calendar {
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Step Icons */
+.step-icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(145deg, #26A69A, #00796B);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 20px 20px 60px #186bb5, -20px -20px 60px #24a5ff;
+}
+
+.step-icon i {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.step-icon-blue {
+  background: linear-gradient(145deg, #1E88E5, #1565C0);
+}
+
+.step-title {
+  color: white;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.step-subtitle {
+  color: #E3F2FD;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.step-description {
+  color: #BBDEFB;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.selected-doctor-name {
+  color: #4DB6AC;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Doctors Grid */
+.doctors-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 700px;
+}
+
+.doctor-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.doctor-card:hover:not(.doctor-disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #4DB6AC;
+  transform: translateX(8px);
+}
+
+.doctor-card.doctor-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.doctor-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.doctor-avatar {
+  width: 70px;
+  height: 70px;
+  min-width: 70px;
+  background: linear-gradient(145deg, #26A69A, #00796B);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doctor-avatar i {
+  font-size: 1.75rem;
+  color: white;
+}
+
+.doctor-info {
+  flex: 1;
+}
+
+.doctor-name {
+  color: white;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.doctor-specialty {
+  color: #B3E5FC;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.doctor-description {
+  color: #BBDEFB;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+.doctor-arrow {
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.doctor-card:hover:not(.doctor-disabled) .doctor-arrow {
+  color: #4DB6AC;
+  transform: translateX(5px);
+}
+
+/* Consultations Grid */
+.consultations-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.consultation-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.consultation-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #1E88E5;
+  transform: translateX(8px);
+}
+
+.consultation-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.consultation-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(145deg, #1E88E5, #1565C0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.consultation-icon i {
+  font-size: 1.25rem;
+  color: white;
+}
+
+.consultation-name {
+  color: white;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.consultation-arrow {
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.consultation-card:hover .consultation-arrow {
+  color: #64B5F6;
+  transform: translateX(5px);
+}
+
+/* Back Button */
+.btn-back {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  color: #E3F2FD;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Calendar Step */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+}
+
+.calendar-header .btn-back {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.calendar-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.calendar-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.calendar-info-item i {
+  color: #4DB6AC;
+}
+
+.calendar-info-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.btn-change-doctor {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.btn-change-doctor:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.calendar-embed-container {
+  position: relative;
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 550px;
+  width: 100%;
+}
+
+.calendar-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  z-index: 10;
+}
+
+.calendar-loading p {
+  margin-top: 1rem;
+  color: #1565C0;
+  font-size: 1rem;
+}
+
+.calendar-loading.hidden {
+  display: none;
+}
+
+#calendarIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .appointment-modal-fullscreen {
+    width: 98vw;
+    margin: 0.5rem auto;
+  }
+  
+  .appointment-modal-content {
+    height: 95vh;
+    max-height: none;
+    border-radius: 12px;
+  }
+  
+  .doctor-card-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .doctor-arrow {
+    display: none;
+  }
+  
+  .calendar-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .calendar-info {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn-change-doctor {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .calendar-embed-container {
+    min-height: 400px;
+  }
+  
+  #calendarIframe {
+    min-height: 400px;
+  }
+}
+</style>
+
+<!-- Appointment Modal JavaScript -->
+<script>
+(function() {
+  'use strict';
+  
+  const CALCOM_BASE_URL = '{{ .Site.Params.calcomBaseUrl | default "https://schuman.ophtalmologiste.be" }}';
+  
+  let currentStep = 1;
+  let selectedDoctor = null;
+  let selectedConsultation = null;
+  
+  // DOM Elements
+  let slidesContainer, doctorCards, consultationsContainer, calendarIframe, calendarLoading;
+  let backToDoctor, backToConsultation, changeDoctor;
+  let calendarDoctorName, calendarConsultationType, selectedDoctorNameEl, modalTitleText;
+  
+  function init() {
+    slidesContainer = document.querySelector('.appointment-slides-container');
+    doctorCards = document.querySelectorAll('.doctor-card');
+    consultationsContainer = document.getElementById('consultationsContainer');
+    calendarIframe = document.getElementById('calendarIframe');
+    calendarLoading = document.getElementById('calendarLoading');
+    backToDoctor = document.getElementById('backToDoctor');
+    backToConsultation = document.getElementById('backToConsultation');
+    changeDoctor = document.getElementById('changeDoctor');
+    calendarDoctorName = document.getElementById('calendarDoctorName');
+    calendarConsultationType = document.getElementById('calendarConsultationType');
+    selectedDoctorNameEl = document.querySelector('.selected-doctor-name');
+    modalTitleText = document.getElementById('modalTitleText');
+    
+    // Event listeners for doctor cards
+    doctorCards.forEach(card => {
+      card.addEventListener('click', function() {
+        if (this.dataset.disabled === 'true') return;
+        handleDoctorSelect(this);
+      });
+    });
+    
+    // Back buttons
+    if (backToDoctor) {
+      backToDoctor.addEventListener('click', function() {
+        goToStep(1);
+      });
+    }
+    
+    if (backToConsultation) {
+      backToConsultation.addEventListener('click', function() {
+        if (selectedDoctor && selectedDoctor.hasMultiple) {
+          goToStep(2);
+        } else {
+          goToStep(1);
+        }
+      });
+    }
+    
+    if (changeDoctor) {
+      changeDoctor.addEventListener('click', function() {
+        resetModal();
+        goToStep(1);
+      });
+    }
+    
+    // Reset modal when closed
+    $('#appointmentModal').on('hidden.bs.modal', function() {
+      resetModal();
+    });
+    
+    // Handle iframe load
+    if (calendarIframe) {
+      calendarIframe.addEventListener('load', function() {
+        if (calendarIframe.src && calendarIframe.src !== '') {
+          calendarLoading.classList.add('hidden');
+        }
+      });
+    }
+  }
+  
+  function handleDoctorSelect(cardElement) {
+    const doctorId = cardElement.dataset.doctorId;
+    const doctorName = cardElement.dataset.doctorName;
+    const hasMultiple = cardElement.dataset.hasMultiple === 'true';
+    
+    // Get consultations data
+    const consultationsData = cardElement.querySelector('.doctor-consultations-data');
+    const consultations = [];
+    consultationsData.querySelectorAll('span').forEach(span => {
+      consultations.push({
+        id: span.dataset.id,
+        name: span.dataset.name,
+        calLink: span.dataset.callink
+      });
+    });
+    
+    selectedDoctor = {
+      id: doctorId,
+      name: doctorName,
+      hasMultiple: hasMultiple,
+      consultations: consultations
+    };
+    
+    if (hasMultiple) {
+      // Show consultation selection
+      renderConsultations(consultations);
+      goToStep(2);
+    } else {
+      // Go directly to calendar with first consultation
+      selectedConsultation = consultations[0];
+      loadCalendar();
+      goToStep(3);
+    }
+  }
+  
+  function renderConsultations(consultations) {
+    if (!consultationsContainer) return;
+    
+    selectedDoctorNameEl.textContent = selectedDoctor.name;
+    
+    consultationsContainer.innerHTML = consultations.map(c => `
+      <div class="consultation-card" data-id="${c.id}" data-name="${c.name}" data-callink="${c.calLink}">
+        <div class="consultation-card-inner">
+          <div class="consultation-icon">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h4 class="consultation-name">${c.name}</h4>
+        </div>
+        <div class="consultation-arrow">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+    `).join('');
+    
+    // Add click listeners
+    consultationsContainer.querySelectorAll('.consultation-card').forEach(card => {
+      card.addEventListener('click', function() {
+        selectedConsultation = {
+          id: this.dataset.id,
+          name: this.dataset.name,
+          calLink: this.dataset.callink
+        };
+        loadCalendar();
+        goToStep(3);
+      });
+    });
+  }
+  
+  function loadCalendar() {
+    if (!calendarIframe || !selectedConsultation) return;
+    
+    calendarLoading.classList.remove('hidden');
+    
+    // Update header info
+    calendarDoctorName.textContent = selectedDoctor.name;
+    calendarConsultationType.textContent = selectedConsultation.name;
+    
+    // Load iframe
+    const calUrl = CALCOM_BASE_URL + '/' + selectedConsultation.calLink;
+    calendarIframe.src = calUrl;
+  }
+  
+  function goToStep(step) {
+    currentStep = step;
+    const offset = (step - 1) * -33.333;
+    slidesContainer.style.transform = `translateX(${offset}%)`;
+    
+    // Update modal title
+    const titles = {
+      1: 'Prendre un rendez-vous',
+      2: 'Type de consultation',
+      3: 'Choisir un créneau'
+    };
+    modalTitleText.textContent = titles[step] || titles[1];
+  }
+  
+  function resetModal() {
+    currentStep = 1;
+    selectedDoctor = null;
+    selectedConsultation = null;
+    
+    if (slidesContainer) {
+      slidesContainer.style.transform = 'translateX(0)';
+    }
+    
+    if (calendarIframe) {
+      calendarIframe.src = '';
+    }
+    
+    if (consultationsContainer) {
+      consultationsContainer.innerHTML = '';
+    }
+    
+    if (modalTitleText) {
+      modalTitleText.textContent = 'Prendre un rendez-vous';
+    }
+    
+    calendarLoading.classList.remove('hidden');
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

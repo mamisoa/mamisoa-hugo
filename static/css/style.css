@@ -711,5 +711,46 @@ header .no-image-text {
     transform: rotate(-90deg);
 }
 
+/* ******************************** */
+/* Appointment Modal Overrides */
+/* ******************************** */
+
+/* Ensure modal displays above navbar */
+#appointmentModal {
+    z-index: 1060;
+}
+
+/* Modal fullscreen size adjustments */
+#appointmentModal .appointment-modal-fullscreen {
+    width: 95vw;
+    max-width: 1400px;
+}
+
+@media (min-width: 1200px) {
+    #appointmentModal .appointment-modal-fullscreen {
+        max-width: 1400px;
+    }
+}
+
+@media (min-width: 1600px) {
+    #appointmentModal .appointment-modal-fullscreen {
+        max-width: 1600px;
+    }
+}
+
+/* Smooth modal animations */
+#appointmentModal.fade .modal-dialog {
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
+}
+
+#appointmentModal.show .modal-dialog {
+    transform: scale(1);
+}
+
+/* Navbar RDV link cursor */
+.nav-link[data-toggle="modal"] {
+    cursor: pointer;
+}
 
 

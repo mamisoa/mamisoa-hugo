@@ -27,7 +27,12 @@
                     </li>
                 {{ else }}
                     <li class="nav-item {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }}active{{ end }}">
-                        <a class="nav-link" href="{{ if eq .Identifier "rdv" }} https://ophtalmologiste.be/appointments {{ else }}{{ .URL | relLangURL }}{{ end }}"><span {{ if eq .Identifier "rdv" }}class="blog-menu"{{ end }}{{ if eq .Name "#blog" }}class="blog-menu"{{ end }}>{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}</span><span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
+                        {{ if eq .Identifier "rdv" }}
+                        {{/* Lien RDV - ouvre le modal au lieu de rediriger */}}
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#appointmentModal"><span class="blog-menu">{{ .Name }}</span></a>
+                        {{ else }}
+                        <a class="nav-link" href="{{ .URL | relLangURL }}"><span {{ if eq .Name "#blog" }}class="blog-menu"{{ end }}>{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}</span><span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
+                        {{ end }}
                     </li>
                 {{ end }}
                 {{ end }}
