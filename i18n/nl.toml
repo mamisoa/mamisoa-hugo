@@ -156,3 +156,9 @@ other = "Chirurgisch advies (refractieve chirurgie)"
 other = "Maak een afspraak"
 [appointments_choose_slot]
 other = "Kies een tijdslot"
+
+# SEO and navigation
+[home]
+other = "Home"
+[appointments_seo_text]
+other = "Het Brussels-Schuman Medisch Centrum biedt u de mogelijkheid om online een afspraak te maken met onze oogartsen. Gelegen aan de Kortenberglaan 66 in Brussel, biedt ons centrum algemene consulten, gespecialiseerde onderzoeken (glaucoom, droge ogen, refractieve chirurgie) en pediatrische consulten. Reserveer uw tijdslot in slechts enkele klikken."

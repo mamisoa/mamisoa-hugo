@@ -156,3 +156,9 @@ other = "Avis opératoire (chirurgie réfractive)"
 other = "Prendre un rendez-vous"
 [appointments_choose_slot]
 other = "Choisir un créneau"
+
+# SEO and navigation
+[home]
+other = "Accueil"
+[appointments_seo_text]
+other = "Le Centre Médical Bruxelles-Schuman vous permet de prendre rendez-vous en ligne avec nos ophtalmologues. Situé Avenue de Cortenbergh 66 à Bruxelles, notre centre propose des consultations générales, des examens spécialisés (glaucome, yeux secs, chirurgie réfractive) ainsi que des consultations pédiatriques. Réservez votre créneau en quelques clics."

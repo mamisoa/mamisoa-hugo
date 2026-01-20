@@ -4,6 +4,25 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12 col-xl-10">
+        <!-- Breadcrumbs SEO -->
+        <nav aria-label="breadcrumb" class="appointments-breadcrumb">
+          <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a itemprop="item" href="{{ .Site.BaseURL | relLangURL }}">
+                <span itemprop="name">{{ T "home" | default "Accueil" }}</span>
+              </a>
+              <meta itemprop="position" content="1" />
+            </li>
+            <li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <span itemprop="name">{{ .Title }}</span>
+              <meta itemprop="position" content="2" />
+            </li>
+          </ol>
+        </nav>
+        
+        <!-- H1 SEO Title -->
+        <h1 class="appointments-main-title">{{ .Title }}</h1>
+        
         <!-- Appointments Container -->
         <div class="appointments-container">
           <!-- Slides Container -->
@@ -68,6 +87,11 @@
                     </div>
                   </div>
                   {{ end }}
+                </div>
+                
+                <!-- SEO Content -->
+                <div class="appointments-seo-content">
+                  <p>{{ T "appointments_seo_text" | default "Le Centre Médical Bruxelles-Schuman vous permet de prendre rendez-vous en ligne avec nos ophtalmologues. Situé Avenue de Cortenbergh 66 à Bruxelles, notre centre propose des consultations générales, des examens spécialisés (glaucome, yeux secs, chirurgie réfractive) ainsi que des consultations pédiatriques. Réservez votre créneau en quelques clics." }}</p>
                 </div>
               </div>
             </div>
@@ -140,6 +164,63 @@
 
 <!-- Appointments Page Styles -->
 <style>
+/* SEO Elements - H1 and Breadcrumbs */
+.appointments-main-title {
+  color: white;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 600;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.appointments-breadcrumb {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.appointments-breadcrumb .breadcrumb {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.appointments-breadcrumb .breadcrumb-item a {
+  color: #B3E5FC;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.appointments-breadcrumb .breadcrumb-item a:hover {
+  color: white;
+}
+
+.appointments-breadcrumb .breadcrumb-item.active {
+  color: white;
+}
+
+.appointments-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.appointments-seo-content {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  color: #BBDEFB;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 800px;
+  text-align: center;
+}
+
+.appointments-seo-content p {
+  margin: 0;
+}
+
 /* Hide @RDV menu item on appointments page (user is already here) */
 .navbar-nav .nav-item a[data-target="#appointmentModal"] {
   display: none !important;

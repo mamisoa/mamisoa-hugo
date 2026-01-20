@@ -18,11 +18,11 @@
     "alternateName": "CMBS",
     "description": "Cabinet d'ophtalmologie spécialisé en chirurgie réfractive LASIK et PRK à Bruxelles",
     "url": "{{ .Site.BaseURL }}",
-    "telephone": "+32 2 732 59 59",
+    "telephone": ["+32 2 256 90 83", "+32 2 512 34 08"],
     "email": "info@ophtalmologiste.be",
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Avenue de Cortenbergh 52",
+        "streetAddress": "Avenue de Cortenbergh 66",
         "addressLocality": "Bruxelles",
         "postalCode": "1000",
         "addressRegion": "Bruxelles-Capitale",
@@ -129,6 +129,69 @@
         "@type": "WebPage",
         "@id": "{{ .Permalink }}"
     }
+}
+</script>
+{{ else if eq .Type "appointments" }}
+{{/* Schema MedicalBusiness avec ReserveAction pour la page de prise de rendez-vous */}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Centre Médical Bruxelles-Schuman",
+    "url": "{{ .Permalink }}",
+    "description": "{{ .Description | safeJS }}",
+    "telephone": ["+32 2 256 90 83", "+32 2 512 34 08"],
+    "email": "info@ophtalmologiste.be",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenue de Cortenbergh 66",
+        "addressLocality": "Bruxelles",
+        "postalCode": "1000",
+        "addressRegion": "Bruxelles-Capitale",
+        "addressCountry": "BE"
+    },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "50.8427",
+        "longitude": "4.3873"
+    },
+    "medicalSpecialty": "Ophthalmology",
+    "potentialAction": {
+        "@type": "ReserveAction",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "{{ .Permalink }}",
+            "actionPlatform": [
+                "http://schema.org/DesktopWebPlatform",
+                "http://schema.org/MobileWebPlatform"
+            ]
+        },
+        "result": {
+            "@type": "Reservation",
+            "name": "Rendez-vous ophtalmologique"
+        }
+    },
+    "availableService": [
+        {{- $first := true -}}
+        {{- range .Site.Params.doctors -}}
+        {{- $doctorName := .name -}}
+        {{- range .consultations -}}
+        {{- if not $first }},{{ end -}}
+        {{- $first = false }}
+        {
+            "@type": "MedicalProcedure",
+            "name": "{{ .name }}",
+            "provider": {
+                "@type": "Physician",
+                "name": "{{ $doctorName }}",
+                "medicalSpecialty": "Ophthalmology"
+            }
+        }
+        {{- end -}}
+        {{- end }}
+    ],
+    "logo": "{{ .Site.Params.logo | absURL }}",
+    "image": "{{ "/images/cover/excimer_cover_1280x452.jpg" | absURL }}"
 }
 </script>
 {{ else }}

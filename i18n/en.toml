@@ -156,3 +156,9 @@ other = "Surgical opinion (refractive surgery)"
 other = "Book an appointment"
 [appointments_choose_slot]
 other = "Choose a time slot"
+
+# SEO and navigation
+[home]
+other = "Home"
+[appointments_seo_text]
+other = "The Brussels-Schuman Medical Center allows you to book appointments online with our ophthalmologists. Located at Avenue de Cortenbergh 66 in Brussels, our center offers general consultations, specialized examinations (glaucoma, dry eyes, refractive surgery) as well as pediatric consultations. Book your slot in just a few clicks."
