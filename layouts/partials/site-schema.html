@@ -1,7 +1,7 @@
 {{ if .IsHome -}}
 <script type="application/ld+json">
 {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "{{ .Site.Title }}",
     "url": "{{ .Site.BaseURL }}",
@@ -10,19 +10,139 @@
     "license": "{{ .Site.Params.Copyright }}"
 }
 </script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Centre Médical Bruxelles-Schuman",
+    "alternateName": "CMBS",
+    "description": "Cabinet d'ophtalmologie spécialisé en chirurgie réfractive LASIK et PRK à Bruxelles",
+    "url": "{{ .Site.BaseURL }}",
+    "telephone": "+32 2 732 59 59",
+    "email": "info@ophtalmologiste.be",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenue de Cortenbergh 52",
+        "addressLocality": "Bruxelles",
+        "postalCode": "1000",
+        "addressRegion": "Bruxelles-Capitale",
+        "addressCountry": "BE"
+    },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "50.8427",
+        "longitude": "4.3873"
+    },
+    "openingHoursSpecification": [
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "17:30"
+        }
+    ],
+    "medicalSpecialty": "Ophthalmology",
+    "availableService": [
+        {
+            "@type": "MedicalProcedure",
+            "name": "LASIK",
+            "procedureType": "SurgicalProcedure",
+            "description": "Chirurgie laser LASIK pour correction de la myopie, hypermétropie et astigmatisme"
+        },
+        {
+            "@type": "MedicalProcedure",
+            "name": "PRK",
+            "procedureType": "SurgicalProcedure",
+            "description": "Photokératectomie réfractive pour correction laser de la vue"
+        },
+        {
+            "@type": "MedicalProcedure",
+            "name": "Chirurgie de la cataracte",
+            "procedureType": "SurgicalProcedure",
+            "description": "Opération de la cataracte avec implantation de lentille intraoculaire"
+        }
+    ],
+    "employee": {
+        "@type": "Physician",
+        "name": "Dr. Mamisoa Andriantafika",
+        "jobTitle": "Ophtalmologue - Chirurgien",
+        "medicalSpecialty": "Ophthalmology",
+        "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Medical Degree",
+            "name": "FEBO - Fellow of the European Board of Ophthalmology"
+        },
+        "image": "{{ "/images/team/profil_mamisoa_250x250.jpg" | absURL }}"
+    },
+    "logo": "{{ .Site.Params.logo | absURL }}",
+    "image": "{{ "/images/cover/excimer_cover_1280x452.jpg" | absURL }}",
+    "priceRange": "€€",
+    "sameAs": [
+        "{{ .Site.Params.facebookAccountUrl }}",
+        "{{ .Site.Params.linkedinAccountUrl }}"
+    ]
+}
+</script>
 {{ else if .IsPage }}
 {{ $author :=  or (.Params.author) (.Site.Author.name) }}
 {{ $org_name :=  .Site.Title }}
+{{/* Schema MedicalWebPage pour les pages chirurgie */}}
+{{ if eq .Section "chirurgie" }}
 <script type="application/ld+json">
 {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "{{ .Title | safeJS }}",
+    "headline": "{{ .Title | safeJS }}",
+    "description": "{{ if .Description }}{{ .Description | safeJS }}{{ else }}{{if .IsPage}}{{ .Summary  }}{{ end }}{{ end }}",
+    "url": "{{ .Permalink }}",
+    "inLanguage": "{{ .Site.LanguageCode | default "fr-be" }}",
+    "datePublished": "{{ .PublishDate.Format "2006-01-02" }}",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+    "lastReviewed": "{{ .Lastmod.Format "2006-01-02" }}",
+    "about": {
+        "@type": "MedicalProcedure",
+        "name": "{{ .Title | safeJS }}",
+        "procedureType": "SurgicalProcedure"
+    },
+    "specialty": {
+        "@type": "MedicalSpecialty",
+        "name": "Ophthalmology"
+    },
+    "author": {
+        "@type": "Physician",
+        "name": "{{ $author }}",
+        "medicalSpecialty": "Ophthalmology"
+    },
+    "publisher": {
+        "@type": "MedicalBusiness",
+        "name": "Centre Médical Bruxelles-Schuman",
+        "url": "{{ .Site.BaseURL }}",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ .Site.Params.logo | absURL }}"
+        }
+    },
+    "image": {{ if .Params.images }}[{{ range $i, $e := .Params.images }}{{ if $i }}, {{ end }}"{{ $e | absURL }}"{{ end }}]{{ else}}"{{.Site.Params.logo | absURL }}"{{ end }},
+    "keywords": [{{ range $index, $keyword := .Params.tags }}{{ if $index }}, {{ end }}"{{ $keyword }}"{{ end }}{{ if .Params.keywords }}, {{ range $index, $kw := .Params.keywords }}{{ if $index }}, {{ end }}"{{ $kw }}"{{ end }}{{ end }}],
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ .Permalink }}"
+    }
+}
+</script>
+{{ else }}
+{{/* Schema BlogPosting pour les autres pages */}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
     "@type": "BlogPosting",
     "articleSection": "{{ .Section }}",
     "name": "{{ .Title | safeJS }}",
     "headline": "{{ .Title | safeJS }}",
     "alternativeHeadline": "{{ .Params.lead }}",
     "description": "{{ if .Description }}{{ .Description | safeJS }}{{ else }}{{if .IsPage}}{{ .Summary  }}{{ end }}{{ end }}",
-    "inLanguage": {{ .Site.LanguageCode | default "fr-be" }},
+    "inLanguage": "{{ .Site.LanguageCode | default "fr-be" }}",
     "isFamilyFriendly": "true",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -47,8 +167,8 @@
     "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05.00Z" | safeHTML }}",
     "publisher":{
         "@type":"Organization",
-        "name": {{ $org_name }},
-        "url": {{ .Site.BaseURL }},
+        "name": "{{ $org_name }}",
+        "url": "{{ .Site.BaseURL }}",
         "logo": {
             "@type": "ImageObject",
             "url": "{{ .Site.Params.logo | absURL }}",
@@ -56,11 +176,12 @@
             "height":"32"
         }
     },
-    "image": {{ if .Params.images }}[{{ range $i, $e := .Params.images }}{{ if $i }}, {{ end }}{{ $e | absURL }}{{ end }}]{{ else}}{{.Site.Params.logo | absURL }}{{ end }},
+    "image": {{ if .Params.images }}[{{ range $i, $e := .Params.images }}{{ if $i }}, {{ end }}"{{ $e | absURL }}"{{ end }}]{{ else}}"{{.Site.Params.logo | absURL }}"{{ end }},
     "url" : "{{ .Permalink }}",
     "wordCount" : "{{ .WordCount }}",
-    "genre" : [ {{ range $index, $tag := .Params.tags }}{{ if $index }}, {{ end }}"{{ $tag }}" {{ end }}],
-    "keywords" : [ {{ range $index, $keyword := .Params.tags }}{{ if $index }}, {{ end }}"{{ $keyword }}" {{ end }}]
+    "genre" : [{{ range $index, $tag := .Params.tags }}{{ if $index }}, {{ end }}"{{ $tag }}"{{ end }}],
+    "keywords" : [{{ range $index, $keyword := .Params.tags }}{{ if $index }}, {{ end }}"{{ $keyword }}"{{ end }}]
 }
 </script>
+{{ end }}
 {{ end }}
