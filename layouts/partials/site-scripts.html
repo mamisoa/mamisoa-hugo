@@ -25,6 +25,18 @@
             }
     });
 
+    // Add lazy loading to all images below the fold for better performance
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('img:not([loading])');
+        images.forEach(function(img, index) {
+            // Skip first 2 images (above the fold)
+            if (index > 1) {
+                img.setAttribute('loading', 'lazy');
+                img.setAttribute('decoding', 'async');
+            }
+        });
+    });
+
     $(function () {
         $(document).scroll(function () {
             var $nav = $(".navbar-fixed-top");

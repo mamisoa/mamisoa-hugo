@@ -1,0 +1,16 @@
+{{/* Render hook for images with lazy loading */}}
+<figure class="figure">
+  <img 
+    src="{{ .Destination | safeURL }}" 
+    alt="{{ .Text }}" 
+    {{ with .Title }}title="{{ . }}"{{ end }}
+    loading="lazy"
+    decoding="async"
+    class="img-fluid rounded shadow"
+  />
+  {{ with .Title }}
+  <figcaption class="figure-caption text-muted mt-2">
+    <small>{{ . }}</small>
+  </figcaption>
+  {{ end }}
+</figure>
