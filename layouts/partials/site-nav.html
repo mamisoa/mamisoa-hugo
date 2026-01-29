@@ -50,11 +50,11 @@
                     {{ end }}
                     <div class="dropdown-menu" aria-labelledby="dropdown09">
                         {{ if (eq (index $otherLang3 0) "") }}
-                            <a class="dropdown-item" href="{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><strong>{{- index $otherLang3 1 -}}</strong></a>
+                            <a class="dropdown-item" href="/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang | strings.TrimLeft "/" -}}"><strong>{{- index $otherLang3 1 -}}</strong></a>
                         {{ else }}
-                            <a class="dropdown-item" href="/{{- index $otherLang3 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><strong>{{- index $otherLang3 1 -}}</strong></a>
+                            <a class="dropdown-item" href="/{{- index $otherLang3 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang | strings.TrimLeft "/" -}}"><strong>{{- index $otherLang3 1 -}}</strong></a>
                         {{ end }}
-                        <a class="dropdown-item" href="/{{- index $otherLang2 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang -}}"><strong>{{- index $otherLang2 1 -}}</strong></a>
+                        <a class="dropdown-item" href="/{{- index $otherLang2 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang | strings.TrimLeft "/" -}}"><strong>{{- index $otherLang2 1 -}}</strong></a>
                     </div>
                 </li>
                 {{ end }}
