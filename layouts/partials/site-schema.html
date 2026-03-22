@@ -48,9 +48,9 @@
 {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "name": "Centre Médical Bruxelles-Schuman",
+    "name": "{{ .Site.Title }}",
     "alternateName": "CMBS",
-    "description": "Cabinet d'ophtalmologie spécialisé en chirurgie réfractive LASIK et PRK à Bruxelles",
+    "description": "{{ T "schema_site_description" }}",
     "url": "{{ .Site.BaseURL }}",
     "telephone": ["+32 2 256 90 83", "+32 2 512 34 08"],
     "email": "info@ophtalmologiste.be",
@@ -81,19 +81,19 @@
             "@type": "MedicalProcedure",
             "name": "LASIK",
             "procedureType": "SurgicalProcedure",
-            "description": "Chirurgie laser LASIK pour correction de la myopie, hypermétropie et astigmatisme"
+            "description": "{{ T "schema_lasik_desc" }}"
         },
         {
             "@type": "MedicalProcedure",
             "name": "PRK",
             "procedureType": "SurgicalProcedure",
-            "description": "Photokératectomie réfractive pour correction laser de la vue"
+            "description": "{{ T "schema_prk_desc" }}"
         },
         {
             "@type": "MedicalProcedure",
-            "name": "Chirurgie de la cataracte",
+            "name": "{{ T "schema_cataract_name" }}",
             "procedureType": "SurgicalProcedure",
-            "description": "Opération de la cataracte avec implantation de lentille intraoculaire"
+            "description": "{{ T "schema_cataract_desc" }}"
         }
     ],
     "employee": {
@@ -150,7 +150,7 @@
     },
     "publisher": {
         "@type": "MedicalBusiness",
-        "name": "Centre Médical Bruxelles-Schuman",
+        "name": "{{ .Site.Title }}",
         "url": "{{ .Site.BaseURL }}",
         "logo": {
             "@type": "ImageObject",
@@ -171,7 +171,7 @@
 {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "name": "Centre Médical Bruxelles-Schuman",
+    "name": "{{ .Site.Title }}",
     "url": "{{ .Permalink }}",
     "description": "{{ .Description | safeJS }}",
     "telephone": ["+32 2 256 90 83", "+32 2 512 34 08"],
@@ -202,7 +202,7 @@
         },
         "result": {
             "@type": "Reservation",
-            "name": "Rendez-vous ophtalmologique"
+            "name": "{{ T "schema_reservation_name" }}"
         }
     },
     "availableService": [
