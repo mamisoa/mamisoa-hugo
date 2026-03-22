@@ -63,9 +63,11 @@
   {{ end }}
   <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
   {{ end }}
-  {{/* x-default for language selector pages */}}
+  {{/* x-default should always point to the default language (FR) version */}}
   {{ if .IsTranslated }}
+  {{ range .AllTranslations }}{{ if eq .Lang "fr" }}
   <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+  {{ end }}{{ end }}
   {{ end }}
 
   {{/* NOTE: These Hugo Internal Templates can be found starting at

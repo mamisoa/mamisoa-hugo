@@ -118,7 +118,7 @@
 }
 </script>
 {{ else if .IsPage }}
-{{ $author :=  or (.Params.author) (.Site.Author.name) }}
+{{ $author :=  or (.Params.author) (.Site.Params.author) }}
 {{ $org_name :=  .Site.Title }}
 {{/* Schema MedicalWebPage pour les pages chirurgie */}}
 {{ if eq .Section "chirurgie" }}
