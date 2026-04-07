@@ -18,7 +18,9 @@
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
   {{ end }}
 
-  <!-- missing <meta name="author" content=""> -->
+  {{ with (or .Params.author .Site.Params.author) }}
+  <meta name="author" content="{{ . }}">
+  {{ end }}
 
   <!-- {{ $stylesheet := .Site.Data.webpack_assets.app }}
     {{ with $stylesheet.css }}
