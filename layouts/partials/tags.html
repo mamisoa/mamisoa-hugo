@@ -1,10 +1,13 @@
 <div class="tags d-flex flex-row">
   <div class="d-flex flex-row"><i class="fas fa-hashtag  mt-1 pr-1"></i>Tags:</div>
   {{ range .Params.tags }}
+    {{ $name := . }}
+    {{ with site.GetPage (printf "/tags/%s" (. | urlize)) }}
   <div>
-    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="mr-2 ml-2 badge badge-pill badge-light">
-      {{- . -}}
+    <a href="{{ .RelPermalink }}" class="mr-2 ml-2 badge badge-pill badge-light">
+      {{- $name -}}
     </a>
   </div>
+    {{ end }}
   {{ end }}
 </div>
