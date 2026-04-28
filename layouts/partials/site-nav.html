@@ -37,24 +37,29 @@
                 {{ end }}
                 {{ if ne .Site.Params.mono "yes" }}
                 <li class="nav-item dropdown pl-4">
-                    <a class="nav-link dropdown-toggle " href="{{ site.BaseURL | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="border rounded p-2">{{ $.Site.Language.Lang }}</span></a>
-                    {{ $otherLang2 := slice }} {{ $otherLang3 := slice }}
-                    {{ if eq $.Site.Language.Lang "en"}}
-                        {{ $otherLang2 = slice "nl" "nl" }} {{ $otherLang3 = slice "" "fr" }}
-                    {{ else }}
-                        {{ if eq $.Site.Language.Lang "nl" }}
-                            {{ $otherLang2 = slice "en" "en" }} {{ $otherLang3 = slice "" "fr" }}
-                        {{ else }}
-                            {{ $otherLang2 = slice "en" "en" }} {{ $otherLang3 = slice "nl" "nl" }}
-                        {{ end }}
-                    {{ end }}
+                    <a class="nav-link dropdown-toggle " href="{{ "/" | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="border rounded p-2">{{ $.Site.Language.Lang }}</span></a>
                     <div class="dropdown-menu" aria-labelledby="dropdown09">
-                        {{ if (eq (index $otherLang3 0) "") }}
-                            <a class="dropdown-item" href="/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang | strings.TrimLeft "/" -}}"><strong>{{- index $otherLang3 1 -}}</strong></a>
-                        {{ else }}
-                            <a class="dropdown-item" href="/{{- index $otherLang3 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang | strings.TrimLeft "/" -}}"><strong>{{- index $otherLang3 1 -}}</strong></a>
+                        {{ $currentLang := $.Site.Language.Lang }}
+                        {{ $translations := .Translations }}
+                        {{ range $.Site.Languages }}
+                            {{ if ne .Lang $currentLang }}
+                                {{ $otherLang := .Lang }}
+                                {{ $found := false }}
+                                {{ range $translations }}
+                                    {{ if eq .Lang $otherLang }}
+                                        {{ $found = true }}
+                                        <a class="dropdown-item" href="{{ .RelPermalink }}"><strong>{{ .Lang }}</strong></a>
+                                    {{ end }}
+                                {{ end }}
+                                {{ if not $found }}
+                                    {{ if eq $otherLang "fr" }}
+                                        <a class="dropdown-item" href="/"><strong>{{ $otherLang }}</strong></a>
+                                    {{ else }}
+                                        <a class="dropdown-item" href="/{{ $otherLang }}/"><strong>{{ $otherLang }}</strong></a>
+                                    {{ end }}
+                                {{ end }}
+                            {{ end }}
                         {{ end }}
-                        <a class="dropdown-item" href="/{{- index $otherLang2 0 -}}/{{- strings.TrimPrefix "/" $.RelPermalink | strings.TrimPrefix $.Site.Language.Lang | strings.TrimLeft "/" -}}"><strong>{{- index $otherLang2 1 -}}</strong></a>
                     </div>
                 </li>
                 {{ end }}
