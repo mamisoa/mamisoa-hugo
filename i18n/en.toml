@@ -1,9 +1,9 @@
 [subTitle]
 other = "One body, one mind"
 [titleService]
-other = "A medical Eye care center"
+other = "A multidisciplinary medical center"
 [subTitleService]
-other = "Your vision without compromise"
+other = "Your health, our priority"
 [Laser]
 other = "Laser"
 [Technologie]
@@ -37,11 +37,11 @@ other = "Orthoptic exam for children"
 [Adultes]
 other = "Adults"
 [AdultesDesc]
-other = "Eye medical consultation for adults"
+other = "Consultation for adults"
 [Enfants]
 other="Children"
 [EnfantsDesc]
-other = "Eye medical consultation for children from 3.5yo"
+other = "Consultation for children"
 [Examen_de_la_vision]
 other= "Vision test"
 [Examen_de_la_visionDesc]
@@ -63,7 +63,7 @@ other = "Email"
 [secretariatOuvert]
 other = "You can reach us from 9am to 5:30pm."
 [yAller]
-other = "Go to the medical center"
+other = "Get directions"
 [readMore]
 other = "Read more..."
 [pageIntrouvable]

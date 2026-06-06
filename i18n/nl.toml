@@ -1,9 +1,9 @@
 [subTitle]
 other = "Eén lichaam, één geest"
 [titleService]
-other = "Een centrum gespecialiseerd in oogheelkunde"
+other = "Een multidisciplinair medisch centrum"
 [subTitleService]
-other = "Uw visie zonder compromissen"
+other = "Uw gezondheid, onze prioriteit"
 [Laser]
 other = "Laser"
 [Technologie]
@@ -37,11 +37,11 @@ other = "Orthoptisch onderzoek van het kind"
 [Adultes]
 other = "Volwassenen"
 [AdultesDesc]
-other = "Oogonderzoek voor volwassenen"
+other = "Consultatie voor volwassenen"
 [Enfants]
 other="Kinderen"
 [EnfantsDesc]
-other = "Oogheelkundig onderzoek voor kinderen vanaf 3,5 jaar"
+other = "Consultatie voor kinderen"
 [Examen_de_la_vision]
 other= "Oogexamen"
 [Examen_de_la_visionDesc]
@@ -63,7 +63,7 @@ other = "Email"
 [secretariatOuvert]
 other = "Het telefonisch secretariaat is bereikbaar van 9.00 uur tot 17.30 uur."
 [yAller]
-other = "Naar het medisch centrum gaan"
+other = "Routebeschrijving"
 [readMore]
 other = "Lees verder..."
 [pageIntrouvable]

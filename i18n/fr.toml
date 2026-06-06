@@ -3,9 +3,9 @@ other = "Un corps, un esprit."
 [subAuthor]
 other = "Hippocrate de Cos"
 [titleService]
-other = "Un centre spécialisé en ophtalmologie"
+other = "Un centre médical pluridisciplinaire"
 [subTitleService]
-other = "Votre vision sans compromis"
+other = "Votre santé, notre priorité"
 [Laser]
 other = "Laser"
 [Technologie]
@@ -98,11 +98,11 @@ other = "Examen orthoptique de l'enfant"
 [Adultes]
 other = "Adultes"
 [AdultesDesc]
-other = "Examen ophtalmologique pour adultes"
+other = "Consultation pour adultes"
 [Enfants]
 other="Enfants"
 [EnfantsDesc]
-other = "Examen ophtalmologique pour enfants à partir de 3.5 ans"
+other = "Consultation pour enfants"
 [Examen_de_la_vision]
 other= "Examen de la vision"
 [Examen_de_la_visionDesc]
@@ -124,7 +124,7 @@ other = "Par email"
 [secretariatOuvert]
 other = "Le secrétariat téléphonique est disponible de 9:00 à 17:30."
 [yAller]
-other = "Se rendre au Centre Médical"
+other = "S'y rendre"
 [readMore]
 other = "Lire plus..."
 [pageIntrouvable]
