@@ -1,8 +1,8 @@
 {{ if eq "fr" $.Site.Language.Lang }}
-    {{- .Date.Day }} {{ index $.Site.Data.mois (printf "%d" .Date.Month) }} {{ .Date.Year -}}
+    {{- .Date.Day }} {{ index hugo.Data.mois (printf "%d" .Date.Month) }} {{ .Date.Year -}}
 {{ else }}
     {{ if eq "nl" $.Site.Language.Lang }}
-        {{- .Date.Day }} {{ index $.Site.Data.mand (printf "%d" .Date.Month) }} {{ .Date.Year -}}
+        {{- .Date.Day }} {{ index hugo.Data.mand (printf "%d" .Date.Month) }} {{ .Date.Year -}}
     {{ else }}
         {{- .Date.Format "January 2, 2006" -}}
     {{end }}
