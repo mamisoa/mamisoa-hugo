@@ -1,0 +1,30 @@
+{{- /* Bloc CTA « Prendre rendez-vous » (carte neumorphique) : contact + accès (adresse constante). */ -}}
+{{- $phone := .Get "phone" | default "+32 (0)2 675 00 35" -}}
+{{- $tel := .Get "tel" | default "+3226750035" -}}
+{{- $note := .Get "note" -}}
+{{- $button := .Get "button" | default "Prendre un rendez-vous" -}}
+<div class="appointment-card neo-info">
+  <div class="row g-4 align-items-center">
+    <div class="col-lg-7">
+      <h5 class="appointment-subtitle"><i class="fa-solid fa-phone"></i> Nous contacter</h5>
+      <p class="appointment-text">
+        {{- if .Inner -}}{{ .Inner | markdownify }}{{- else -}}
+        Pour prendre rendez-vous, appelez-nous au <a href="tel:{{ $tel }}">{{ $phone }}</a> ou réservez en ligne.
+        {{- end -}}
+      </p>
+      {{- with $note }}<p class="appointment-note"><i class="fa-solid fa-circle-info"></i> {{ . | markdownify }}</p>{{ end }}
+      <a href="{{ "/appointments" | relURL }}" class="btn btn-light appointment-btn" role="button">{{ $button }} <i class="fa-solid fa-calendar-check"></i></a>
+    </div>
+    <div class="col-lg-5">
+      <div class="appointment-access">
+        <h5 class="appointment-subtitle"><i class="fa-solid fa-location-dot"></i> Accès</h5>
+        <address class="appointment-address">
+          <strong>Centre Médical La Sauvagère</strong><br>
+          95 Rue de Verrewinkel<br>
+          1180 Uccle, Bruxelles<br>
+          Belgique
+        </address>
+      </div>
+    </div>
+  </div>
+</div>

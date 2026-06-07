@@ -1,0 +1,12 @@
+{{- /* Section harmonisée d'une page service : badge icône rond + titre + trait clair (.postBody h3::after) + corps. */ -}}
+{{- $icon := .Get "icon" -}}
+{{- $title := .Get "title" -}}
+<section class="service-section">
+  <h3 class="service-section-title text-nowrap">
+    {{- with $icon }}<span class="service-section-icon"><i class="fa-solid {{ . }}"></i></span>{{ end -}}
+    <span class="service-section-label">{{ $title }}</span>
+  </h3>
+  <div class="service-section-body">
+    {{ .Inner | markdownify }}
+  </div>
+</section>

@@ -639,3 +639,254 @@ html {
 } */
 
 li::marker{font-size:0;}
+
+/* ************************************************ */
+/* Composants des pages "services" (single)        */
+/* Palette bleue + verre dépoli, cohérents charte   */
+/* ************************************************ */
+
+/* --- Intro / lead --- */
+.postBody .service-lead {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.65;
+    opacity: .96;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Titre de section avec badge icône (hérite de .postBody h3) --- */
+.service-section {
+    margin-top: 2.5rem;
+}
+.service-section-title .service-section-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    margin-right: .75rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .15);
+    color: #E3F2FD;
+    font-size: 1.1rem;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25);
+}
+.service-section-title .service-section-label {
+    flex: 0 0 auto;
+}
+.service-section-body {
+    margin-top: 1.1rem;
+}
+
+/* --- Carte praticien (verre dépoli) --- */
+.practitioner-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: rgba(30, 100, 180, .6);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 16px;
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 1.25rem;
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out, background .2s ease-in-out;
+}
+.practitioner-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .25);
+    background: rgba(30, 100, 180, .75);
+}
+.practitioner-media {
+    flex: 0 0 auto;
+}
+.practitioner-photo {
+    width: 96px;
+    height: 122px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+}
+.practitioner-info {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.practitioner-name {
+    margin: 0 0 .5rem;
+    font-weight: 600;
+}
+.practitioner-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: .75rem;
+}
+.practitioner-badge,
+.practitioner-tarif {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .8rem;
+    font-weight: 600;
+    padding: .25rem .7rem;
+    border-radius: 999px;
+    line-height: 1.2;
+}
+.practitioner-badge {
+    background: rgba(255, 255, 255, .15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .25);
+}
+.practitioner-tarif {
+    background: #E3F2FD;
+    color: #0D47A1;
+}
+.practitioner-desc :last-child {
+    margin-bottom: 0;
+}
+.practitioner-link.btn {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    border: 1px solid rgba(255, 255, 255, .6);
+    color: #fff;
+    border-radius: 999px;
+    padding: .35rem 1rem;
+    transition: background .2s ease-in-out, color .2s ease-in-out;
+}
+.practitioner-link.btn:hover {
+    background: #fff;
+    color: #1565C0;
+}
+
+/* --- Grille de prestations --- */
+.offer-card {
+    background: rgba(30, 100, 180, .55);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 14px;
+    padding: 1.4rem 1.3rem;
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out, background .2s ease-in-out;
+}
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .25);
+    background: rgba(30, 100, 180, .72);
+}
+.offer-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: .9rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .15);
+    color: #E3F2FD;
+    font-size: 1.3rem;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25);
+}
+.offer-title {
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+.offer-desc :last-child {
+    margin-bottom: 0;
+}
+
+/* --- CTA prise de rendez-vous --- */
+.appointment-card {
+    color: #fff;
+    padding: 1.8rem 2rem;
+    margin-top: 1.1rem;
+}
+.appointment-subtitle {
+    font-weight: 600;
+    margin-bottom: .75rem;
+}
+.appointment-text,
+.appointment-note {
+    margin-bottom: 1rem;
+}
+.appointment-note {
+    font-size: .92rem;
+    opacity: .92;
+}
+.appointment-card .appointment-address {
+    font-style: normal;
+    margin-bottom: 0;
+    line-height: 1.7;
+}
+.appointment-card a {
+    color: #E3F2FD;
+}
+.appointment-btn.btn-light {
+    color: #1565C0;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: .5rem 1.4rem;
+}
+
+/* --- FAQ en accordéon --- */
+.service-faq {
+    margin-top: 2.5rem;
+}
+.service-faq .accordion {
+    --bs-accordion-bg: transparent;
+}
+.service-faq .accordion-item {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 12px;
+    margin-bottom: .65rem;
+    overflow: hidden;
+}
+.service-faq .accordion-button {
+    background: rgba(255, 255, 255, .08);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: none;
+}
+.service-faq .accordion-button:not(.collapsed) {
+    background: rgba(255, 255, 255, .16);
+    color: #fff;
+    box-shadow: none;
+}
+.service-faq .accordion-button:focus {
+    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
+}
+.service-faq .accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+.service-faq .accordion-body {
+    color: #E3F2FD;
+}
+.service-faq .accordion-body :last-child {
+    margin-bottom: 0;
+}
+
+/* Neutraliser l'icône de lien clignotante (.postBody a::after) dans boutons/cartes */
+.postBody .btn::after,
+.practitioner-card .practitioner-link::after,
+.offer-card a::after,
+.appointment-card .btn::after,
+.service-faq .accordion-button::after,
+.service-faq a::after {
+    content: none;
+    padding: 0;
+    margin: 0;
+    animation: none;
+}
+
+/* Responsive : empiler la carte praticien sur mobile */
+@media (max-width: 575.98px) {
+    .practitioner-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .practitioner-media {
+        align-self: flex-start;
+    }
+}

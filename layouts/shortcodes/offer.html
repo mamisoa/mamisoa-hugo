@@ -1,0 +1,10 @@
+{{- /* Carte prestation (verre dépoli) dans une {{< offer-grid >}} : icône + titre + description. */ -}}
+{{- $icon := .Get "icon" -}}
+{{- $title := .Get "title" -}}
+<div class="col-md-6 col-lg-4">
+  <div class="offer-card h-100">
+    {{- with $icon }}<span class="offer-icon"><i class="fa-solid {{ . }}"></i></span>{{ end }}
+    <h5 class="offer-title">{{ $title }}</h5>
+    <div class="offer-desc">{{ .Inner | markdownify }}</div>
+  </div>
+</div>

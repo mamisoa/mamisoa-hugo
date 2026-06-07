@@ -1,0 +1,25 @@
+{{- /* Carte praticien (verre dépoli) : photo + nom + badge rôle + badge tarif + description + lien. */ -}}
+{{- $name := .Get "name" -}}
+{{- $role := .Get "role" -}}
+{{- $photo := .Get "photo" -}}
+{{- $link := .Get "link" -}}
+{{- $tarif := .Get "tarif" -}}
+<div class="practitioner-card{{ if not $photo }} practitioner-card--nophoto{{ end }}">
+  {{- with $photo }}
+  <div class="practitioner-media">
+    <picture>
+      <source srcset="{{ printf "/images/team/%s_85x108.webp" . | relURL }}" type="image/webp">
+      <img src="{{ printf "/images/team/%s_85x108.jpg" . | relURL }}" class="practitioner-photo" alt="Photo de {{ $name }}" loading="lazy" width="85" height="108">
+    </picture>
+  </div>
+  {{- end }}
+  <div class="practitioner-info">
+    <h5 class="practitioner-name">{{ $name }}</h5>
+    <div class="practitioner-meta">
+      {{- with $role }}<span class="practitioner-badge">{{ . }}</span>{{ end -}}
+      {{- with $tarif }}<span class="practitioner-tarif"><i class="fa-solid fa-tag"></i> {{ . }}</span>{{ end -}}
+    </div>
+    <div class="practitioner-desc">{{ .Inner | markdownify }}</div>
+    {{- with $link }}<a href="{{ . | relURL }}" class="practitioner-link btn btn-sm" role="button">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>{{ end -}}
+  </div>
+</div>
