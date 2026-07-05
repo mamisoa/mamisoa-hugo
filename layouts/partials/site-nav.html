@@ -41,9 +41,9 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown09">
                         {{ $currentLang := $.Site.Language.Lang }}
                         {{ $translations := .Translations }}
-                        {{ range $.Site.Languages }}
-                            {{ if ne .Lang $currentLang }}
-                                {{ $otherLang := .Lang }}
+                        {{ range hugo.Sites }}
+                            {{ if ne .Language.Lang $currentLang }}
+                                {{ $otherLang := .Language.Lang }}
                                 {{ $found := false }}
                                 {{ range $translations }}
                                     {{ if eq .Lang $otherLang }}
