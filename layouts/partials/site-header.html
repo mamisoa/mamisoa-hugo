@@ -8,20 +8,20 @@
         <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
             <img src="{{ site.Params.logo | relURL }}" alt="{{ site.Title }}" width="{{ site.Params.logo_width }}" class="img-fluid"/>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler8" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler8" aria-controls="navbarToggler8" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggler8">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                 {{ $currentPage := . }}
                 {{ $testHome :=  "/" | relLangURL  }}
                 {{ range site.Menus.main }}
                 {{ if .HasChildren }}
                     <li class="dropdown">
-                    <a class="nav-link {{ if ne .RelPermalink $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }}active{{ end }}" href="{{ .Name | relLangURL }}  " class="dropdown-toggle" id=" {{ .Name }}Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
+                    <a class="nav-link {{ if ne .RelPermalink $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }}active{{ end }}" href="{{ .Name | relLangURL }}  " class="dropdown-toggle" id=" {{ .Name }}Id" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="ion-ios-arrow-down"></span></a>
                         <div class="dropdown-menu {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }} not-active {{ end }}" aria-labelledby="{{ .Name }}Id">
                             {{ range .Children }}
-                            <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}<span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
+                            <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}<span class="visually-hidden">(current)</span>{{ end }}{{ end }}</a>
                             {{ end }}
                         </div>
                     </li>
@@ -29,16 +29,16 @@
                     <li class="nav-item {{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}active{{ end }}{{ else }}active{{ end }}">
                         {{ if eq .Identifier "rdv" }}
                         {{/* Lien RDV - ouvre le modal au lieu de rediriger */}}
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#appointmentModal"><span class="blog-menu">{{ .Name }}</span></a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#appointmentModal"><span class="blog-menu">{{ .Name }}</span></a>
                         {{ else }}
-                        <a class="nav-link" href="{{ .URL | relLangURL }}"><span {{ if eq .Name "#blog" }}class="blog-menu"{{ end }}>{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}</span><span class="sr-only">(current)</span>{{ end }}{{ end }}</a>
+                        <a class="nav-link" href="{{ .URL | relLangURL }}"><span {{ if eq .Name "#blog" }}class="blog-menu"{{ end }}>{{ .Name }}{{ if ne .URL $testHome }}{{ if in $.RelPermalink .URL }}</span><span class="visually-hidden">(current)</span>{{ end }}{{ end }}</a>
                         {{ end }}
                     </li>
                 {{ end }}
                 {{ end }}
                 {{ if ne .Site.Params.mono "yes" }}
-                <li class="nav-item dropdown pl-4">
-                    <a class="nav-link dropdown-toggle" href="{{ "/" | relLangURL }}" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="border rounded p-2">{{ $.Site.Language.Lang }}</span></a>
+                <li class="nav-item dropdown ps-4">
+                    <a class="nav-link dropdown-toggle" href="{{ "/" | relLangURL }}" id="dropdown09" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="border rounded p-2">{{ $.Site.Language.Lang }}</span></a>
                     <div class="dropdown-menu" aria-labelledby="dropdown09">
                         {{ $currentLang := $.Site.Language.Lang }}
                         {{ $translations := .Translations }}
@@ -93,7 +93,7 @@
             <div class="w-100 text-white">
                 <h1 style="font-family: 'Maven Pro', sans-serif;" class="display-4">{{ T "pageTitle" }}</h1>
                 <blockquote class="blockquote">
-                    <p class="display-4 font-italic mb-0" style="font-family: 'Pinyon Script', cursive;">{{ T "subTitle" }}</p>
+                    <p class="display-4 fst-italic mb-0" style="font-family: 'Pinyon Script', cursive;">{{ T "subTitle" }}</p>
                     <p class="blockquote-footer">Da Vinci</p>
                     <!-- <p class="blockquote-footer">{{ $currentPage }}</p> -->
                 </blockquote>

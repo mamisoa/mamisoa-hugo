@@ -61,7 +61,7 @@
                         <p class="doctor-specialty">{{ T "doctor_specialty_ophthalmologist" | default .specialty }}</p>
                         <p class="doctor-description">{{ T $descKey | default .description }}</p>
                         {{ if not .enabled }}
-                        <span class="badge badge-secondary mt-2">{{ T "appointments_coming_soon" | default "Bientôt disponible" }}</span>
+                        <span class="badge text-bg-secondary mt-2">{{ T "appointments_coming_soon" | default "Bientôt disponible" }}</span>
                         {{ end }}
                       </div>
                       <div class="doctor-arrow">
@@ -100,7 +100,7 @@
             <div class="appointments-slide" id="page-step-consultation" data-step="2">
               <div class="slide-content">
                 <button class="btn-back" id="pageBackToDoctor">
-                  <i class="fas fa-arrow-left mr-2"></i>{{ T "appointments_back_doctor" | default "Retour au choix du médecin" }}
+                  <i class="fas fa-arrow-left me-2"></i>{{ T "appointments_back_doctor" | default "Retour au choix du médecin" }}
                 </button>
                 
                 <div class="step-doctor-photo" id="pageStepDoctorPhoto">
@@ -121,7 +121,7 @@
               <div class="slide-content slide-content-calendar">
                 <div class="calendar-header">
                   <button class="btn-back" id="pageBackToConsultation">
-                    <i class="fas fa-arrow-left mr-2"></i>{{ T "appointments_back" | default "Retour" }}
+                    <i class="fas fa-arrow-left me-2"></i>{{ T "appointments_back" | default "Retour" }}
                   </button>
                   <div class="calendar-info">
                     <div class="calendar-info-item">
@@ -142,7 +142,7 @@
                 <div class="calendar-embed-container">
                   <div class="calendar-loading" id="pageCalendarLoading">
                     <div class="spinner-border text-primary" role="status">
-                      <span class="sr-only">{{ T "appointments_loading" | default "Chargement..." }}</span>
+                      <span class="visually-hidden">{{ T "appointments_loading" | default "Chargement..." }}</span>
                     </div>
                     <p>{{ T "appointments_loading_calendar" | default "Chargement du calendrier..." }}</p>
                   </div>
@@ -222,7 +222,7 @@
 }
 
 /* Hide @RDV menu item on appointments page (user is already here) */
-.navbar-nav .nav-item a[data-target="#appointmentModal"] {
+.navbar-nav .nav-item a[data-bs-target="#appointmentModal"] {
   display: none !important;
 }
 
