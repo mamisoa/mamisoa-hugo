@@ -358,21 +358,23 @@ a, a:hover, a:focus, a:active {
 
 .postBody .blockquote {
     position: relative;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 1.4em;
+    color: #0D47A1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 /* the framed box now sits on the inner blockquote, with a horizontal
-   margin so it keeps some air from the adjacent text column */
+   margin so it keeps some air from the adjacent text column. Font
+   properties stay on the column (inherited) so the text size is
+   unchanged versus the other articles. */
 .postBody .blockquote blockquote {
     position: relative;
     margin: 0.75rem 1.5rem;
     padding: 1.2em 1.4em;
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 1.4em;
-    color: #0D47A1;
     border-radius: 30px;
     background: #E3F2FD;
 }
