@@ -432,6 +432,42 @@ a, a:hover, a:focus, a:active {
     border-bottom: none;
 }
 
+/* References (citations en bas d'article) */
+.postBody .refInPost {
+    min-height: 150px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 0.7em;
+    padding: 1em;
+    color: #0D47A1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 30px;
+    background: #E3F2FD;
+    margin-bottom: 2rem;
+}
+
+.postBody .refInPost .list-group-item {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #BBDEFB;
+    padding: 0.6em 0.4em;
+    color: #0D47A1;
+    text-align: left;
+}
+
+.postBody .refInPost .list-group-item:last-child {
+    border-bottom: none;
+}
+
+.postBody .refInPost a,
+.postBody .refInPost .list-group-item a {
+    color: #0D47A1;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
 /* set parent div to min-height: 50vh */
 .postBody .picImgResp {
     width: 100%;
