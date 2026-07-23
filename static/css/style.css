@@ -357,6 +357,7 @@ a, a:hover, a:focus, a:active {
 }
 
 .postBody .blockquote {
+    position: relative;
     font-family: Georgia, serif;
     font-style: italic;
     font-size: 1.4em;
@@ -390,8 +391,49 @@ a, a:hover, a:focus, a:active {
     bottom: -35px;
 }
 
+/* neomorphic table in posts */
+.postBody .neoTableWrap {
+    border-radius: 20px;
+    background: #1E88E5;
+    box-shadow:  14px 14px 28px #155e9e,
+             -14px -14px 28px #27b2ff;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+
+.postBody .neoTableWrap table {
+    width: 100%;
+    color: white;
+    margin-bottom: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.postBody .neoTableWrap th {
+    color: #E3F2FD;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #E3F2FD;
+    padding: 0.75rem;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.postBody .neoTableWrap td {
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(227, 242, 253, 0.35);
+    vertical-align: top;
+    text-align: left;
+}
+
+.postBody .neoTableWrap tr:last-child td {
+    border-bottom: none;
+}
+
 /* set parent div to min-height: 50vh */
-.postBody .picImgResp { 
+.postBody .picImgResp {
     width: 100%;
     height: auto;
     border-radius: 30px;
@@ -507,6 +549,7 @@ a, a:hover, a:focus, a:active {
 }
 
 .listContainer blockquote {
+    position: relative;
     min-height: 150px;
     font-family: Georgia, serif;
     font-style: italic;
