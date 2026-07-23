@@ -358,37 +358,42 @@ a, a:hover, a:focus, a:active {
 
 .postBody .blockquote {
     position: relative;
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 1.4em;
-    padding-top: 1em;
-    padding-left: -0.4em;
-    color: #0D47A1;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* the framed box now sits on the inner blockquote, with a horizontal
+   margin so it keeps some air from the adjacent text column */
+.postBody .blockquote blockquote {
+    position: relative;
+    margin: 0.75rem 1.5rem;
+    padding: 1.2em 1.4em;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 1.4em;
+    color: #0D47A1;
     border-radius: 30px;
     background: #E3F2FD;
 }
 
-.postBody blockquote::before {
+.postBody .blockquote blockquote::before {
     color: #85754e;
     display: block;
-    padding-left: 10px;
     content: "\201C";
     font-size: 2.5em;
     position: absolute;
-    left: -5px;
-    top: -10px;
+    left: 8px;
+    top: -12px;
 }
 
-.postBody blockquote::after {
+.postBody .blockquote blockquote::after {
     color: #85754e;
     content: "\201D";
     position: absolute;
-    font-size:2.5em;
-    right:10px;
-    bottom: -35px;
+    font-size: 2.5em;
+    right: 14px;
+    bottom: -32px;
 }
 
 /* neomorphic table in posts */
