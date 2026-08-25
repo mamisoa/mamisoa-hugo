@@ -1,0 +1,86 @@
+{{- /*
+  img — une image posee par un gabarit, dimensions lues sur le fichier.
+
+  Pendant, cote gabarit, du shortcode « illustration » du site : un shortcode
+  n'est pas appelable depuis un template, d'ou ce partial. Meme principe, les
+  dimensions viennent de « imageConfig » donc du fichier lui-meme, et ne peuvent
+  pas se desynchroniser du balisage.
+
+  « width »/« height » ne redimensionnent rien : « .img-fluid », « .w-100 » et
+  leurs voisines imposent « width: 100% » et « height: auto ». Les deux attributs
+  ne servent qu'a donner le ratio au navigateur avant le telechargement, ce qui
+  reserve la place et supprime le decalage de mise en page (CLS).
+
+  Parametres :
+    src      (requis) chemin de l'image, absolu ou relatif a la racine web
+    alt      (requis, peut etre vide pour une image decorative)
+    class    classes du <img>
+    loading  defaut « lazy ». Passer « eager » pour l'element LCP, c'est-a-dire
+             l'image de une et elle seule.
+    picture  « true » pour envelopper dans un <picture> avec le <source> WebP.
+             Defaut « false » : envelopper une <img> qui ne l'etait pas change
+             le DOM sous le CSS, on ne le fait donc que la ou le balisage
+             d'origine avait deja un <picture>.
+    pclass   classes du <picture> ; le balisage d'origine repete souvent la
+             meme valeur que « class », on la reproduit telle quelle.
+    title    attribut title, pour les rares images qui en portaient un
+    style    style inline
+    width    court-circuitent « imageConfig ». Pour un « src » que le navigateur
+    height   remplace en JS, dont le fichier n'existe pas a la compilation.
+
+  Le chemin est cherche dans le « static/ » du site puis dans celui du theme, et
+  un fichier introuvable fait echouer le build : une faute de frappe dans un
+  chemin de front matter doit se voir a la compilation, pas en production. Les
+  deux racines sont ecrites en dur, comme dans le shortcode du site : renommer
+  le repertoire du sous-module casserait la resolution.
+*/ -}}
+
+{{- $src := .src -}}
+{{- if not $src }}{{ errorf "partial img : parametre « src » manquant" }}{{ end -}}
+{{- if not (isset . "alt") }}{{ errorf "partial img : parametre « alt » manquant pour src=%q" $src }}{{ end -}}
+
+{{- $alt := .alt -}}
+{{- $class := .class | default "" -}}
+{{- $pclass := .pclass | default "" -}}
+{{- $title := .title | default "" -}}
+{{- $style := .style | default "" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $w := .width -}}
+{{- $h := .height -}}
+
+{{- /* Le src arrive avec ou sans barre initiale : site.Params.logo n'en a pas.
+       On normalise avant de chercher le fichier et avant relURL. */ -}}
+{{- $path := printf "/%s" (strings.TrimPrefix "/" $src) -}}
+{{- $roots := slice "static" "themes/mamisoa-hugo/static" -}}
+
+{{- if not (and $w $h) -}}
+  {{- $file := "" -}}
+  {{- range $roots }}
+    {{- $candidate := path.Join . $path -}}
+    {{- if and (not $file) (fileExists $candidate) }}{{ $file = $candidate }}{{ end -}}
+  {{- end -}}
+  {{- if not $file }}{{ errorf "partial img : fichier introuvable pour src=%q (cherche sous %s)" $path (delimit $roots ", ") }}{{ end -}}
+  {{- $cfg := imageConfig $file -}}
+  {{- $w = $cfg.Width -}}
+  {{- $h = $cfg.Height -}}
+{{- end -}}
+
+{{- /* Jumeau WebP, meme chemin, extension changee. Le <source> n'est emis que
+       si le fichier existe : le balisage d'origine le posait sans verifier,
+       donc une image ajoutee sans son jumeau servirait un 404 aux navigateurs
+       qui acceptent le WebP. */ -}}
+{{- $webp := "" -}}
+{{- if .picture -}}
+  {{- $candidate := printf "%s.webp" (strings.TrimSuffix (path.Ext $path) $path) -}}
+  {{- range $roots }}
+    {{- if and (not $webp) (fileExists (path.Join . $candidate)) }}{{ $webp = $candidate }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if .picture -}}
+<picture{{ with $pclass }} class="{{ . }}"{{ end }}>{{ with $webp }}<source srcset="{{ relURL . }}" type="image/webp">{{ end }}
+{{- end -}}
+<img src="{{ relURL $path }}" alt="{{ $alt }}"{{ with $class }} class="{{ . }}"{{ end }}{{ with $title }} title="{{ . }}"{{ end }}{{ with $style }} style="{{ . | safeCSS }}"{{ end }} width="{{ $w }}" height="{{ $h }}" loading="{{ $loading }}" decoding="async">
+{{- if .picture -}}
+</picture>
+{{- end -}}
