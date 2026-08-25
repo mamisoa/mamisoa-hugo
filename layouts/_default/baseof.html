@@ -24,7 +24,11 @@
   <meta name="author" content="{{ . }}">
   {{ end }}
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  {{- /* Plus de « preconnect » vers fonts.gstatic.com : les polices sont
+         auto-hebergees depuis le 2026-08-25 (static/css/fonts.css), plus aucune
+         requete ne part vers cet hote. Un preconnect vers un hote qu'on ne
+         contacte pas paie une resolution DNS et une poignee de main TLS pour
+         rien. */ -}}
 
   <!-- TODO: set [params] custom_css = css files in array [] -->
   <link rel="stylesheet" type="text/css"
