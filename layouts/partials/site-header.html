@@ -6,7 +6,10 @@
     -->
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top text-uppercase  {{ .Scratch.Get "navClass" }}">
         <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
-            <img src="{{ site.Params.logo | relURL }}" alt="{{ site.Title }}" width="{{ site.Params.logo_width }}" class="img-fluid"/>
+            {{- /* « site.Params.logo_width » n'existe pas : l'attribut sortait vide.
+                   Le partial pose les dimensions reelles du fichier. « eager », le
+                   logo est dans l'en-tete de toutes les pages. */ -}}
+            {{ partial "img.html" (dict "src" site.Params.logo "alt" site.Title "class" "img-fluid" "loading" "eager") }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler8" aria-controls="navbarToggler8" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -75,16 +78,23 @@
     <!-- video background
         * position absolute z-index 1
     -->
-    <video playsinline="playsinline" autoplay loop muted>
-        {{ if .Site.Params.bgVideo }}
-        <source src="{{ relURL ($.Site.Params.bgVideo) }}.webm" type="video/webm" poster="{{ relURL ($.Site.Params.bgVideo) }}.jpg">
-        <source src="{{ relURL ($.Site.Params.bgVideo) }}.mp4" type="video/mp4" poster="{{ relURL ($.Site.Params.bgVideo) }}.jpg">
-        <picture>
-            <source srcset="{{ relURL ($.Site.Params.bgVideo) }}.webp" type="image/webp" alt="Your browser does not support video">
-            <img src="{{ relURL ($.Site.Params.bgVideo) }}.jpg" title="Your browser does not support video">    
-        </picture>
-        {{ end }}
+    {{- /* « poster » etait pose sur les <source>, ou il n'est pas un attribut
+           valide : l'image d'attente ne s'affichait donc jamais et la video
+           restait noire jusqu'a la premiere image decodee. Sa place est sur
+           <video>. Le <picture> en repli garde son <img>, qu'aucun navigateur
+           actuel ne rend — d'ou son role purement decoratif — mais qui avait
+           perdu son « alt » en route. */ -}}
+    {{ if .Site.Params.bgVideo }}
+    <video playsinline="playsinline" autoplay loop muted poster="{{ printf "%s.jpg" (relURL $.Site.Params.bgVideo) }}">
+        <source src="{{ relURL ($.Site.Params.bgVideo) }}.webm" type="video/webm">
+        <source src="{{ relURL ($.Site.Params.bgVideo) }}.mp4" type="video/mp4">
+        {{ partial "img.html" (dict
+             "src" (printf "%s.jpg" $.Site.Params.bgVideo)
+             "alt" (T "bgVideoFallback")
+             "picture" true
+             "loading" "eager") }}
     </video>
+    {{ end }}
     <!-- container title over video
         * position absolute z-index 2
     -->

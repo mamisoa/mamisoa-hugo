@@ -6,7 +6,10 @@
     <div class="container">
     <nav class="site-nav navbar navbar-dark navbar-expand-lg fixed-top text-uppercase {{ .Scratch.Get "navClass" }}">
         <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
-            <img src="{{ site.Params.logo | relURL }}" alt="{{ site.Title }}" width="{{ site.Params.logo_width }}" class="img-fluid"/>
+            {{- /* « site.Params.logo_width » n'existe pas : l'attribut sortait vide.
+                   Le partial pose les dimensions reelles du fichier. « eager », le
+                   logo est dans l'en-tete de toutes les pages. */ -}}
+            {{ partial "img.html" (dict "src" site.Params.logo "alt" site.Title "class" "img-fluid" "loading" "eager") }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler8" aria-controls="navbarToggler8" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -71,17 +74,20 @@
     <div id="invisible" class="word-rotate" style="display: none;"></div>
     <div class="container-fluid featured-image px-0" >
         <div class="row g-0">
-            <picture class="img-fluid w-100">
-                {{ if in $.RelPermalink "404"}}
-                <source srcset="{{ "/images/cover/404_cover_1500x509.jpg" | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="Featured image webp of {{ $.Params.title }}" />
-                <source srcset="{{ "/images/cover/404_cover_1500x509.jpg" | relURL }}" alt="Featured original image of {{ $.Params.title }}" />
-                <img src="{{ "/images/cover/404_cover_1500x509.jpg" | relURL }}" class="img-fluid w-100" alt="Featured image of {{ $.Params.title }}" />
-                {{ else }}
-                <source srcset="{{ $.Params.featured_image | replaceRE "(.*)\\.[^.]+$" "$1.webp" | relURL }}" type="image/webp" alt="Featured image webp of {{ $.Params.title }}" />
-                <source srcset="{{ $.Params.featured_image | relURL }}" alt="Featured original image of {{ $.Params.title }}" />
-                <img src="{{ $.Params.featured_image | relURL }}" class="img-fluid w-100" alt="Featured image of {{ $.Params.title }}" />
-                {{ end }}
-            </picture>
+            {{- /* Image de une : elle reste « eager », c'est l'element LCP. Le
+                   <source> WebP passait sans verifier que le jumeau existe, et un
+                   second <source> non type recopiait le src du <img>, qui est deja
+                   le repli ; les deux disparaissent avec le partial. Les <source>
+                   ne portent pas d'« alt », ce n'est pas un attribut valide la. */ -}}
+            {{- $cover := $.Params.featured_image -}}
+            {{- if in $.RelPermalink "404" }}{{ $cover = "/images/cover/404_cover_1500x509.jpg" }}{{ end -}}
+            {{ partial "img.html" (dict
+                 "src" $cover
+                 "alt" (printf "Featured image of %s" $.Params.title)
+                 "class" "img-fluid w-100"
+                 "pclass" "img-fluid w-100"
+                 "picture" true
+                 "loading" "eager") }}
         </div>
     </div>
     {{ else }}
