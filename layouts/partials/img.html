@@ -28,11 +28,21 @@
     width    court-circuitent « imageConfig ». Pour un « src » que le navigateur
     height   remplace en JS, dont le fichier n'existe pas a la compilation.
 
-  Le chemin est cherche dans le « static/ » du site puis dans celui du theme, et
-  un fichier introuvable fait echouer le build : une faute de frappe dans un
-  chemin de front matter doit se voir a la compilation, pas en production. Les
-  deux racines sont ecrites en dur, comme dans le shortcode du site : renommer
-  le repertoire du sous-module casserait la resolution.
+  Resolution du chemin, dans cet ordre :
+
+    1. « assets/ » via « resources.Get ». C'est la seule racine que Hugo traite,
+       donc la seule d'ou peuvent sortir des variantes redimensionnees. Les
+       images du site y ont ete deplacees ; leur URL ne change pas, « assets/ »
+       publiant sous le meme « /images/… ».
+    2. le « static/ » du site puis celui du theme, recopies tels quels. C'est la
+       ou restent les images qu'aucun gabarit ne reference — elles repondent a
+       leur URL sans que Hugo les ouvre — et les fichiers non bitmap.
+
+  Un fichier introuvable dans les trois fait echouer le build : une faute de
+  frappe dans un chemin de front matter doit se voir a la compilation, pas en
+  production. Les deux racines statiques sont ecrites en dur, comme dans le
+  shortcode du site : renommer le repertoire du sous-module casserait la
+  resolution.
 */ -}}
 
 {{- $src := .src -}}
@@ -53,16 +63,30 @@
 {{- $path := printf "/%s" (strings.TrimPrefix "/" $src) -}}
 {{- $roots := slice "static" "themes/mamisoa-hugo/static" -}}
 
+{{- /* 1. « assets/ ». « .Width » n'existe que sur une ressource bitmap : un SVG
+       est bien de type image pour Hugo mais n'a pas de dimensions, d'ou le test
+       sur le sous-type plutot que sur « ResourceType ». */ -}}
+{{- $res := resources.Get (strings.TrimPrefix "/" $path) -}}
+{{- if and $res (ne $res.MediaType.SubType "svg") (eq $res.ResourceType "image") -}}
+{{- else -}}
+  {{- $res = "" -}}
+{{- end -}}
+
 {{- if not (and $w $h) -}}
-  {{- $file := "" -}}
-  {{- range $roots }}
-    {{- $candidate := path.Join . $path -}}
-    {{- if and (not $file) (fileExists $candidate) }}{{ $file = $candidate }}{{ end -}}
+  {{- if $res -}}
+    {{- $w = $res.Width -}}
+    {{- $h = $res.Height -}}
+  {{- else -}}
+    {{- $file := "" -}}
+    {{- range $roots }}
+      {{- $candidate := path.Join . $path -}}
+      {{- if and (not $file) (fileExists $candidate) }}{{ $file = $candidate }}{{ end -}}
+    {{- end -}}
+    {{- if not $file }}{{ errorf "partial img : fichier introuvable pour src=%q (cherche sous assets, %s)" $path (delimit $roots ", ") }}{{ end -}}
+    {{- $cfg := imageConfig $file -}}
+    {{- $w = $cfg.Width -}}
+    {{- $h = $cfg.Height -}}
   {{- end -}}
-  {{- if not $file }}{{ errorf "partial img : fichier introuvable pour src=%q (cherche sous %s)" $path (delimit $roots ", ") }}{{ end -}}
-  {{- $cfg := imageConfig $file -}}
-  {{- $w = $cfg.Width -}}
-  {{- $h = $cfg.Height -}}
 {{- end -}}
 
 {{- /* Jumeau WebP, meme chemin, extension changee. Le <source> n'est emis que
@@ -72,15 +96,18 @@
 {{- $webp := "" -}}
 {{- if .picture -}}
   {{- $candidate := printf "%s.webp" (strings.TrimSuffix (path.Ext $path) $path) -}}
-  {{- range $roots }}
-    {{- if and (not $webp) (fileExists (path.Join . $candidate)) }}{{ $webp = $candidate }}{{ end -}}
+  {{- with resources.Get (strings.TrimPrefix "/" $candidate) }}{{ $webp = .RelPermalink }}{{ end -}}
+  {{- if not $webp -}}
+    {{- range $roots }}
+      {{- if and (not $webp) (fileExists (path.Join . $candidate)) }}{{ $webp = relURL $candidate }}{{ end -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 
 {{- if .picture -}}
-<picture{{ with $pclass }} class="{{ . }}"{{ end }}>{{ with $webp }}<source srcset="{{ relURL . }}" type="image/webp">{{ end }}
+<picture{{ with $pclass }} class="{{ . }}"{{ end }}>{{ with $webp }}<source srcset="{{ . }}" type="image/webp">{{ end }}
 {{- end -}}
-<img src="{{ relURL $path }}" alt="{{ $alt }}"{{ with $class }} class="{{ . }}"{{ end }}{{ with $title }} title="{{ . }}"{{ end }}{{ with $style }} style="{{ . | safeCSS }}"{{ end }} width="{{ $w }}" height="{{ $h }}" loading="{{ $loading }}" decoding="async">
+<img src="{{ if $res }}{{ $res.RelPermalink }}{{ else }}{{ relURL $path }}{{ end }}" alt="{{ $alt }}"{{ with $class }} class="{{ . }}"{{ end }}{{ with $title }} title="{{ . }}"{{ end }}{{ with $style }} style="{{ . | safeCSS }}"{{ end }} width="{{ $w }}" height="{{ $h }}" loading="{{ $loading }}" decoding="async">
 {{- if .picture -}}
 </picture>
 {{- end -}}
