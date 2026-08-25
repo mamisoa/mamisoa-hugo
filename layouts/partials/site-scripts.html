@@ -1,13 +1,18 @@
 <!-- JS scripts -->
-<!-- Bootstrap CDN (v5, jQuery-free, Popper bundled) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<!-- end Bootstrap CDN -->
+{{- /* Bootstrap 5.3.8 (sans jQuery, Popper inclus), servi depuis le site depuis le
+       2026-08-25. L'attribut « integrity » disparait avec l'origine distante : le SRI
+       protege d'un CDN compromis, il n'a pas de sens sur un fichier qu'on sert
+       soi-meme. « defer » parce que rien ici n'est appele pendant l'analyse du
+       document — le script est deja en fin de <body>, mais « defer » le sort en plus
+       du chemin critique declare au navigateur. */ -}}
+<script src="{{ "vendor/bootstrap/bootstrap.bundle.min.js" | relURL }}" defer></script>
 
 {{ range .Site.Params.local_js }} 
     <script src="{{ relURL (.) }}"></script>
 {{ end }}
+{{- /* « ext_js » ne porte plus que des chemins locaux, d'ou le relURL. */ -}}
 {{ range .Site.Params.ext_js }} 
-    <script src="{{ . }}"></script>
+    <script src="{{ . | relURL }}"></script>
 {{ end }}
 
 <script type="text/javascript">
