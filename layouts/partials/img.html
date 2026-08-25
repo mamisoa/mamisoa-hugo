@@ -17,6 +17,13 @@
     class    classes du <img>
     loading  defaut « lazy ». Passer « eager » pour l'element LCP, c'est-a-dire
              l'image de une et elle seule.
+    sizes    la place que l'image occupera, en syntaxe « sizes » CSS. Le passer
+             declenche la generation des variantes et l'emission du « srcset » ;
+             sans lui, l'image d'origine est servie telle quelle. Les valeurs
+             sont mesurees, pas deduites — voir seo/lot6-mesures-largeurs-*.md,
+             un « sizes » faux fait telecharger la mauvaise variante a coup sur.
+             Il force aussi le <picture>, le <source> WebP venant du meme
+             mecanisme.
     picture  « true » pour envelopper dans un <picture> avec le <source> WebP.
              Defaut « false » : envelopper une <img> qui ne l'etait pas change
              le DOM sous le CSS, on ne le fait donc que la ou le balisage
@@ -104,10 +111,33 @@
   {{- end -}}
 {{- end -}}
 
-{{- if .picture -}}
-<picture{{ with $pclass }} class="{{ . }}"{{ end }}>{{ with $webp }}<source srcset="{{ . }}" type="image/webp">{{ end }}
+{{- /* Variantes. L'echelle est filtree sur la largeur de la source : Hugo
+       agrandirait volontiers une image de 500 px en 1440, ce qui coute des octets
+       pour du flou. La source elle-meme ferme le « srcset », en JPEG a son URL
+       d'origine — celle qui reste indexee — et en WebP regenere. */ -}}
+{{- $sizes := .sizes | default "" -}}
+{{- $srcset := "" -}}
+{{- $srcsetWebp := "" -}}
+{{- if and $res $sizes -}}
+  {{- $orig := slice -}}
+  {{- $webpset := slice -}}
+  {{- range slice 360 480 720 960 1440 -}}
+    {{- if lt . $res.Width -}}
+      {{- $orig = $orig | append (printf "%s %dw" ($res.Resize (printf "%dx" .)).RelPermalink .) -}}
+      {{- $webpset = $webpset | append (printf "%s %dw" ($res.Resize (printf "%dx webp" .)).RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $orig = $orig | append (printf "%s %dw" $res.RelPermalink $res.Width) -}}
+  {{- $webpset = $webpset | append (printf "%s %dw" ($res.Resize (printf "%dx webp" $res.Width)).RelPermalink $res.Width) -}}
+  {{- $srcset = delimit $orig ", " -}}
+  {{- $srcsetWebp = delimit $webpset ", " -}}
 {{- end -}}
-<img src="{{ if $res }}{{ $res.RelPermalink }}{{ else }}{{ relURL $path }}{{ end }}" alt="{{ $alt }}"{{ with $class }} class="{{ . }}"{{ end }}{{ with $title }} title="{{ . }}"{{ end }}{{ with $style }} style="{{ . | safeCSS }}"{{ end }} width="{{ $w }}" height="{{ $h }}" loading="{{ $loading }}" decoding="async">
-{{- if .picture -}}
+
+{{- $wrap := or .picture (ne $srcsetWebp "") -}}
+{{- if $wrap -}}
+<picture{{ with $pclass }} class="{{ . }}"{{ end }}>{{ if $srcsetWebp }}<source srcset="{{ $srcsetWebp }}" sizes="{{ $sizes }}" type="image/webp">{{ else }}{{ with $webp }}<source srcset="{{ . }}" type="image/webp">{{ end }}{{ end }}
+{{- end -}}
+<img src="{{ if $res }}{{ $res.RelPermalink }}{{ else }}{{ relURL $path }}{{ end }}"{{ with $srcset }} srcset="{{ . }}" sizes="{{ $sizes }}"{{ end }} alt="{{ $alt }}"{{ with $class }} class="{{ . }}"{{ end }}{{ with $title }} title="{{ . }}"{{ end }}{{ with $style }} style="{{ . | safeCSS }}"{{ end }} width="{{ $w }}" height="{{ $h }}" loading="{{ $loading }}" decoding="async">
+{{- if $wrap -}}
 </picture>
 {{- end -}}
