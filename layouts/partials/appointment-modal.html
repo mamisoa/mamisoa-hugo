@@ -36,7 +36,7 @@
                   <div class="doctor-card-inner">
                     <div class="doctor-avatar">
                       {{ if .photo }}
-                      <img src="{{ .photo }}" alt="{{ .name }}" class="doctor-avatar-img">
+                      {{ partial "img.html" (dict "src" .photo "alt" .name "class" "doctor-avatar-img") }}
                       {{ else }}
                       <i class="fas fa-user-md"></i>
                       {{ end }}
@@ -84,7 +84,7 @@
               </button>
               
               <div class="step-doctor-photo" id="stepDoctorPhoto" style="display: none;">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Photo du médecin sélectionné" class="step-doctor-photo-img" loading="lazy" decoding="async">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Photo du médecin sélectionné" class="step-doctor-photo-img" width="250" height="250" loading="lazy" decoding="async">
               </div>
               <h3 class="step-title">{{ T "appointments_consultation_type" | default "Type de consultation" }}</h3>
               <p class="step-subtitle selected-doctor-name"></p>
