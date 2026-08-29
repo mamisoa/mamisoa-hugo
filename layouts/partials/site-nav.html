@@ -80,10 +80,22 @@
                    le repli ; les deux disparaissent avec le partial. Les <source>
                    ne portent pas d'« alt », ce n'est pas un attribut valide la. */ -}}
             {{- $cover := $.Params.featured_image -}}
-            {{- if in $.RelPermalink "404" }}{{ $cover = "/images/cover/404_cover_1500x509.jpg" }}{{ end -}}
+            {{- $coverAlt := printf "Featured image of %s" $.Title -}}
+            {{- /* La 404 n'a pas de front matter : « $.Params.title » y valait nil,
+                   et « printf %s » produisait litteralement
+                   alt="Featured image of %!s(<nil>)", restitue tel quel par un
+                   lecteur d'ecran. L'image y est decorative — le titre de la page
+                   est dans le <h1> juste dessous — d'ou un alt vide, qui la fait
+                   ignorer plutot que de l'annoncer deux fois. Ailleurs, « $.Title »
+                   remplace « $.Params.title » : il est toujours renseigne, la meme
+                   panne ne peut donc pas se reproduire sur une page sans titre. */ -}}
+            {{- if in $.RelPermalink "404" -}}
+              {{- $cover = "/images/cover/404_cover_1500x509.jpg" -}}
+              {{- $coverAlt = "" -}}
+            {{- end -}}
             {{ partial "img.html" (dict
                  "src" $cover
-                 "alt" (printf "Featured image of %s" $.Params.title)
+                 "alt" $coverAlt
                  "class" "img-fluid w-100"
                  "pclass" "img-fluid w-100"
                  "sizes" "100vw"
