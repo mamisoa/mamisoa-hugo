@@ -89,16 +89,25 @@
                    ignorer plutot que de l'annoncer deux fois. Ailleurs, « $.Title »
                    remplace « $.Params.title » : il est toujours renseigne, la meme
                    panne ne peut donc pas se reproduire sur une page sans titre. */ -}}
+            {{- $coverSizes := "100vw" -}}
             {{- if in $.RelPermalink "404" -}}
               {{- $cover = "/images/cover/404_cover_1500x509.jpg" -}}
               {{- $coverAlt = "" -}}
+              {{- /* Le site plafonne ce bandeau a 640 px (« body:has(.c404)
+                     .featured-image img » dans static/css/style.css) pour garder le
+                     champ de recherche au-dessus de la ligne de flottaison. Sans le
+                     dire ici, « 100vw » fait choisir au navigateur la variante taillee
+                     pour la fenetre — 1440 px et 51 ko pour un emplacement de 640 —
+                     alors que la 720w suffit. En dessous de 640 px de large, le
+                     plafond ne mord pas et l'image occupe bien toute la largeur. */ -}}
+              {{- $coverSizes = "(max-width: 640px) 100vw, 640px" -}}
             {{- end -}}
             {{ partial "img.html" (dict
                  "src" $cover
                  "alt" $coverAlt
                  "class" "img-fluid w-100"
                  "pclass" "img-fluid w-100"
-                 "sizes" "100vw"
+                 "sizes" $coverSizes
                  "picture" true
                  "loading" "eager") }}
         </div>
