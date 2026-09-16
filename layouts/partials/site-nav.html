@@ -117,10 +117,21 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-12 col-lg-12 col-sm-11 no-image-text py-3">
                 <div class="text-center ps-4 pe-4 py-1">
+                    {{- /* Le titre n'est un <h1> que si le gabarit de la page n'en pose
+                           pas lui-meme. Les pages simples (single.html, appointments)
+                           ont leur <h1> dans la colonne de contenu : ici, la meme
+                           typographie via la classe Bootstrap « h1 », mais un <p>,
+                           sinon la page porte deux <h1> identiques. Les listes,
+                           taxonomies et l'index des tags n'ont pas de titre propre et
+                           comptent sur celui-ci. La 404 passe par la branche image. */ -}}
+                    {{ if .IsPage }}
+                    <p class="h1 banner-title">{{- .Title -}}</p>
+                    {{ else }}
                     <h1>
                         {{ if in $.RelPermalink "tags" }}{{- T "tag" -}}: {{ end }}
                         {{- .Title -}}
                     </h1>
+                    {{ end }}
                 </div>
                 <div class="py-3">
                     <ul class="word-rotate">   
