@@ -12,7 +12,7 @@
             <div class="card profile-card-2">
                 {{if .Params.images }}{{ partial "img.html" (dict "src" (index .Params.images 0) "alt" .Title "class" "img-fluid card-img-top" "sizes" "(max-width: 767px) 96vw, (max-width: 991px) 47vw, 24vw") }}{{ end }}
                 <div class="card-body">
-                    {{if .Params.author_pic }}{{ partial "img.html" (dict "src" .Params.author_pic "alt" .Params.author "class" "profile") }}{{ end}}
+                    {{if .Params.author_pic }}{{ partial "img.html" (dict "src" .Params.author_pic "alt" .Params.author "class" "profile" "sizes" "69px") }}{{ end}}
                     <h4 class="card-title mt-5">{{ .Title }}</h4>
                     <p class="card-text mt-2">{{ plainify .Summary  -}}</p>
                 </div>

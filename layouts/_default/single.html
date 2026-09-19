@@ -17,7 +17,7 @@
             </h1>
             {{ with .Params.author }}
             <p class="tracked">
-                {{ partial "img.html" (dict "src" $.Params.author_pic "alt" (printf "Picture of the author %s" $.Params.author) "class" "author_pic me-2 img-fluid rounded-circle") }}
+                {{ partial "img.html" (dict "src" $.Params.author_pic "alt" (printf "Picture of the author %s" $.Params.author) "class" "author_pic me-2 img-fluid rounded-circle" "sizes" "75px") }}
                 <span class="text-capitalize">{{- T "par" -}}</span>
                 <strong>
                 {{ if reflect.IsSlice . }}
