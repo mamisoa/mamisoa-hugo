@@ -1,8 +1,21 @@
+{{- /* Chaque lien social n'a pour contenu qu'une icone. Sans « aria-label », son nom
+       accessible est vide : un lecteur d'ecran annonce « lien », et l'arbre
+       d'accessibilite que parcourt un agent ne porte rien d'exploitable. PageSpeed le
+       signalait au 2026-09-20 (« Links must have discernible text »).
+
+       L'icone recoit « aria-hidden » : elle redit l'etiquette, la laisser exposee ne
+       ferait que doubler l'annonce. Le nom du reseau n'est pas traduit, seule la
+       tournure qui l'entoure l'est — d'ou le « printf » sur la chaine i18n. */ -}}
 <footer class="d-flex justify-content-center {{ .Scratch.Get "footerClass" }}">
     <section class="layout-social py-2">
-        {{ if $.Site.Params.facebookAccountUrl }} <a class="text-light px-2" href="{{ $.Site.Params.facebookAccountUrl }}"><i class="layout-icon fab fa-facebook"></i></a>{{ end }}
-        {{ if $.Site.Params.twitterAccountUrl }}<a class="text-light px-2" href="{{ $.Site.Params.twitterAccountUrl }}"><i class="layout-icon fab fa-twitter"></i></a>{{ end }}
-        {{ if $.Site.Params.linkedinAccountUrl }}<a class="text-light px-2" href="{{ $.Site.Params.linkedinAccountUrl }}"><i class="layout-icon fab fa-linkedin"></i></a>{{ end }}
-        {{ if $.Site.Params.githubAccountUrl }}<a class="text-light px-2" href="{{ $.Site.Params.githubAccountUrl }}"><i class="layout-icon fab fa-github"></i></a>{{ end }}
+        {{- range slice
+            (dict "url" $.Site.Params.facebookAccountUrl "nom" "Facebook" "icone" "fa-facebook")
+            (dict "url" $.Site.Params.twitterAccountUrl  "nom" "Twitter"  "icone" "fa-twitter")
+            (dict "url" $.Site.Params.linkedinAccountUrl "nom" "LinkedIn" "icone" "fa-linkedin")
+            (dict "url" $.Site.Params.githubAccountUrl   "nom" "GitHub"   "icone" "fa-github") }}
+        {{- if .url }}
+        <a class="text-light px-2" href="{{ .url }}" rel="noopener" aria-label="{{ printf (T "followOn") .nom }}"><i class="layout-icon fab {{ .icone }}" aria-hidden="true"></i></a>
+        {{- end }}
+        {{- end }}
     </section> <!-- section end of social -->
 </footer>

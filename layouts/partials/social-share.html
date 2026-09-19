@@ -1,3 +1,5 @@
+{{- /* Les « aria-label » etaient en dur et en anglais sur les trois langues. Ils
+       passent par i18n ; le nom du reseau, lui, ne se traduit pas. */ -}}
 {{ $title := .Title }} {{ $url := printf "%s" .Permalink | absLangURL }} {{
 $icon_size := "32px" }} {{ if not .Params.disable_share }}
 <div id="sharing" class="mt-3">
@@ -5,7 +7,7 @@ $icon_size := "32px" }} {{ if not .Params.disable_share }}
 	<a
 		href="{{ $facebook_href }}"
 		class="facebook no-underline"
-		aria-label="share on Facebook">
+		aria-label="{{ printf (T "shareOn") "Facebook" }}">
 		{{ partialCached "svg/facebook.svg" (dict "size" $icon_size) $icon_size }}
 	</a>
 
@@ -15,7 +17,7 @@ $icon_size := "32px" }} {{ if not .Params.disable_share }}
 	<a
 		href="{{ $twitter_href }}"
 		class="twitter no-underline"
-		aria-label="share on Twitter">
+		aria-label="{{ printf (T "shareOn") "Twitter" }}">
 		{{ partialCached "svg/twitter.svg" (dict "size" $icon_size) $icon_size }}
 	</a>
 
@@ -25,7 +27,7 @@ $icon_size := "32px" }} {{ if not .Params.disable_share }}
 	<a
 		href="{{ $linkedin_href }}"
 		class="linkedin no-underline"
-		aria-label="share on LinkedIn">
+		aria-label="{{ printf (T "shareOn") "LinkedIn" }}">
 		{{ partialCached "svg/linkedin.svg" (dict "size" $icon_size) $icon_size }}
 	</a>
 </div>
