@@ -5,14 +5,15 @@
        soi-meme. « defer » parce que rien ici n'est appele pendant l'analyse du
        document — le script est deja en fin de <body>, mais « defer » le sort en plus
        du chemin critique declare au navigateur. */ -}}
-<script src="{{ "vendor/bootstrap/bootstrap.bundle.min.js" | relURL }}" defer></script>
+{{- $bs := "vendor/bootstrap/bootstrap.bundle.min.js" }}
+<script src="{{ partialCached "asset-url.html" $bs $bs }}" defer></script>
 
 {{ range .Site.Params.local_js }} 
-    <script src="{{ relURL (.) }}"></script>
+    <script src="{{ partialCached "asset-url.html" . . }}"></script>
 {{ end }}
-{{- /* « ext_js » ne porte plus que des chemins locaux, d'ou le relURL. */ -}}
+{{- /* « ext_js » ne porte plus que des chemins locaux, d'ou l'empreinte. */ -}}
 {{ range .Site.Params.ext_js }} 
-    <script src="{{ . | relURL }}"></script>
+    <script src="{{ partialCached "asset-url.html" . . }}"></script>
 {{ end }}
 
 <script type="text/javascript">

@@ -1,0 +1,24 @@
+{{- /* URL d'une feuille de style ou d'un script local, suivie d'une empreinte de
+       son contenu : « css/style.css » -> « /css/style.css?v=4d800f8773e9cbc0 ».
+
+       Le serveur sert *.css et *.js en « max-age=31536000, immutable » : la
+       promesse que les octets a cette URL ne changeront jamais. Sans empreinte,
+       elle etait fausse a chaque deploiement — un visiteur deja venu gardait
+       l'ancienne feuille jusqu'a un an, rechargement force compris, puisque
+       « immutable » interdit la revalidation. L'URL change desormais avec le
+       contenu, et seulement avec lui.
+
+       Pourquoi une query string et pas Hugo Pipes : « resources.Get » ne lit pas
+       static/, il aurait fallu migrer les feuilles vers assets/. « readFile » lit
+       l'union du site et du thème : un fichier present dans l'un ou l'autre est
+       trouve. Un chemin introuvable sort sans empreinte plutot que de casser le
+       build ; « check-build-assets.sh » refuse alors le deploiement.
+
+       Appeler avec « partialCached "asset-url.html" $chemin $chemin » : le
+       fichier n'est lu qu'une fois par build, pas une fois par page. */ -}}
+{{- $u := . -}}
+{{- $f := printf "static/%s" (strings.TrimPrefix "/" .) -}}
+{{- if fileExists $f -}}
+  {{- $u = printf "%s?v=%s" . (readFile $f | hash.XxHash) -}}
+{{- end -}}
+{{- return ($u | relURL) -}}
