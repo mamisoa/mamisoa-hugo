@@ -81,18 +81,34 @@
     {{- /* « poster » etait pose sur les <source>, ou il n'est pas un attribut
            valide : l'image d'attente ne s'affichait donc jamais et la video
            restait noire jusqu'a la premiere image decodee. Sa place est sur
-           <video>. Le <picture> en repli garde son <img>, qu'aucun navigateur
-           actuel ne rend — d'ou son role purement decoratif — mais qui avait
-           perdu son « alt » en route. */ -}}
+           <video>.
+
+           Le poster pointe sur le WebP et non sur le JPEG. Ce n'est pas une
+           micro-optimisation : sur mobile, le poster EST le plus grand element
+           peint de l'accueil — 259 534 px carres contre 25 029 pour le
+           sous-titre, mesure au banc — donc c'est lui, et lui seul, qui date le
+           LCP. Meme image en 1280x720, 26 ko au lieu de 99,6 ko. Sur le 1,6 Mb/s
+           du profil mobile Lighthouse, les 74 ko economises valent ~0,4 s sur la
+           metrique que PageSpeed pondere le plus.
+
+           Le repli <picture> a ete retire. Aucun navigateur qui comprend <video>
+           ne rend le contenu de repli — le commentaire precedent le disait deja,
+           « purement decoratif » — mais l'analyseur de prechargement, lui, allait
+           quand meme chercher son WebP : 26 ko telecharges pour rien, et servis
+           AVANT le poster dans la file. Un repli qui ne s'affiche jamais mais qui
+           coute de la bande passante au premier rendu n'est pas un repli.
+
+           Le JPEG reste dans static/ : il est la source du WebP, et ne coute plus
+           rien tant qu'aucune page ne le demande. La cle i18n « bgVideoFallback »
+           devient inutilisee, gardee au cas ou un repli reviendrait.
+
+           Contrepartie assumee : Safari anterieur a 14 n'affiche pas un poster
+           WebP et montrera du noir jusqu'a la premiere image decodee, soit l'etat
+           d'avant la correction du poster, sur un parc residuel. */ -}}
     {{ if .Site.Params.bgVideo }}
-    <video playsinline="playsinline" autoplay loop muted poster="{{ printf "%s.jpg" (relURL $.Site.Params.bgVideo) }}">
+    <video playsinline="playsinline" autoplay loop muted poster="{{ printf "%s.webp" (relURL $.Site.Params.bgVideo) }}">
         <source src="{{ relURL ($.Site.Params.bgVideo) }}.webm" type="video/webm">
         <source src="{{ relURL ($.Site.Params.bgVideo) }}.mp4" type="video/mp4">
-        {{ partial "img.html" (dict
-             "src" (printf "%s.jpg" $.Site.Params.bgVideo)
-             "alt" (T "bgVideoFallback")
-             "picture" true
-             "loading" "eager") }}
     </video>
     {{ end }}
     <!-- container title over video
